@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const state = {
-    posts: []
+    posts: [],
 }
 const getters = {
     allPosts: function (state) {
@@ -16,9 +16,9 @@ const actions = {
                 commit("setPosts", posts);
             })
             .catch((e) => {
-                console.log(e)
+                alert(e);
             })
-    }
+    },
 
 }
 const mutations = {

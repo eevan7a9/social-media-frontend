@@ -20,12 +20,13 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["getPosts", "getUsers"])
+    ...mapActions(["getPosts", "getLikes", "getUsers"])
   },
   computed: mapGetters(["allPosts"]),
   created() {
     this.getUsers();
     this.getPosts();
+    this.getLikes();
   }
 };
 </script>
