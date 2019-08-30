@@ -1,0 +1,72 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/* utilities */
+.container {
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  padding: 0 15px;
+}
+.bg-vuedient {
+  background: linear-gradient(
+    0deg,
+    rgba(113, 181, 150, 1) 5%,
+    rgba(49, 170, 116, 1) 46%,
+    rgba(65, 184, 131, 1) 100%
+  );
+}
+.bg-greendient {
+  background: linear-gradient(
+    0deg,
+    rgba(79, 143, 34, 1) 5%,
+    rgba(48, 162, 31, 1) 46%,
+    rgba(29, 148, 48, 1) 100%
+  );
+}
+.bg-orangdient {
+  background: linear-gradient(
+    0deg,
+    rgba(237, 192, 97, 1) 12%,
+    rgba(232, 133, 7, 1) 58%,
+    rgba(198, 98, 0, 1) 100%
+  );
+}
+.bg-lightdient {
+  background-image: radial-gradient(
+    circle farthest-corner at 18.7% 37.8%,
+    rgba(250, 250, 250, 1) 0%,
+    rgba(225, 234, 238, 1) 90%
+  );
+}
+.bg-darkdient {
+  background-image: radial-gradient(
+    circle,
+    #22251c,
+    #292c22,
+    #313427,
+    #383c2d,
+    #404433
+  );
+}
+.bg-danger {
+  background-image: radial-gradient(
+    circle 820px at -14.8% -18.7%,
+    rgba(242, 7, 7, 1) 0%,
+    rgba(242, 165, 13, 1) 90%
+  );
+}
+.bg-success {
+  background-image: radial-gradient(
+    circle 1124px at 1.6% 5%,
+    rgba(9, 249, 0, 0.36) 7.4%,
+    rgba(216, 245, 34, 0.34) 48.1%,
+    rgba(16, 186, 88, 0.35) 80.1%
+  );
+}
+.color-white {
+  color: aliceblue;
+}
