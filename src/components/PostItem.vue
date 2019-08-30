@@ -5,18 +5,27 @@
     </div>
     <hr />
     <div class="title">
-      <h3>MemberName</h3>
+      <h4>{{getPostsUsername()}} -</h4>
       <p>{{post.title}}</p>
     </div>
   </main>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "postItem",
   props: {
     post: Object
-  }
+  },
+  methods: {
+    getPostsUsername() {
+      return this.allUsers
+        .filter(user => user.id == this.post.user_id)
+        .map(user => user.username)[0];
+    }
+  },
+  computed: mapGetters(["allUsers"])
 };
 </script>
 

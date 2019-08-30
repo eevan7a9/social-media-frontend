@@ -20,10 +20,11 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["getPosts"])
+    ...mapActions(["getPosts", "getUsers"])
   },
   computed: mapGetters(["allPosts"]),
   created() {
+    this.getUsers();
     this.getPosts();
   }
 };
