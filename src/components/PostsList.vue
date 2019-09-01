@@ -24,10 +24,13 @@ export default {
   },
   computed: mapGetters(["allPosts"]),
   created() {
-    this.getUsers();
-    this.getPosts();
-    this.getLikes();
-    this.getComments();
+    this.getUsers().then(() => {
+      this.getComments().then(() => {
+        this.getLikes().then(() => {
+          this.getPosts();
+        });
+      });
+    });
   }
 };
 </script>

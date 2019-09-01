@@ -5,17 +5,17 @@
     </div>
     <hr />
     <div class="title">
-      <h4>{{getPostsUsername()}} -</h4>
+      <h4>{{post.user_username}} -</h4>
       <p>{{post.title}}</p>
     </div>
     <div class="star-comment">
       <div class="star">
         <img src="../assets/icons/star.svg" data="star.svg" alt srcset />
-        <span>{{getPostLikes()}}</span>
+        <span>{{post.likes}}</span>
       </div>
       <div class="comment">
         <img src="../assets/icons/message-square.svg" alt="comment" />
-        <span>{{getPostComments()}}</span>
+        <span>{{post.comments}}</span>
       </div>
     </div>
   </main>
@@ -28,21 +28,7 @@ export default {
   props: {
     post: Object
   },
-  methods: {
-    getPostsUsername() {
-      return this.allUsers
-        .filter(user => user.id === this.post.user_id)
-        .map(user => user.username)[0];
-    },
-    getPostLikes() {
-      return this.allLikes.filter(like => like.post_id === this.post.id).length;
-    },
-    getPostComments() {
-      return this.allComments.filter(
-        comment => comment.post_id === this.post.id
-      ).length;
-    }
-  },
+  methods: {},
   computed: mapGetters(["allUsers", "allLikes", "allComments"])
 };
 </script>
