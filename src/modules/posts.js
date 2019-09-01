@@ -15,7 +15,7 @@ const actions = {
                 const likes = rootState.likes.likes // we access the state of likes module
                 const comments = rootState.comments.comments; // we access the state of comments module
                 const users = rootState.users.users; // we access the state of users module
-                let posts = res.data // we store the result of our api request
+                const posts = res.data // we store the result of our api request
                 posts.forEach(post => {
                     post.user_username = users.filter(user =>
                         user.id === post.user_id // we check if post belongs to the user

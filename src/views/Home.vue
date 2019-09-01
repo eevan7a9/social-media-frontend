@@ -1,19 +1,25 @@
 <template>
   <div class="home">
     <SideBar class="side" />
-    <PostsList class="main" />
+    <div class="main">
+      <PostAdd />
+      <PostsList />
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import PostsList from "../components/PostsList";
 import SideBar from "../components/SideBar";
+import PostAdd from "../components/PostAdd";
+import PostsList from "../components/PostsList";
+
 export default {
   name: "home",
   components: {
-    PostsList,
-    SideBar
+    SideBar,
+    PostAdd,
+    PostsList
   }
 };
 </script>
