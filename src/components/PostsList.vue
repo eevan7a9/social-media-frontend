@@ -27,7 +27,9 @@ export default {
     this.getUsers().then(() => {
       this.getComments().then(() => {
         this.getLikes().then(() => {
-          this.getPosts();
+          if (this.allPosts.length === 0) {
+            this.getPosts();
+          }
         });
       });
     });
