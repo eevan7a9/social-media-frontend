@@ -2,6 +2,7 @@ import axios from "axios";
 
 const state = {
     posts: [],
+    created_id: 18, // serves as a holder for new fake post
 }
 const getters = {
     allPosts: function (state) {
@@ -10,7 +11,7 @@ const getters = {
 }
 const actions = {
     getPosts: async ({ commit, rootState }) => {
-        await axios.get("https://my-json-server.typicode.com/eevan7a9/social-media-db/posts")
+        await axios.get("/posts")
             .then(res => {
                 const likes = rootState.likes.likes // we access the state of likes module
                 const comments = rootState.comments.comments; // we access the state of comments module
@@ -33,12 +34,38 @@ const actions = {
                 alert(e);
             })
     },
+    addPost: async ({ commit, rootState, state }, newPost) => {
+        await axios.post("/posts", {
+            id: state.created_id,
+            user_id: newPost.user_id,
+            title: newPost.title,
+            created_at: newPost.created_at
+        })
+            .then(res => {
+                state.created_id++; // we increase the new fake post id holder
+                const users = rootState.users.users;
+                const comments = rootState.comments.comments;
+                const likes = rootState.likes.likes;
+                const post = res.data;
+                post.user_username = users.filter(user =>
+                    user.id == post.user_id).map(user => user.username)[0];
+                post.comments = comments.filter(comment => comment.post_id == post.id).length;
+                post.likes = likes.filter(like => like.post_id == post.id).length;
+                commit("insertPost", post);
+            })
+        // .catch(err => {
+        //     console.error(err);
+        // })
+    }
 
 }
 const mutations = {
     setPosts: (state, posts) => {
         state.posts = posts;
     },
+    insertPost: (state, post) => {
+        state.posts.unshift(post);
+    }
 
 }
 // export

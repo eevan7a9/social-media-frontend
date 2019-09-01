@@ -1,20 +1,44 @@
 <template>
   <div class="create-container">
-    <label for="title">
-      Create new post
-      <span class="plus">+</span>
-    </label>
-    <br />
-    <textarea class="bg-lightdient" name="title" id="title" cols="30" rows="5"></textarea>
-    <div>
-      <button class="publish">PUBLISH</button>
-    </div>
+    <form @submit="publish">
+      <label for="title">
+        Create new post
+        <span class="plus">+</span>
+      </label>
+      <br />
+      <textarea class="bg-lightdient" v-model="title" id="title" cols="30" rows="5"></textarea>
+      <div>
+        <button class="publish" type="submit">PUBLISH</button>
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
-  name: "PostAdd"
+  name: "PostAdd",
+  data() {
+    return {
+      title: ""
+    };
+  },
+  methods: {
+    ...mapActions(["addPost"]),
+    publish(event) {
+      event.preventDefault();
+      const dt = new Date();
+      const year = dt.getFullYear(); // we get current year
+      const month = // we get current month
+        dt.getMonth() + 1 < 10 ? `0${dt.getMonth() + 1}` : dt.getMonth() + 1;
+      const date = dt.getDate(); // we get current date
+      this.addPost({
+        user_id: 1,
+        title: this.title,
+        created_at: `${year}/${month}/${date}`
+      });
+    }
+  }
 };
 </script>
 
