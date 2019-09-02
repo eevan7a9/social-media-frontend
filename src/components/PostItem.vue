@@ -4,10 +4,12 @@
       <small>{{post.created_at}}</small>
     </div>
     <hr />
-    <div class="title">
-      <h4>{{post.user_username}} -</h4>
-      <p>{{post.title}}</p>
-    </div>
+    <router-link :to="{name:'postdetails', params:{id: post.id}}">
+      <div class="title">
+        <h4>{{post.user_username}} -</h4>
+        <p>{{post.title}}</p>
+      </div>
+    </router-link>
     <div class="post-bottom">
       <div class="star-comment">
         <img src="../assets/icons/star.svg" data="star.svg" alt srcset />
@@ -59,6 +61,9 @@ export default {
 </script>
 
 <style scoped>
+a {
+  text-decoration: none;
+}
 hr {
   color: #45ad78;
   margin: 5px 0;
@@ -73,7 +78,13 @@ hr {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: 15px 30px;
-  padding: 0 0 20px 0;
+  padding: 5px 5px 20px 5px;
+  cursor: pointer;
+  color: #333;
+  text-decoration: none;
+}
+.title:hover {
+  background: #e5ebe8;
 }
 .created-date {
   width: 100%;
