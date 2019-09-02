@@ -56,6 +56,15 @@ const actions = {
         // .catch(err => {
         //     console.error(err);
         // })
+    },
+    deletePost: async ({ commit }, id) => {
+        await axios.delete(`/posts/${id}`)
+            .then(() => {
+                commit("removePost", id)
+            })
+        // .catch(err => {
+        //     console.error(err);
+        // })
     }
 
 }
@@ -65,6 +74,9 @@ const mutations = {
     },
     insertPost: (state, post) => {
         state.posts.unshift(post);
+    },
+    removePost: (state, id) => {
+        state.posts = state.posts.filter(post => post.id != id)
     }
 
 }

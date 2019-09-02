@@ -20,10 +20,9 @@
           <p class="open-options" v-if="!options">
             <img @click="showOptions" src="../assets/icons/more-horizontal.svg" alt srcset />
           </p>
-
           <ul v-if="options">
             <li>edit</li>
-            <li>delete</li>
+            <li @click="delPost">delete</li>
             <li>report</li>
             <li class="close-options" @click="showOptions">...</li>
           </ul>
@@ -34,7 +33,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "postItem",
   props: {
@@ -46,9 +45,13 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["deletePost"]),
     showOptions() {
       this.options = !this.options;
-      console.log(this.options);
+    },
+    delPost() {
+      this.deletePost(this.post.id);
+      this.showOptions();
     }
   },
   computed: mapGetters(["allUsers", "allLikes", "allComments"])
@@ -59,9 +62,6 @@ export default {
 hr {
   color: #45ad78;
   margin: 5px 0;
-}
-img {
-  margin-right: 10px;
 }
 .post-container {
   padding: 10px 15px;
@@ -83,6 +83,9 @@ img {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+}
+img {
+  margin-right: 10px;
 }
 .comment {
   padding: 0 30px;
@@ -126,23 +129,5 @@ img {
   font-weight: 900;
   padding: 0;
   font-size: 20px;
-}
-/* transition animatio */
-.bounce-enter-active {
-  animation: bounce-in 0.7s;
-}
-.bounce-leave-active {
-  position: absolute;
-}
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
 }
 </style>
