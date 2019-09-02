@@ -8,14 +8,26 @@
       <h4>{{post.user_username}} -</h4>
       <p>{{post.title}}</p>
     </div>
-    <div class="star-comment">
-      <div class="star">
+    <div class="post-bottom">
+      <div class="star-comment">
         <img src="../assets/icons/star.svg" data="star.svg" alt srcset />
-        <span>{{post.likes}}</span>
-      </div>
-      <div class="comment">
+        <span class="star">{{post.likes}}</span>
         <img src="../assets/icons/message-square.svg" alt="comment" />
         <span>{{post.comments}}</span>
+      </div>
+      <div class="post-options">
+        <transition name="bounce">
+          <p class="open-options" v-if="!options">
+            <img @click="showOptions" src="../assets/icons/more-horizontal.svg" alt srcset />
+          </p>
+
+          <ul v-if="options">
+            <li>edit</li>
+            <li>delete</li>
+            <li>report</li>
+            <li class="close-options" @click="showOptions">...</li>
+          </ul>
+        </transition>
       </div>
     </div>
   </main>
@@ -28,12 +40,29 @@ export default {
   props: {
     post: Object
   },
-  methods: {},
+  data() {
+    return {
+      options: 0
+    };
+  },
+  methods: {
+    showOptions() {
+      this.options = !this.options;
+      console.log(this.options);
+    }
+  },
   computed: mapGetters(["allUsers", "allLikes", "allComments"])
 };
 </script>
 
 <style scoped>
+hr {
+  color: #45ad78;
+  margin: 5px 0;
+}
+img {
+  margin-right: 10px;
+}
 .post-container {
   padding: 10px 15px;
   background: white;
@@ -50,19 +79,70 @@ export default {
   width: 100%;
   text-align: right;
 }
-hr {
-  color: #45ad78;
-  margin: 5px 0;
-}
-.star-comment {
+.post-bottom {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   margin-top: 20px;
 }
 .comment {
   padding: 0 30px;
 }
-img {
-  margin-right: 10px;
+.star {
+  margin-right: 30px;
+}
+.post-options {
+  display: flex;
+}
+.post-options ul {
+  background: #45ad78;
+  position: initial;
+  margin-top: -98px;
+  list-style: none;
+  border-radius: 10px;
+  border: #fff 1px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.post-options li {
+  padding: 5px 30px 5px 30px;
+  text-align: center;
+  color: white;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+.post-options li:hover {
+  background: #4c926e;
+}
+.open-options {
+  color: #45ad78;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.open-options:hover {
+  background: rgb(241, 240, 240);
+}
+.close-options {
+  font-weight: 900;
+  padding: 0;
+  font-size: 20px;
+}
+/* transition animatio */
+.bounce-enter-active {
+  animation: bounce-in 0.7s;
+}
+.bounce-leave-active {
+  position: absolute;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>
