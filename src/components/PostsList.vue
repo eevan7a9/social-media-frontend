@@ -1,11 +1,13 @@
 <template>
   <main>
-    <div class="post-container" v-for="(post, index) in allPosts" :key="index">
-      <PostItem :post="post" />
-    </div>
+    <transition-group name="fade" tag="div">
+      <div class="post-container" v-for="(post) in allPosts" :key="post.id">
+        <PostItem :post="post" />
+      </div>
+    </transition-group>
   </main>
 </template>
-
+e
 <script>
 import PostItem from "./PostItem";
 import { mapGetters, mapActions } from "vuex";
@@ -37,5 +39,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>
