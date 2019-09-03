@@ -70,6 +70,15 @@
 .color-white {
   color: aliceblue;
 }
+.color-red {
+  color: rgb(235, 42, 42);
+}
+.color-green {
+  color: #4c926e;
+}
+.color-muted {
+  color: grey;
+}
 .post-container {
   padding: 10px 15px;
   background: white;
