@@ -79,12 +79,11 @@ const actions = {
                     user.id == post.user_id).map(user => user.username)[0];
                 post.comments = comments.filter(comment => comment.post_id == post.id).length;
                 post.likes = likes.filter(like => like.post_id == post.id).length;
-                console.log(post);
                 commit("setPostDetails", post);
             })
-            .catch(err => {
-                console.error(err);
-            })
+        // .catch(err => {
+        //     console.error(err);
+        // })
     }
 }
 const mutations = {

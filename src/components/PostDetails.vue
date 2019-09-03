@@ -43,12 +43,10 @@ export default {
   },
   methods: {
     ...mapActions(["viewPost", "deletePost"]),
-    showOptions() {
-      this.options = !this.options;
-    },
+
     delPost() {
       this.deletePost(this.postDetails.id);
-      this.showOptions();
+      this.$router.push({ name: "home", query: { redirect: "/" } });
     }
   },
   created() {
