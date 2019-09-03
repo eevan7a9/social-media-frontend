@@ -1,4 +1,5 @@
 import axios from "axios";
+import { async } from "q";
 
 const state = {
     posts: [],
@@ -59,6 +60,22 @@ const actions = {
         //     console.error(err);
         // })
     },
+    editPost: async ({ commit }, post) => {
+        const date = new Date();
+        const this_month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+        const date_day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+        await axios.put(`/posts/${post.id}`, {
+            user_id: post.user_id,
+            title: post.title,
+            created_at: `${date.getFullYear()}/${this_month}/${date_day}`,
+        })
+            .then(() => {
+                commit("updatePost", post);
+            })
+        // .catch(err => {
+        //     console.error(err);
+        // })
+    },
     deletePost: async ({ commit }, id) => {
         await axios.delete(`/posts/${id}`)
             .then(() => {
@@ -68,34 +85,26 @@ const actions = {
         //     console.error(err);
         // })
     },
-    viewPost: async ({ commit, rootState }, id) => {
-        await axios.get(`/posts/${id}`)
-            .then(res => {
-                const users = rootState.users.users;
-                const comments = rootState.comments.comments;
-                const likes = rootState.likes.likes;
-                const post = res.data;
-                post.user_username = users.filter(user =>
-                    user.id == post.user_id).map(user => user.username)[0];
-                post.comments = comments.filter(comment => comment.post_id == post.id).length;
-                post.likes = likes.filter(like => like.post_id == post.id).length;
-                commit("setPostDetails", post);
-            })
-        // .catch(err => {
-        //     console.error(err);
-        // })
+    viewPost: async ({ state, commit, rootState }, id) => {
+
+        const post = state.posts.filter(post => post.id == id)[0];
+        const users = rootState.users.users;
+        const comments = rootState.comments.comments;
+        const likes = rootState.likes.likes;
+
+        post.user_username = users.filter(user =>
+            user.id == post.user_id).map(user => user.username)[0];
+        post.comments = comments.filter(comment => comment.post_id == post.id).length;
+        post.likes = likes.filter(like => like.post_id == post.id).length;
+        commit("setPostDetails", post);
+
     }
 }
 const mutations = {
-    setPosts: (state, posts) => {
-        state.posts = posts;
-    },
-    insertPost: (state, post) => {
-        state.posts.unshift(post);
-    },
-    removePost: (state, id) => {
-        state.posts = state.posts.filter(post => post.id != id)
-    },
+    setPosts: (state, posts) => state.posts = posts,
+    insertPost: (state, post) => state.posts.unshift(post),
+    updatePost: (state, updated_post) => state.posts.forEach(post => post.id == updated_post.id ? post = updated_post : post),
+    removePost: (state, id) => state.posts = state.posts.filter(post => post.id != id),
     setPostDetails: (state, post_details) => state.post_details = post_details
 
 }

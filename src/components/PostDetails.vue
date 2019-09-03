@@ -11,9 +11,9 @@
       </div>
       <div class="post-bottom">
         <div class="star-comment">
-          <img src="../assets/icons/star.svg" data="star.svg" alt srcset />
+          <img class="icon-img" src="../assets/icons/star.svg" data="star.svg" alt srcset />
           <span class="star">{{postDetails.likes}}</span>
-          <img src="../assets/icons/message-square.svg" alt="comment" />
+          <img class="icon-img" src="../assets/icons/message-square.svg" alt="comment" />
           <span>{{postDetails.comments}}</span>
         </div>
         <div class="post-options">
@@ -55,29 +55,12 @@ export default {
 };
 </script>
 
-<style>
-.post-container {
-  padding: 10px 15px;
-  background: white;
-  margin: 20px 0;
-  border-radius: 10px;
-}
+<style scoped>
 hr {
   color: #45ad78;
   margin: 5px 0;
 }
-.title {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-gap: 15px 30px;
-  padding: 5px 5px 20px 5px;
-  cursor: pointer;
-  color: #333;
-  text-decoration: none;
-}
-.title:hover {
-  background: #e5ebe8;
-}
+
 .created-date {
   width: 100%;
   text-align: right;
@@ -87,15 +70,7 @@ hr {
   justify-content: space-between;
   margin-top: 20px;
 }
-img {
-  margin-right: 10px;
-}
-.comment {
-  padding: 0 30px;
-}
-.star {
-  margin-right: 30px;
-}
+
 .post-options ul {
   position: initial;
   list-style: none;

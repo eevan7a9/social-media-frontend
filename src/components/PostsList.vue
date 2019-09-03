@@ -26,4 +26,8 @@ export default {
 </script>
 
 <style scoped>
+.fade-leave-active {
+  /* when post is deleted we see transition effect */
+  transition: opacity 1s;
+}
 </style>

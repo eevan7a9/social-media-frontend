@@ -4,27 +4,47 @@
       <small>{{post.created_at}}</small>
     </div>
     <hr />
-    <router-link :to="{name:'postdetails', params:{id: post.id}}">
+    <router-link :to="{name:'postdetails', params:{id: post.id}}" v-if="!update">
       <div class="title">
         <h4>{{post.user_username}} -</h4>
         <p>{{post.title}}</p>
       </div>
     </router-link>
+    <div class="title" v-if="update">
+      <h4>{{post.user_username}} -</h4>
+      <textarea
+        type="text"
+        name="title"
+        id="edit_title"
+        v-model="post.title"
+        @keypress.enter="submit"
+      />
+    </div>
     <div class="post-bottom">
       <div class="star-comment">
-        <img src="../assets/icons/star.svg" data="star.svg" alt srcset />
+        <img class="icon-img" src="../assets/icons/star.svg" data="star.svg" alt srcset />
         <span class="star">{{post.likes}}</span>
-        <img src="../assets/icons/message-square.svg" alt="comment" />
+        <img class="icon-img" src="../assets/icons/message-square.svg" alt="comment" />
         <span>{{post.comments}}</span>
       </div>
-      <div class="post-options">
+      <div class="update-option" v-if="update">
+        <p class="cancel" @click="cancel">Cancel</p>
+        <p class="submit" @click="submit">Submit</p>
+      </div>
+      <div class="post-options" v-if="!update">
         <transition name="bounce">
           <p class="open-options" v-if="!options">
-            <img @click="showOptions" src="../assets/icons/more-horizontal.svg" alt srcset />
+            <img
+              class="icon-img"
+              @click="showOptions"
+              src="../assets/icons/more-horizontal.svg"
+              alt
+              srcset
+            />
           </p>
           <ul v-if="options">
-            <li>edit</li>
-            <li @click="delPost">delete</li>
+            <li @click="edit">edit</li>
+            <li @click="remove">delete</li>
             <li>report</li>
             <li class="close-options" @click="showOptions">...</li>
           </ul>
@@ -35,7 +55,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 export default {
   name: "postItem",
   props: {
@@ -43,45 +63,46 @@ export default {
   },
   data() {
     return {
-      options: 0
+      options: 0,
+      update: 0
     };
   },
   methods: {
-    ...mapActions(["deletePost"]),
+    ...mapActions(["deletePost", "editPost"]),
     showOptions() {
       this.options = !this.options;
     },
-    delPost() {
-      this.deletePost(this.post.id);
+    remove() {
       this.showOptions();
+      this.deletePost(this.post.id);
+    },
+    edit() {
+      this.update = !this.update;
+      this.options = 0;
+    },
+    submit() {
+      this.update = 0;
+      this.editPost(this.post);
+    },
+    cancel() {
+      this.update = 0;
     }
-  },
-  computed: mapGetters(["allUsers", "allLikes", "allComments"])
+  }
 };
 </script>
 
 <style scoped>
+#edit_title {
+  border: 1px solid #4c926e;
+  padding: 5px;
+  border-radius: 5px;
+}
 a {
   text-decoration: none;
 }
 hr {
   color: #45ad78;
   margin: 5px 0;
-}
-.post-container {
-  padding: 10px 15px;
-  background: white;
-  margin: 20px 0;
-  border-radius: 10px;
-}
-.title {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-gap: 15px 30px;
-  padding: 5px 5px 20px 5px;
-  cursor: pointer;
-  color: #333;
-  text-decoration: none;
 }
 .title:hover {
   background: #e5ebe8;
@@ -95,15 +116,7 @@ hr {
   justify-content: space-between;
   margin-top: 20px;
 }
-img {
-  margin-right: 10px;
-}
-.comment {
-  padding: 0 30px;
-}
-.star {
-  margin-right: 30px;
-}
+
 .post-options {
   display: flex;
 }

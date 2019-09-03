@@ -70,6 +70,43 @@
 .color-white {
   color: aliceblue;
 }
+.post-container {
+  padding: 10px 15px;
+  background: white;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+.title {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 15px 30px;
+  padding: 5px 5px 20px 5px;
+  cursor: pointer;
+  color: #333;
+  text-decoration: none;
+}
+.icon-img {
+  margin-right: 10px;
+}
+.comment {
+  padding: 0 30px;
+}
+.star {
+  margin-right: 30px;
+}
+.update-option {
+  display: flex;
+  width: 150px;
+  justify-content: space-between;
+}
+.update-option .cancel {
+  color: red;
+  cursor: pointer;
+}
+.update-option .submit {
+  color: #4c926e;
+  cursor: pointer;
+}
 /* transition animation */
 .bounce-enter-active {
   animation: bounce-in 0.3s;
