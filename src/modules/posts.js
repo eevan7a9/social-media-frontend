@@ -1,5 +1,5 @@
 import axios from "axios";
-import { async } from "q";
+import router from "../router";
 
 const state = {
     posts: [],
@@ -85,19 +85,21 @@ const actions = {
         //     console.error(err);
         // })
     },
-    viewPost: async ({ state, commit, rootState }, id) => {
-
+    viewPost: ({ state, commit, rootState }, id) => {
         const post = state.posts.filter(post => post.id == id)[0];
-        const users = rootState.users.users;
-        const comments = rootState.comments.comments;
-        const likes = rootState.likes.likes;
+        if (post == undefined) {
+            router.push({ name: "home", query: { redirect: "/" } });
+        } else {
+            const users = rootState.users.users;
+            const comments = rootState.comments.comments;
+            const likes = rootState.likes.likes;
 
-        post.user_username = users.filter(user =>
-            user.id == post.user_id).map(user => user.username)[0];
-        post.comments = comments.filter(comment => comment.post_id == post.id).length;
-        post.likes = likes.filter(like => like.post_id == post.id).length;
-        commit("setPostDetails", post);
-
+            post.user_username = users.filter(user =>
+                user.id == post.user_id).map(user => user.username)[0];
+            post.comments = comments.filter(comment => comment.post_id == post.id).length;
+            post.likes = likes.filter(like => like.post_id == post.id).length;
+            commit("setPostDetails", post);
+        }
     }
 }
 const mutations = {
