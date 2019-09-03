@@ -10,7 +10,7 @@
 e
 <script>
 import PostItem from "./PostItem";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "PostsList",
   components: {
@@ -21,30 +21,9 @@ export default {
       name: "evan"
     };
   },
-  methods: {
-    ...mapActions(["getPosts", "getLikes", "getUsers", "getComments"])
-  },
-  computed: mapGetters(["allPosts"]),
-  created() {
-    this.getUsers().then(() => {
-      this.getComments().then(() => {
-        this.getLikes().then(() => {
-          if (this.allPosts.length === 0) {
-            this.getPosts();
-          }
-        });
-      });
-    });
-  }
+  computed: mapGetters(["allPosts"])
 };
 </script>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
 </style>

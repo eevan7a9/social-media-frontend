@@ -6,10 +6,31 @@
         <router-link to="/about" class="nav-item color-white">About</router-link>
       </div>
     </div>
-    <router-view class="container" />
+    <transition name="fade">
+      <router-view class="container" />
+    </transition>
   </div>
 </template>
-
+<script>
+import { mapActions, mapGetters } from "vuex";
+export default {
+  methods: {
+    ...mapActions(["getPosts", "getLikes", "getUsers", "getComments"])
+  },
+  computed: mapGetters(["allPosts"]),
+  created() {
+    this.getUsers().then(() => {
+      this.getComments().then(() => {
+        this.getLikes().then(() => {
+          if (this.allPosts.length === 0) {
+            this.getPosts();
+          }
+        });
+      });
+    });
+  }
+};
+</script>
 <style>
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 body {
