@@ -2,12 +2,14 @@ import axios from "axios";
 
 const state = {
     posts: [],
+    post_details: {},
     created_id: 18, // serves as a holder for new fake post
 }
 const getters = {
     allPosts: function (state) {
         return state.posts;
-    }
+    },
+    postDetails: (state) => state.post_details,
 }
 const actions = {
     getPosts: async ({ commit, rootState }) => {
@@ -65,8 +67,25 @@ const actions = {
         // .catch(err => {
         //     console.error(err);
         // })
+    },
+    viewPost: async ({ commit, rootState }, id) => {
+        await axios.get(`/posts/${id}`)
+            .then(res => {
+                const users = rootState.users.users;
+                const comments = rootState.comments.comments;
+                const likes = rootState.likes.likes;
+                const post = res.data;
+                post.user_username = users.filter(user =>
+                    user.id == post.user_id).map(user => user.username)[0];
+                post.comments = comments.filter(comment => comment.post_id == post.id).length;
+                post.likes = likes.filter(like => like.post_id == post.id).length;
+                console.log(post);
+                commit("setPostDetails", post);
+            })
+            .catch(err => {
+                console.error(err);
+            })
     }
-
 }
 const mutations = {
     setPosts: (state, posts) => {
@@ -77,7 +96,8 @@ const mutations = {
     },
     removePost: (state, id) => {
         state.posts = state.posts.filter(post => post.id != id)
-    }
+    },
+    setPostDetails: (state, post_details) => state.post_details = post_details
 
 }
 // export
