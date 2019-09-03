@@ -70,6 +70,7 @@ const actions = {
             created_at: `${date.getFullYear()}/${this_month}/${date_day}`,
         })
             .then(() => {
+                post.created_at = `${date.getFullYear()}/${this_month}/${date_day}`;
                 commit("updatePost", post);
             })
         // .catch(err => {
