@@ -73,9 +73,12 @@ const actions = {
                 post.created_at = `${date.getFullYear()}/${this_month}/${date_day}`;
                 commit("updatePost", post);
             })
-        // .catch(err => {
-        //     console.error(err);
-        // })
+            .catch(() => {
+                // error 404 will appear because we using fake server
+                // to fix this, we catch the error and procceed to update
+                post.created_at = `${date.getFullYear()}/${this_month}/${date_day}`;
+                commit("updatePost", post);
+            })
     },
     deletePost: async ({ commit }, id) => {
         if (id > 17) { // our fake server's last id of the post is 17.
