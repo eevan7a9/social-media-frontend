@@ -10,7 +10,7 @@
       <hr />
       <div class="title" v-if="!update">
         <h4>{{postDetails.user_username}} -</h4>
-        <p>{{postDetails.title}}</p>
+        <p class="post-title">{{postDetails.title}}</p>
       </div>
       <div class="to-update" v-if="update">
         <h4>{{postDetails.user_username}} -</h4>
@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    <CommentsList />
+    <CommentsList :post_id="postDetails.id" />
   </main>
 </template>
 
@@ -131,5 +131,9 @@ hr {
   text-transform: capitalize;
   font-style: italic;
   cursor: pointer;
+}
+.post-title {
+  font-size: 18px;
+  letter-spacing: 1.5px;
 }
 </style>

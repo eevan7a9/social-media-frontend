@@ -15,12 +15,12 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   methods: {
-    ...mapActions(["getPosts", "getLikes", "getUsers", "getComments"])
+    ...mapActions(["getPosts", "getLikes", "getUsers", "getAllComments"])
   },
   computed: mapGetters(["allPosts"]),
   created() {
     this.getUsers().then(() => {
-      this.getComments().then(() => {
+      this.getAllComments().then(() => {
         this.getLikes().then(() => {
           if (this.allPosts.length === 0) {
             this.getPosts();
