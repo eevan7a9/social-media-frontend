@@ -1,16 +1,19 @@
 <template>
   <main class="comments-container">
-    <div class="user-comment" v-for="comment in postComments" :key="comment.id">
-      <p class="message">{{comment.message}}</p>
-      <h2>1{{comment.user_username}}</h2>
+    <div v-for="comment in postComments" :key="comment.id">
+      <CommentItem :comment="comment" />
     </div>
   </main>
 </template>
 
 <script>
+import CommentItem from "./CommentItem";
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "CommentsList",
+  components: {
+    CommentItem
+  },
   props: {
     post_id: Number
   },
@@ -30,14 +33,5 @@ export default {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   padding: 10px 25px;
-}
-.user-comment {
-  background: white;
-  margin-bottom: 20px;
-  padding: 20px 10px;
-}
-.message {
-  font-size: 18px;
-  letter-spacing: 1px;
 }
 </style>

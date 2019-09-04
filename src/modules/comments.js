@@ -2,11 +2,11 @@ import axios from "axios";
 
 const state = {
     comments: [], // all comments
-    post_Comments: [], // all comments of a single post
+    post_comments: [], // all comments of a single post
 }
 const getters = {
     allComments: (state) => state.comments,
-    postComments: (state) => state.post_Comments,
+    postComments: (state) => state.post_comments,
 }
 const actions = {
     getAllComments: async ({ commit }) => {
@@ -36,12 +36,13 @@ const actions = {
                     console.error(err);
                 })
         }
-    }
-
+    },
+    clearPostComments: async ({ commit }) => await commit("removePostComments"),
 }
 const mutations = {
     setComments: (state, comments) => state.comments = comments,
-    setPostComments: (state, comments) => state.post_Comments = comments,
+    setPostComments: (state, comments) => state.post_comments = comments,
+    removePostComments: (state) => state.post_comments = {},
 }
 // export
 export default {
