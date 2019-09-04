@@ -3,8 +3,8 @@
     <div class="comment-message">
       <h3 class="username">{{comment.user_username}}</h3>
       <p class="message">: {{comment.message}}</p>
-      <p class="message">: {{comment.user_id}}</p>
     </div>
+    <hr />
     <div class="comment-option">
       <ul>
         <li>Edit</li>
@@ -32,6 +32,10 @@ export default {
 </script>
 
 <style scoped>
+hr {
+  color: #45ad78;
+  margin-top: 20px;
+}
 .user-comment {
   background: white !important;
   margin-bottom: 20px;
@@ -44,7 +48,7 @@ export default {
   display: flex;
   justify-content: flex-end;
   list-style: none;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 .comment-option li {
   margin-left: 10px;

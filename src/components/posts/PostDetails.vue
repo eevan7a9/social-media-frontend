@@ -15,6 +15,7 @@
       <div class="to-update" v-if="update">
         <h4>{{postDetails.user_username}} -</h4>
         <textarea
+          class="bg-lightdient"
           v-model="postDetails.title"
           id="title"
           cols="30"
