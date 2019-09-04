@@ -1,6 +1,6 @@
 <template>
   <main class="container">
-    <div class="post-container">
+    <div class="post-container" id="post-container">
       <div class="back" @click="returnHome">
         <img src="../../assets/icons/x.svg" alt srcset />
       </div>
@@ -98,6 +98,11 @@ export default {
 </script>
 
 <style scoped>
+#post-container {
+  margin-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
 hr {
   color: #45ad78;
   margin: 5px 0;
