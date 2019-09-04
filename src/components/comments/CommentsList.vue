@@ -1,5 +1,6 @@
 <template>
   <main class="comments-container">
+    <CommentAdd />
     <div v-for="comment in postComments" :key="comment.id">
       <CommentItem :comment="comment" />
     </div>
@@ -7,11 +8,13 @@
 </template>
 
 <script>
+import CommentAdd from "./CommentAdd";
 import CommentItem from "./CommentItem";
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "CommentsList",
   components: {
+    CommentAdd,
     CommentItem
   },
   props: {
