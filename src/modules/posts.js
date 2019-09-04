@@ -78,13 +78,16 @@ const actions = {
         // })
     },
     deletePost: async ({ commit }, id) => {
-        await axios.delete(`/posts/${id}`)
-            .then(() => {
-                commit("removePost", id)
-            })
-        // .catch(err => {
-        //     console.error(err);
-        // })
+        if (id > 17) { // our fake server's last id of the post is 17.
+            // we check if the id exist on the fake server or not
+            // if not we just remove it rightaway.
+            commit("removePost", id);
+        } else {
+            await axios.delete(`/posts/${id}`)
+                .then(() => {
+                    commit("removePost", id)
+                })
+        }
     },
     viewPost: ({ state, commit, rootState }, id) => {
         const post = state.posts.filter(post => post.id == id)[0];
