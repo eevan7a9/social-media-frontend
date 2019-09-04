@@ -2,7 +2,7 @@
   <main class="comments-container">
     <div class="user-comment" v-for="comment in postComments" :key="comment.id">
       <p class="message">{{comment.message}}</p>
-      <h2>sdsd</h2>
+      <h2>1{{comment.user_username}}</h2>
     </div>
   </main>
 </template>
@@ -29,7 +29,7 @@ export default {
   background: #80808038;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  padding: 10px;
+  padding: 10px 25px;
 }
 .user-comment {
   background: white;

@@ -18,15 +18,19 @@ const actions = {
                 alert(err);
             })
     },
-    getPostComments: async ({ commit }, post_id) => {
+    getPostComments: async ({ commit, rootState }, post_id) => {
         if (post_id > 17) { // we check if post exists in json fake server
             console.log("cant");
         } else {
             await axios.get(`/comments?post_id=${post_id}`)
                 .then(res => {
                     const comments = res.data;
+                    const users = rootState.users.users;
+                    comments.forEach(comment => {
+                        comment.user_username = users.filter(user =>
+                            user.id == comment.user_id).map(user => user.username)[0];
+                    });
                     commit("setPostComments", comments);
-                    console.log(comments);
                 })
                 .catch(err => {
                     console.error(err);
