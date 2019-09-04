@@ -48,13 +48,18 @@
         </div>
       </div>
     </div>
+    <CommentsList />
   </main>
 </template>
 
 <script>
+import CommentsList from "../comments/CommentsList";
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "PostDetails",
+  components: {
+    CommentsList
+  },
   props: {
     id: Number
   },
