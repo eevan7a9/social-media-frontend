@@ -43,8 +43,12 @@
             </li>
           </ul>
           <ul class="update-option" v-if="update">
-            <li class="cancel" @click="cancel">Cancel</li>
-            <li class="submit" @click="submit">Submit</li>
+            <li class="cancel" @click="cancel">
+              <img src="../../assets/icons/cancel.svg" alt srcset />
+            </li>
+            <li class="submit" @click="submit">
+              <img src="../../assets/icons/check.svg" alt srcset />
+            </li>
           </ul>
         </div>
       </div>

@@ -6,10 +6,10 @@
           <h3>Luffy</h3>
           <label for="message">Comment</label>
         </div>
-        <textarea class="bg-lightdient" v-bind="message" id="message" cols="30" rows="5"></textarea>
+        <textarea class="bg-lightdient" v-bind="message" id="message" cols="30" rows="3"></textarea>
       </div>
       <section class="section-submit">
-        <button class="btn-submit bg-vuedient" type="submit">Submit</button>
+        <button class="btn-submit bg-vuedient" type="submit">Done</button>
       </section>
     </form>
   </main>
@@ -18,7 +18,12 @@
 <script>
 // import {mapActions} from "vuex";
 export default {
-  name: "CommentAdd"
+  name: "CommentAdd",
+  data() {
+    return {
+      message: ""
+    };
+  }
 };
 </script>
 
@@ -36,11 +41,12 @@ label {
 textarea {
   width: 100%;
 }
+
 button {
   height: 40px;
   padding: 10px 20px;
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 15px;
   color: white;
   font-weight: 900;
   cursor: pointer;

@@ -40,6 +40,8 @@ hr {
   background: white !important;
   margin-bottom: 20px;
   padding: 20px 10px;
+  border-radius: 10px;
+  box-shadow: 6px 7px #bbb7b7;
 }
 .comment-message {
   display: flex;
