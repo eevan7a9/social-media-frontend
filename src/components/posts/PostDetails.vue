@@ -2,7 +2,7 @@
   <main class="container">
     <div class="post-container">
       <div class="back" @click="returnHome">
-        <img src="../assets/icons/x.svg" alt srcset />
+        <img src="../../assets/icons/x.svg" alt srcset />
       </div>
       <div class="created-date">
         <small>{{postDetails.created_at}}</small>
@@ -24,21 +24,21 @@
       </div>
       <div class="post-bottom">
         <div class="star-comment">
-          <img class="icon-img" src="../assets/icons/star.svg" data="star.svg" alt srcset />
+          <img class="icon-img" src="../../assets/icons/star.svg" data="star.svg" alt srcset />
           <span class="star">{{postDetails.likes}}</span>
-          <img class="icon-img" src="../assets/icons/message-square.svg" alt="comment" />
+          <img class="icon-img" src="../../assets/icons/message-square.svg" alt="comment" />
           <span>{{postDetails.comments}}</span>
         </div>
         <div class="post-options">
           <ul v-if="!update">
             <li @click="edit" class="color-green">
-              <img src="../assets/icons/edit.svg" alt="edit" />
+              <img src="../../assets/icons/edit.svg" alt="edit" />
             </li>
             <li @click="delPost" class="color-red">
-              <img src="../assets/icons/trash-2.svg" alt="delete" />
+              <img src="../../assets/icons/trash-2.svg" alt="delete" />
             </li>
             <li class="color-muted">
-              <img src="../assets/icons/flag.svg" alt="report" srcset />
+              <img src="../../assets/icons/flag.svg" alt="report" srcset />
             </li>
           </ul>
           <ul class="update-option" v-if="update">

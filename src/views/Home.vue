@@ -11,8 +11,8 @@
 <script>
 // @ is an alias to /src
 import SideBar from "../components/SideBar";
-import PostAdd from "../components/PostAdd";
-import PostsList from "../components/PostsList";
+import PostAdd from "../components/posts/PostAdd";
+import PostsList from "../components/posts/PostsList";
 
 export default {
   name: "home",

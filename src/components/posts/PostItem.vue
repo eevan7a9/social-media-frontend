@@ -22,9 +22,9 @@
     </div>
     <div class="post-bottom">
       <div class="star-comment">
-        <img class="icon-img" src="../assets/icons/star.svg" data="star.svg" alt srcset />
+        <img class="icon-img" src="../../assets/icons/star.svg" data="star.svg" alt srcset />
         <span class="star">{{post.likes}}</span>
-        <img class="icon-img" src="../assets/icons/message-square.svg" alt="comment" />
+        <img class="icon-img" src="../../assets/icons/message-square.svg" alt="comment" />
         <span>{{post.comments}}</span>
       </div>
       <div class="update-option" v-if="update">
@@ -37,7 +37,7 @@
             <img
               class="icon-img"
               @click="showOptions"
-              src="../assets/icons/more-horizontal.svg"
+              src="../../assets/icons/more-horizontal.svg"
               alt
               srcset
             />

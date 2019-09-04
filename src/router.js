@@ -16,7 +16,7 @@ export default new Router({
     {
       path: '/post/:id',
       name: 'postdetails',
-      component: () => import('./components/PostDetails.vue'),
+      component: () => import('./components/posts/PostDetails.vue'),
       props(route) { // by doing this we can prevent the params.id Type 
         let props = { ...route.params } // from changing when entered from url
         props.id = parseInt(props.id)
