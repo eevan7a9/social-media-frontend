@@ -1,6 +1,6 @@
 <template>
   <main class="comments-container">
-    <CommentAdd />
+    <CommentAdd :post_id="post_id" />
     <div v-for="comment in postComments" :key="comment.id">
       <CommentItem :comment="comment" />
     </div>

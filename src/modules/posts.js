@@ -107,6 +107,10 @@ const actions = {
             post.likes = likes.filter(like => like.post_id == post.id).length;
             commit("setPostDetails", post);
         }
+    },
+    addPostComment({ commit, state }) {
+        const post = state.post_details;
+        commit("increasePostComment", post)
     }
 }
 const mutations = {
@@ -114,8 +118,15 @@ const mutations = {
     insertPost: (state, post) => state.posts.unshift(post),
     updatePost: (state, updated_post) => state.posts.forEach(post => post.id == updated_post.id ? post = updated_post : post),
     removePost: (state, id) => state.posts = state.posts.filter(post => post.id != id),
-    setPostDetails: (state, post_details) => state.post_details = post_details
-
+    setPostDetails: (state, post_details) => state.post_details = post_details,
+    increasePostComment: (state, new_post) => {
+        state.posts.forEach(post => {
+            if (post.id == new_post.id) {
+                post.comments++;
+            }
+        });
+        state.post_details.comments + 1;
+    }
 }
 // export
 export default {

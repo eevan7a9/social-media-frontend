@@ -1,12 +1,12 @@
 <template>
   <main>
-    <form action>
+    <form @submit="submit">
       <div class="create-comment">
         <div>
           <h3>Luffy</h3>
           <label for="message">Comment</label>
         </div>
-        <textarea class="bg-lightdient" v-bind="message" id="message" cols="30" rows="3"></textarea>
+        <textarea class="bg-lightdient" v-model="message" id="message" cols="30" rows="3"></textarea>
       </div>
       <section class="section-submit">
         <button class="btn-submit bg-vuedient" type="submit">Done</button>
@@ -16,13 +16,30 @@
 </template>
 
 <script>
-// import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 export default {
   name: "CommentAdd",
+  props: {
+    post_id: Number
+  },
   data() {
     return {
       message: ""
     };
+  },
+  methods: {
+    ...mapActions(["addComment", "addPostComment"]),
+    submit(e) {
+      e.preventDefault();
+      this.addComment({
+        post_id: this.post_id,
+        user_id: 1,
+        user_username: "luffy",
+        message: this.message
+      }).then(()=>{
+        this.addPostComment();
+      });
+    }
   }
 };
 </script>
