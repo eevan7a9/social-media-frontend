@@ -62,20 +62,43 @@ const actions = {
             // })
         }
     },
+    updateComment: async ({ commit }, comment) => {
+        if (comment.id > 20) { // we checo if comment exists in the fake server
+            commit("updateComment", comment)
+        } else {
+            await axios.put(`/comments/${comment.id}`, {
+                post_id: comment.post_id,
+                user_id: comment.user_id,
+                message: comment.message
+            })
+                .then(() => {
+                    commit("updateComment", comment)
+                })
+        }
+    },
     clearPostComments: async ({ commit }) => await commit("removePostComments"),
 }
 const mutations = {
     setComments: (state, comments) => state.comments = comments,
     setPostComments: (state, comments) => state.post_comments = comments,
-    removePostComments: (state) => state.post_comments = {},
     addComment: (state, comment) => {
         state.comments.unshift(comment);
         state.post_comments.unshift(comment);
     },
+    removePostComments: (state) => state.post_comments = {},
     removeComment: (state, id) => {
         state.comments = state.comments.filter(comment => comment.id != id);
         state.post_comments = state.post_comments.filter(comment => comment.id != id);
-    }
+    },
+    updateComment: (state, updated_comment) => {
+        state.comments.forEach(comment => {
+            if (comment.id == updated_comment.id) {
+                comment.message = updated_comment.message
+            }
+        })
+    },
+
+
 }
 // export
 export default {
