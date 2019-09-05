@@ -36,7 +36,8 @@ export default {
         user_id: 1,
         user_username: "luffy",
         message: this.message
-      }).then(()=>{
+      }).then(() => {
+        this.message = "";
         this.addPostComment();
       });
     }

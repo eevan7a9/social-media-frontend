@@ -7,9 +7,15 @@
     <hr />
     <div class="comment-option">
       <ul>
-        <li>Edit</li>
-        <li>Delete</li>
-        <li>Report</li>
+        <li>
+          <img src="../../assets/icons/edit.svg" alt="edit" />
+        </li>
+        <li @click="remove">
+          <img src="../../assets/icons/trash-2.svg" alt="delete" />
+        </li>
+        <li>
+          <img src="../../assets/icons/flag.svg" alt="report" />
+        </li>
       </ul>
     </div>
   </main>
@@ -23,7 +29,12 @@ export default {
     comment: Object
   },
   methods: {
-    ...mapActions(["clearPostComments"])
+    ...mapActions(["clearPostComments", "deleteComment", "getPostComments"]),
+    remove() {
+      this.deleteComment(this.comment.id).then(() =>
+        this.getPostComments(this.comment.post_id)
+      );
+    }
   },
   destroyed() {
     this.clearPostComments();
@@ -54,6 +65,12 @@ hr {
 }
 .comment-option li {
   margin-left: 10px;
+  cursor: pointer;
+  padding: 7px;
+}
+.comment-option li:hover {
+  background: #c5c9c7;
+  border-radius: 2px;
 }
 .message {
   font-size: 18px;

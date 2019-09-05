@@ -136,11 +136,16 @@ hr {
   justify-content: flex-end;
 }
 .post-options li {
-  padding: 5px 30px 5px 30px;
+  padding: 7px;
   text-align: center;
   text-transform: capitalize;
   font-style: italic;
   cursor: pointer;
+  margin-left: 30px;
+}
+.post-options li:hover {
+  background: #c5c9c7;
+  border-radius: 4px;
 }
 .post-title {
   font-size: 18px;
