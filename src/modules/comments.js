@@ -40,8 +40,9 @@ const actions = {
         })
             .then(res => {
                 state.created_id++;
-                comment = res.data;
-                commit("addComment", comment);
+                const new_comment = res.data;
+                new_comment.user_username = comment.user_username;
+                commit("addComment", new_comment);
             })
         // .catch(err => {
         //     console.error(err);

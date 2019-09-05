@@ -111,6 +111,10 @@ const actions = {
     addPostComment({ commit, state }) {
         const post = state.post_details;
         commit("increasePostComment", post)
+    },
+    removePostComment({ commit, state }) {
+        const post = state.post_details;
+        commit("decreasePostComment", post);
     }
 }
 const mutations = {
@@ -119,13 +123,21 @@ const mutations = {
     updatePost: (state, updated_post) => state.posts.forEach(post => post.id == updated_post.id ? post = updated_post : post),
     removePost: (state, id) => state.posts = state.posts.filter(post => post.id != id),
     setPostDetails: (state, post_details) => state.post_details = post_details,
-    increasePostComment: (state, new_post) => {
+    increasePostComment: (state, updated_post) => {
         state.posts.forEach(post => {
-            if (post.id == new_post.id) {
+            if (post.id == updated_post.id) {
                 post.comments++;
             }
         });
         state.post_details.comments + 1;
+    },
+    decreasePostComment: (state, updated_post) => {
+        state.posts.forEach(post => {
+            if (post.id === updated_post.id) {
+                post.comments--;
+            }
+        });
+        state.post_details.comments - 1;
     }
 }
 // export

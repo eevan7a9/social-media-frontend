@@ -29,10 +29,17 @@ export default {
     comment: Object
   },
   methods: {
-    ...mapActions(["clearPostComments", "deleteComment", "getPostComments"]),
+    ...mapActions([
+      "clearPostComments",
+      "deleteComment",
+      "getPostComments",
+      "removePostComment"
+    ]),
     remove() {
       this.deleteComment(this.comment.id).then(() =>
-        this.getPostComments(this.comment.post_id)
+        this.getPostComments(this.comment.post_id).then(() =>
+          this.removePostComment()
+        )
       );
     }
   },
