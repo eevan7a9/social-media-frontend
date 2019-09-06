@@ -118,6 +118,9 @@ const actions = {
     },
     addPostLikes({ commit }, like) {
         commit("increasePostLikes", like)
+    },
+    subtractPostLikes({ commit }, like) {
+        commit("decreasePostLikes", like)
     }
 }
 const mutations = {
@@ -142,7 +145,12 @@ const mutations = {
         });
         state.post_details.comments - 1;
     },
-    increasePostLikes: (state, like) => state.posts.forEach(post => post.id == like.post_id ? post.likes.unshift(like) : post.likes)
+    increasePostLikes: (state, like) => state.posts.forEach(post => post.id == like.post_id ? post.likes.unshift(like) : post.likes),
+    decreasePostLikes: (state, remove_like) => state.posts.forEach(post => {
+        if (post.id == remove_like.post_id) {
+            post.likes = post.likes.filter(like => like.id != remove_like.id);
+        }
+    }),
 }
 // export
 export default {

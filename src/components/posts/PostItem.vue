@@ -22,17 +22,13 @@
     </div>
     <div class="post-bottom">
       <div class="star-comment">
-        <img
-          class="icon-img"
-          src="../../assets/icons/star.svg"
-          data="star.svg"
-          alt
-          srcset
-          @click="like"
-        />
-        <span class="star">{{post.likes.length}}</span>
-        <img class="icon-img" src="../../assets/icons/message-square.svg" alt="comment" />
-        <span>{{post.comments}}</span>
+        <!-- Likes starts here -->
+        <Like :likes="post.likes" :post_id="post.id" />
+        <!-- Likes ends here -->
+        <div>
+          <img class="icon-img" src="../../assets/icons/message-square.svg" alt="comment" />
+          <span>{{post.comments}}</span>
+        </div>
       </div>
       <div class="update-option" v-if="update">
         <p class="cancel" @click="cancel">Cancel</p>
@@ -62,9 +58,13 @@
 </template>
 
 <script>
+import Like from "../likes/Like";
 import { mapActions } from "vuex";
 export default {
   name: "postItem",
+  components: {
+    Like
+  },
   props: {
     post: Object
   },
@@ -75,13 +75,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions([
-      "deletePost",
-      "editPost",
-      "addLike",
-      "deleteLike",
-      "addPostLikes"
-    ]),
+    ...mapActions(["deletePost", "editPost"]),
     showOptions() {
       this.options = !this.options;
     },
@@ -99,19 +93,6 @@ export default {
     },
     cancel() {
       this.update = 0;
-    },
-    like() {
-      this.addLike({
-        id: this.post.id,
-        user_id: 1
-      })
-        .then(like => this.addPostLikes(like))
-        .catch(() =>
-          this.deleteLike({
-            id: this.post.id,
-            user_id: 1
-          })
-        );
     }
   }
 };
@@ -129,6 +110,9 @@ a {
 hr {
   color: #45ad78;
   margin: 5px 0;
+}
+.star-comment {
+  display: flex;
 }
 .title:hover {
   background: #e5ebe8;

@@ -20,9 +20,10 @@ const actions = {
             })
     },
     addLike: async ({ commit, state }, post) => {
-        const posts = state.likes.filter(like => like.post_id == post.id && like.user_id == post.user_id)
-        if (posts.length > 0) {
-            return Promise.reject("already liked")
+        const like = state.likes.filter(like => like.post_id == post.id && like.user_id == post.user_id)
+        if (like.length > 0) { // we checked if user already liked the post
+            //  we return the like we want to delete
+            return Promise.reject(like[0]);
         } else {
             return await axios.post(`/likes`, {
                 id: state.created_id,
@@ -40,14 +41,14 @@ const actions = {
         }
 
     },
-    deleteLike: async ({ commit }, post) => {
-        await commit("removeLikes", post);
+    deleteLike: async ({ commit }, id) => {
+        await commit("removeLikes", id);
     }
 }
 const mutations = {
     setLikes: (state, likes) => state.likes = likes,
     insertLikes: (state, like) => state.likes.unshift(like),
-    removeLikes: (state, post) => state.likes = state.likes.filter(like => post.id != like.post_id || post.user_id != like.user_id),
+    removeLikes: (state, id) => state.likes = state.likes.filter(like => like.id != id),
 }
 // export
 export default {
