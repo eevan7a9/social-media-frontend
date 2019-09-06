@@ -6,7 +6,7 @@
         <router-link to="/about" class="nav-item color-white">About</router-link>
       </div>
     </div>
-    <transition name="fade">
+    <transition name="fade" mode="out-in">
       <router-view class="container" />
     </transition>
   </div>
