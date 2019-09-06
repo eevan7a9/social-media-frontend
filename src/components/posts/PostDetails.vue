@@ -25,10 +25,13 @@
       </div>
       <div class="post-bottom">
         <div class="star-comment">
-          <img class="icon-img" src="../../assets/icons/star.svg" data="star.svg" alt srcset />
-          <span class="star">{{postDetails.likes.length}}</span>
-          <img class="icon-img" src="../../assets/icons/message-square.svg" alt="comment" />
-          <span>{{postDetails.comments}}</span>
+          <!-- Likes Starts here -->
+          <Like :likes="postDetails.likes" :post_id="postDetails.id" />
+          <!-- Likes end here -->
+          <div>
+            <img class="icon-img" src="../../assets/icons/message-square.svg" alt="comment" />
+            <span>{{postDetails.comments}}</span>
+          </div>
         </div>
         <div class="post-options">
           <ul v-if="!update">
@@ -58,11 +61,13 @@
 </template>
 
 <script>
+import Like from "../likes/Like";
 import CommentsList from "../comments/CommentsList";
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "PostDetails",
   components: {
+    Like,
     CommentsList
   },
   props: {
@@ -111,6 +116,9 @@ export default {
 hr {
   color: #45ad78;
   margin: 5px 0;
+}
+.star-comment {
+  display: flex;
 }
 .back {
   padding-left: 20px;
