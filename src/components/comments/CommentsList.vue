@@ -1,9 +1,13 @@
 <template>
   <main class="comments-container">
     <CommentAdd :post_id="post_id" />
-    <div v-for="comment in postComments" :key="comment.id">
-      <CommentItem :comment="comment" />
-    </div>
+    <!-- comments starts here -->
+    <transition-group name="fade">
+      <div v-for="comment in postComments" :key="comment.id">
+        <CommentItem :comment="comment" />
+      </div>
+    </transition-group>
+    <!-- comments ends here -->
   </main>
 </template>
 
@@ -22,10 +26,13 @@ export default {
   },
   computed: mapGetters(["postComments"]),
   methods: {
-    ...mapActions(["getPostComments"])
+    ...mapActions(["getPostComments", "clearPostComments"])
   },
   created() {
     this.getPostComments(this.post_id);
+  },
+  destroyed() {
+    this.clearPostComments();
   }
 };
 </script>

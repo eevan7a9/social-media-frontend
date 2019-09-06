@@ -47,18 +47,10 @@ export default {
     };
   },
   methods: {
-    ...mapActions([
-      "clearPostComments",
-      "deleteComment",
-      "getPostComments",
-      "removePostComment",
-      "updateComment"
-    ]),
+    ...mapActions(["deleteComment", "subtractPostComment", "updateComment"]),
     remove() {
       this.deleteComment(this.comment.id).then(() =>
-        this.getPostComments(this.comment.post_id).then(() =>
-          this.removePostComment()
-        )
+        this.subtractPostComment()
       );
     },
     edit() {
@@ -71,9 +63,6 @@ export default {
         message: this.message
       });
     }
-  },
-  destroyed() {
-    this.clearPostComments();
   }
 };
 </script>

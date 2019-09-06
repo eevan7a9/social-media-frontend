@@ -112,7 +112,7 @@ const actions = {
         const post = state.post_details;
         commit("increasePostComment", post)
     },
-    removePostComment({ commit, state }) {
+    subtractPostComment({ commit, state }) {
         const post = state.post_details;
         commit("decreasePostComment", post);
     }

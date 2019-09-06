@@ -76,7 +76,7 @@ const actions = {
                 })
         }
     },
-    clearPostComments: async ({ commit }) => await commit("removePostComments"),
+    clearPostComments: async ({ commit }) => await commit("cleanPostComments"),
 }
 const mutations = {
     setComments: (state, comments) => state.comments = comments,
@@ -85,10 +85,11 @@ const mutations = {
         state.comments.unshift(comment);
         state.post_comments.unshift(comment);
     },
-    removePostComments: (state) => state.post_comments = {},
+    cleanPostComments: (state) => state.post_comments = {},
     removeComment: (state, id) => {
-        state.comments = state.comments.filter(comment => comment.id != id);
+
         state.post_comments = state.post_comments.filter(comment => comment.id != id);
+        state.comments = state.comments.filter(comment => comment.id != id);
     },
     updateComment: (state, updated_comment) => {
         state.comments.forEach(comment => {
