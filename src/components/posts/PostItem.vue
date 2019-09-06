@@ -22,8 +22,15 @@
     </div>
     <div class="post-bottom">
       <div class="star-comment">
-        <img class="icon-img" src="../../assets/icons/star.svg" data="star.svg" alt srcset />
-        <span class="star">{{post.likes}}</span>
+        <img
+          class="icon-img"
+          src="../../assets/icons/star.svg"
+          data="star.svg"
+          alt
+          srcset
+          @click="like"
+        />
+        <span class="star">{{post.likes.length}}</span>
         <img class="icon-img" src="../../assets/icons/message-square.svg" alt="comment" />
         <span>{{post.comments}}</span>
       </div>
@@ -68,7 +75,13 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["deletePost", "editPost"]),
+    ...mapActions([
+      "deletePost",
+      "editPost",
+      "addLike",
+      "deleteLike",
+      "addPostLikes"
+    ]),
     showOptions() {
       this.options = !this.options;
     },
@@ -86,6 +99,19 @@ export default {
     },
     cancel() {
       this.update = 0;
+    },
+    like() {
+      this.addLike({
+        id: this.post.id,
+        user_id: 1
+      })
+        .then(like => this.addPostLikes(like))
+        .catch(() =>
+          this.deleteLike({
+            id: this.post.id,
+            user_id: 1
+          })
+        );
     }
   }
 };

@@ -29,7 +29,7 @@ const actions = {
                     ).length; // we get the number of comments belong to the post
                     post.likes = likes.filter(like =>
                         like.post_id == post.id
-                    ).length;
+                    );
                 });
                 commit("setPosts", posts);
             })
@@ -104,7 +104,7 @@ const actions = {
             post.user_username = users.filter(user =>
                 user.id == post.user_id).map(user => user.username)[0];
             post.comments = comments.filter(comment => comment.post_id == post.id).length;
-            post.likes = likes.filter(like => like.post_id == post.id).length;
+            post.likes = likes.filter(like => like.post_id == post.id);
             commit("setPostDetails", post);
         }
     },
@@ -115,6 +115,9 @@ const actions = {
     subtractPostComment({ commit, state }) {
         const post = state.post_details;
         commit("decreasePostComment", post);
+    },
+    addPostLikes({ commit }, like) {
+        commit("increasePostLikes", like)
     }
 }
 const mutations = {
@@ -138,7 +141,8 @@ const mutations = {
             }
         });
         state.post_details.comments - 1;
-    }
+    },
+    increasePostLikes: (state, like) => state.posts.forEach(post => post.id == like.post_id ? post.likes.unshift(like) : post.likes)
 }
 // export
 export default {

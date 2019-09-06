@@ -96,6 +96,7 @@
 }
 .icon-img {
   margin-right: 10px;
+  cursor: pointer;
 }
 .comment {
   padding: 0 30px;

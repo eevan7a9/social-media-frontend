@@ -26,7 +26,7 @@
       <div class="post-bottom">
         <div class="star-comment">
           <img class="icon-img" src="../../assets/icons/star.svg" data="star.svg" alt srcset />
-          <span class="star">{{postDetails.likes}}</span>
+          <span class="star">{{postDetails.likes.length}}</span>
           <img class="icon-img" src="../../assets/icons/message-square.svg" alt="comment" />
           <span>{{postDetails.comments}}</span>
         </div>

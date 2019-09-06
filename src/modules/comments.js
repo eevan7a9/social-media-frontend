@@ -42,7 +42,7 @@ const actions = {
                 state.created_id++;
                 const new_comment = res.data;
                 new_comment.user_username = comment.user_username;
-                commit("addComment", new_comment);
+                commit("insertComment", new_comment);
             })
         // .catch(err => {
         //     console.error(err);
@@ -81,7 +81,7 @@ const actions = {
 const mutations = {
     setComments: (state, comments) => state.comments = comments,
     setPostComments: (state, comments) => state.post_comments = comments,
-    addComment: (state, comment) => {
+    insertComment: (state, comment) => {
         state.comments.unshift(comment);
         state.post_comments.unshift(comment);
     },

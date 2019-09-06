@@ -7,7 +7,7 @@
     </transition-group>
   </main>
 </template>
-e
+
 <script>
 import PostItem from "./PostItem";
 import { mapGetters } from "vuex";
