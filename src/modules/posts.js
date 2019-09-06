@@ -53,7 +53,7 @@ const actions = {
                 post.user_username = users.filter(user =>
                     user.id == post.user_id).map(user => user.username)[0];
                 post.comments = comments.filter(comment => comment.post_id == post.id).length;
-                post.likes = likes.filter(like => like.post_id == post.id).length;
+                post.likes = likes.filter(like => like.post_id == post.id);
                 commit("insertPost", post);
             })
         // .catch(err => {
