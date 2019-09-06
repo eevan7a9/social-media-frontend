@@ -1,6 +1,6 @@
 <template>
   <main>
-    <transition-group name="fade" tag="div">
+    <transition-group name="slide-fade" tag="div">
       <div class="post-container" v-for="(post) in allPosts" :key="post.id">
         <PostItem :post="post" />
       </div>
