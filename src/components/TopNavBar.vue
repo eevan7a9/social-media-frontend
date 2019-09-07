@@ -1,8 +1,16 @@
 <template>
   <div id="nav" class="bg-vuedient">
-    <div class="container">
-      <router-link to="/" class="nav-item color-white">Home</router-link>
-      <router-link to="/about" class="nav-item color-white">About</router-link>
+    <div class="container top-nav-bar">
+      <div>
+        <router-link to="/" class="nav-item color-white">Home</router-link>
+        <router-link to="/about" class="nav-item color-white">About</router-link>
+      </div>
+      <div>
+        <router-link to="/register" class="nav-item color-white">
+          <a>Register</a>
+        </router-link>
+        <router-link to="/signin" class="nav-item color-white">Sign in</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -14,14 +22,20 @@ export default {
 </script>
 
 <style scoped>
-#nav {
-  line-height: 40px;
+.top-nav-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
 }
 .nav-item {
   text-decoration: none;
   font-size: 17px;
   letter-spacing: 1px;
   font-weight: 600;
-  padding: 0 10px;
+  padding: 20px 20px;
+}
+
+.nav-item:hover {
+  background: rgb(55, 187, 121);
 }
 </style>
