@@ -9,7 +9,7 @@
         <router-link to="/register" class="nav-item color-white">
           <a>Register</a>
         </router-link>
-        <router-link to="/signin" class="nav-item color-white">Sign in</router-link>
+        <router-link to="/sign-in" class="nav-item color-white">Sign in</router-link>
       </div>
     </div>
   </div>
