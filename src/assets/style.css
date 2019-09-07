@@ -79,6 +79,15 @@
 .color-muted {
   color: grey;
 }
+.box-shadow-1 {
+  -webkit-box-shadow: -19px 16px 35px -15px rgba(0, 0, 0, 1);
+  -moz-box-shadow: -19px 16px 35px -15px rgba(0, 0, 0, 1);
+  box-shadow: -19px 16px 35px -15px rgba(0, 0, 0, 1);
+}
+.hr-green {
+  color: #45ad78;
+  margin: 5px 0;
+}
 .post-container {
   padding: 10px 15px;
   background: white;

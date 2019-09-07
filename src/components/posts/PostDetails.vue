@@ -7,7 +7,7 @@
       <div class="created-date">
         <small>{{postDetails.created_at}}</small>
       </div>
-      <hr />
+      <hr class="hr-green" />
       <div class="title" v-if="!update">
         <h4>{{postDetails.user_username}} -</h4>
         <p class="post-title">{{postDetails.title}}</p>
@@ -112,10 +112,6 @@ export default {
   margin-bottom: 0;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-}
-hr {
-  color: #45ad78;
-  margin: 5px 0;
 }
 .star-comment {
   display: flex;

@@ -3,7 +3,7 @@
     <div class="created-date">
       <small>{{post.created_at}}</small>
     </div>
-    <hr />
+    <hr class="hr-green" />
     <router-link :to="{name:'postdetails', params:{id: post.id}}" v-if="!update">
       <div class="title">
         <h4>{{post.user_username}} -</h4>
@@ -26,10 +26,10 @@
         <Like :likes="post.likes" :post_id="post.id" />
         <!-- Likes ends here -->
         <router-link :to="{name:'postdetails', params:{id: post.id}}">
-        <div>
-          <img class="icon-img" src="../../assets/icons/message-square.svg" alt="comment" />
-          <span>{{post.comments}}</span>
-        </div>
+          <div>
+            <img class="icon-img" src="../../assets/icons/message-square.svg" alt="comment" />
+            <span>{{post.comments}}</span>
+          </div>
         </router-link>
       </div>
       <div class="update-option" v-if="update">
@@ -108,10 +108,6 @@ export default {
 }
 a {
   text-decoration: none;
-}
-hr {
-  color: #45ad78;
-  margin: 5px 0;
 }
 .star-comment {
   display: flex;
