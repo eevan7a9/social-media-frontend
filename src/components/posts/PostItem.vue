@@ -25,10 +25,12 @@
         <!-- Likes starts here -->
         <Like :likes="post.likes" :post_id="post.id" />
         <!-- Likes ends here -->
+        <router-link :to="{name:'postdetails', params:{id: post.id}}">
         <div>
           <img class="icon-img" src="../../assets/icons/message-square.svg" alt="comment" />
           <span>{{post.comments}}</span>
         </div>
+        </router-link>
       </div>
       <div class="update-option" v-if="update">
         <p class="cancel" @click="cancel">Cancel</p>
