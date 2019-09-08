@@ -54,19 +54,25 @@ export default {
   border: 2px solid #4c926e;
   border-radius: 20px;
 }
-.register-box div {
+.email-input,
+.name-input,
+.password-input {
   padding: 20px 0;
   display: grid;
   grid-template-columns: 200px 1fr;
   grid-gap: 20px;
 }
-.register-box div label {
+.email-input label,
+.name-input label,
+.password-input label {
   font-weight: 700;
   font-size: 18px;
   text-align: right;
   padding: 15px 0;
 }
-.register-box div input {
+.email-input input,
+.name-input input,
+.password-input input {
   font-weight: 400;
   font-size: 16px;
   padding: 15px 10px;
@@ -92,5 +98,33 @@ export default {
   width: 100%;
   text-align: center;
   cursor: pointer;
+}
+@media (max-width: 700px) {
+  .email-input,
+  .name-input,
+  .password-input {
+    padding: 5px 0;
+    grid-template-columns: 1fr;
+    grid-gap: 0px;
+  }
+  .email-input label,
+  .name-input label,
+  .password-input label {
+    font-weight: 500;
+    font-size: 16px;
+    text-align: left;
+    padding: 5px 0;
+  }
+}
+@media (max-width: 450px) {
+  .register-container {
+    padding: 0px;
+  }
+  .register-box {
+    border-radius: 0;
+  }
+  .register-box section {
+    text-align: center;
+  }
 }
 </style>

@@ -109,6 +109,11 @@ main {
   }
   .sign-in-container {
     width: 100%;
+    border-radius: 0;
+  }
+  .input-fields label {
+    padding: 5px 0;
+    font-weight: 500;
   }
 }
 </style>
