@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Register",
   data() {
@@ -63,6 +64,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["addUser"]),
     validName() {
       return this.name;
     },
@@ -96,7 +98,7 @@ export default {
     submit(e) {
       e.preventDefault();
       if (!this.checkForm()) {
-        console.log({
+        this.addUser({
           name: this.name,
           email: this.email,
           password: this.password
