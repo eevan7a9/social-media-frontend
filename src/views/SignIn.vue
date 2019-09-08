@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="sign-in-container box-shadow-1">
-      <form>
+      <form @submit="signIn">
         <div class="input-fields">
           <label for="email">Email</label>
           <input type="email" v-model="email" id="email" />
@@ -11,7 +11,7 @@
           <input type="password" v-model="password" id="password" />
         </div>
         <section class="submit-container">
-          <button type="submit">Submit</button>
+          <button type="submit">Continue</button>
         </section>
       </form>
     </div>
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "SignIn",
   data() {
@@ -27,6 +28,19 @@ export default {
       email: "",
       password: ""
     };
+  },
+  computed: mapGetters(["allUsers"]),
+  methods: {
+    ...mapActions(["newCurrentUser"]),
+    signIn(e) {
+      e.preventDefault();
+      this.newCurrentUser({
+        email: this.email,
+        password: this.password
+      })
+        .then(() => this.$router.push({ name: "home", query: { path: "/" } }))
+        .catch(err => alert(err));
+    }
   }
 };
 </script>

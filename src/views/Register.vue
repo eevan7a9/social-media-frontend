@@ -64,7 +64,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["addUser"]),
+    ...mapActions(["newUser"]),
     validName() {
       return this.name;
     },
@@ -98,11 +98,13 @@ export default {
     submit(e) {
       e.preventDefault();
       if (!this.checkForm()) {
-        this.addUser({
+        this.newUser({
           name: this.name,
           email: this.email,
           password: this.password
-        });
+        }).then(() =>
+          this.$router.push({ name: "sign-in", query: { path: "/sign-in" } })
+        );
       }
     }
   }
