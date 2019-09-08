@@ -2,23 +2,39 @@
   <div class="register-container">
     <div class="register-box box-shadow-1">
       <h1>Register</h1>
-      <form action>
+      <form @submit="submit">
         <hr class="hr-green" />
         <div class="name-input">
           <label for="name">Name</label>
           <input type="text" v-model="name" id="name" />
         </div>
+        <div class="error-container" v-if="err.name">
+          <p class="error">Error :</p>
+          <p class="error-required">Name required.</p>
+        </div>
         <div class="email-input">
           <label for="email">Email</label>
           <input type="email" v-model="email" id="email" />
+        </div>
+        <div class="error-container" v-if="err.email">
+          <p class="error">Error :</p>
+          <p class="error-required">Valid email address required.</p>
         </div>
         <div class="password-input">
           <label for="password">Password</label>
           <input type="password" v-model="password" id="password" />
         </div>
+        <div class="error-container" v-if="err.password">
+          <p class="error">Error :</p>
+          <p class="error-required">Password must be atleast 6 char long.</p>
+        </div>
         <div class="password-input">
           <label for="confirm">Confirm Password</label>
           <input type="password" v-model="confirm" id="confirm" />
+        </div>
+        <div class="error-container" v-if="err.confirm">
+          <p class="error">Error :</p>
+          <p class="error-required">Password is not confirmed</p>
         </div>
         <section>
           <button type="submit">Submit</button>
@@ -37,15 +53,62 @@ export default {
       name: "",
       email: "",
       password: "",
-      confirm: ""
+      confirm: "",
+      err: {
+        name: false,
+        email: false,
+        password: false,
+        confirm: false
+      }
     };
+  },
+  methods: {
+    validName() {
+      return this.name;
+    },
+    validEmail() {
+      let re = /\S+@\S+\.\S+/;
+      return re.test(this.email);
+    },
+    validPassword() {
+      return this.password.length > 5;
+    },
+    confirmPassword() {
+      return this.password === this.confirm;
+    },
+    checkForm() {
+      this.err.name = !this.validName()
+        ? (this.err.name = true)
+        : (this.err.name = false);
+      this.err.email = !this.validEmail()
+        ? (this.err.email = true)
+        : (this.err.email = false);
+      this.err.password = !this.validPassword()
+        ? (this.err.password = true)
+        : (this.err.password = false);
+      this.err.confirm = !this.confirmPassword()
+        ? (this.err.confirm = true)
+        : (this.err.confirm = false);
+      return (
+        this.err.name || this.err.email || this.err.password || this.err.confirm
+      );
+    },
+    submit(e) {
+      e.preventDefault();
+      if (!this.checkForm()) {
+        console.log({
+          name: this.name,
+          email: this.email,
+          password: this.password
+        });
+      }
+    }
   }
 };
 </script>
 
 <style scoped>
 .register-container {
-  height: 700px;
   padding: 50px 50px;
 }
 .register-box {
@@ -57,7 +120,7 @@ export default {
 .email-input,
 .name-input,
 .password-input {
-  padding: 20px 0;
+  padding: 12px 0;
   display: grid;
   grid-template-columns: 200px 1fr;
   grid-gap: 20px;
@@ -75,7 +138,7 @@ export default {
 .password-input input {
   font-weight: 400;
   font-size: 16px;
-  padding: 15px 10px;
+  padding: 10px 10px;
   border: 1.5px solid #4c926e;
   border-radius: 5px;
 }
@@ -98,6 +161,21 @@ export default {
   width: 100%;
   text-align: center;
   cursor: pointer;
+}
+.error-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.error {
+  text-align: right;
+  font-weight: 600;
+}
+.error,
+.error-required {
+  color: red;
+  font-size: 14px;
+  padding: 5px 10px;
+  font-style: italic;
 }
 @media (max-width: 700px) {
   .email-input,
