@@ -5,12 +5,12 @@
       <form @submit="submit">
         <hr class="hr-green" />
         <div class="name-input">
-          <label for="name">Name</label>
-          <input type="text" v-model="name" id="name" />
+          <label for="name">Username</label>
+          <input type="text" v-model="username" id="username" />
         </div>
-        <div class="error-container" v-if="err.name">
+        <div class="error-container" v-if="err.username">
           <p class="error">Error :</p>
-          <p class="error-required">Name required.</p>
+          <p class="error-required">Username required.</p>
         </div>
         <div class="email-input">
           <label for="email">Email</label>
@@ -51,12 +51,12 @@ export default {
   name: "Register",
   data() {
     return {
-      name: "",
+      username: "",
       email: "",
       password: "",
       confirm: "",
       err: {
-        name: false,
+        username: false,
         email: false,
         password: false,
         confirm: false
@@ -65,8 +65,8 @@ export default {
   },
   methods: {
     ...mapActions(["newUser"]),
-    validName() {
-      return this.name;
+    validUsername() {
+      return this.username;
     },
     validEmail() {
       let re = /\S+@\S+\.\S+/;
@@ -79,9 +79,9 @@ export default {
       return this.password === this.confirm;
     },
     checkForm() {
-      this.err.name = !this.validName()
-        ? (this.err.name = true)
-        : (this.err.name = false);
+      this.err.username = !this.validUsername()
+        ? (this.err.username = true)
+        : (this.err.username = false);
       this.err.email = !this.validEmail()
         ? (this.err.email = true)
         : (this.err.email = false);
@@ -92,14 +92,17 @@ export default {
         ? (this.err.confirm = true)
         : (this.err.confirm = false);
       return (
-        this.err.name || this.err.email || this.err.password || this.err.confirm
+        this.err.username ||
+        this.err.email ||
+        this.err.password ||
+        this.err.confirm
       );
     },
     submit(e) {
       e.preventDefault();
       if (!this.checkForm()) {
         this.newUser({
-          name: this.name,
+          username: this.username,
           email: this.email,
           password: this.password
         }).then(() =>
