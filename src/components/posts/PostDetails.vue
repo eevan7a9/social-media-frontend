@@ -35,10 +35,10 @@
         </div>
         <div class="post-options">
           <ul v-if="!update">
-            <li @click="edit" class="color-green">
+            <li @click="edit" class="color-green" v-if="postDetails.user_id === currentUser.id">
               <img src="../../assets/icons/edit.svg" alt="edit" />
             </li>
-            <li @click="delPost" class="color-red">
+            <li @click="delPost" class="color-red" v-if="postDetails.user_id === currentUser.id">
               <img src="../../assets/icons/trash-2.svg" alt="delete" />
             </li>
             <li class="color-muted">
@@ -47,10 +47,10 @@
           </ul>
           <ul class="update-option" v-if="update">
             <li class="cancel" @click="cancel">
-              <img src="../../assets/icons/cancel.svg" alt srcset />
+              <img src="../../assets/icons/cancel.svg" alt="cancel" />
             </li>
             <li class="submit" @click="submit">
-              <img src="../../assets/icons/check.svg" alt srcset />
+              <img src="../../assets/icons/check.svg" alt="submit" />
             </li>
           </ul>
         </div>
@@ -78,9 +78,7 @@ export default {
       update: 0
     };
   },
-  computed: {
-    ...mapGetters(["postDetails"])
-  },
+  computed: mapGetters(["postDetails", "currentUser"]),
   methods: {
     ...mapActions(["viewPost", "deletePost", "editPost"]),
     cancel() {

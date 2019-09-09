@@ -85,7 +85,7 @@ const mutations = {
         state.comments.unshift(comment);
         state.post_comments.unshift(comment);
     },
-    cleanPostComments: (state) => state.post_comments = {},
+    cleanPostComments: (state) => state.post_comments = [],
     removeComment: (state, id) => {
 
         state.post_comments = state.post_comments.filter(comment => comment.id != id);
