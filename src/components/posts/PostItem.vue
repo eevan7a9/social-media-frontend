@@ -129,11 +129,13 @@ a {
 
 .post-options {
   display: flex;
+  position: relative;
+  display: inline-block;
 }
 .post-options ul {
   background: #45ad78;
-  position: initial;
-  margin-top: -10px;
+  position: relative;
+  margin-top: -40px;
   list-style: none;
   border-radius: 10px;
   border: #fff 1px solid;
