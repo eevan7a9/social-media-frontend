@@ -19,10 +19,10 @@
         </li>
       </ul>
       <ul v-if="!update">
-        <li @click="edit">
+        <li @click="edit" v-if="comment.user_id === currentUser.id">
           <img src="../../assets/icons/edit.svg" alt="edit" />
         </li>
-        <li @click="remove">
+        <li @click="remove" v-if="comment.user_id === currentUser.id">
           <img src="../../assets/icons/trash-2.svg" alt="delete" />
         </li>
         <li>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "CommentItem",
   props: {
@@ -46,6 +46,7 @@ export default {
       message: this.comment.message
     };
   },
+  computed: mapGetters(["currentUser"]),
   methods: {
     ...mapActions(["deleteComment", "subtractPostComment", "updateComment"]),
     remove() {
