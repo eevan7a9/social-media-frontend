@@ -6,37 +6,59 @@
         <span class="plus">+</span>
       </label>
       <br />
-      <textarea class="bg-lightdient" v-model="title" id="title" cols="30" rows="5"></textarea>
-      <div>
-        <button class="publish" type="submit">PUBLISH</button>
+      <br />
+      <hr class="hr-green" />
+      <div class="post-author">
+        <p v-if="!visitor">{{currentUser.username}} :</p>
+      </div>
+      <textarea class="bg-lightdient" v-model="title" id="title" cols="30" rows="3"></textarea>
+      <div class="publish-container">
+        <!-- if user is visitor -->
+        <p class="visitor" v-if="visitor">You need to Sign in, to publish a post.</p>
+        <!-- is signed -->
+        <p class="signed" v-else>Share something.</p>
+        <button
+          class="publish"
+          type="submit"
+          :style="visitor ? 'cursor:not-allowed' : 'cursor:pointer'"
+        >PUBLISH</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "PostAdd",
   data() {
     return {
-      title: ""
+      title: "",
+      visitor: 0
     };
   },
+  computed: mapGetters(["currentUser"]),
   methods: {
     ...mapActions(["addPost"]),
     publish(event) {
       event.preventDefault();
-      const dt = new Date();
-      const year = dt.getFullYear(); // we get current year
-      const month = // we get current month
-        dt.getMonth() + 1 < 10 ? `0${dt.getMonth() + 1}` : dt.getMonth() + 1;
-      const date = dt.getDate(); // we get current date
-      this.addPost({
-        user_id: 1,
-        title: this.title,
-        created_at: `${year}/${month}/${date}`
-      });
+      if (!this.visitor) {
+        const dt = new Date();
+        const year = dt.getFullYear(); // we get current year
+        const month = // we get current month
+          dt.getMonth() + 1 < 10 ? `0${dt.getMonth() + 1}` : dt.getMonth() + 1;
+        const date = dt.getDate(); // we get current date
+        this.addPost({
+          user_id: this.currentUser.id,
+          title: this.title,
+          created_at: `${year}/${month}/${date}`
+        });
+      }
+    }
+  },
+  created() {
+    if (Object.keys(this.currentUser).length === 0) {
+      this.visitor = 1;
     }
   }
 };
@@ -59,10 +81,7 @@ export default {
 }
 .create-container label {
   font-weight: 800;
-}
-.create-container div {
-  width: 100%;
-  text-align: right;
+  margin-bottom: 30px;
 }
 .plus {
   background: #45ad78;
@@ -70,6 +89,23 @@ export default {
   border-radius: 3px;
   color: white;
 }
+.publish-container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+.publish-container .visitor {
+  padding: 20px;
+  text-align: right;
+  font-style: italic;
+  color: red;
+}
+.publish-container .signed {
+  padding: 20px;
+  text-align: left;
+  font-style: italic;
+  color: green;
+}
+
 .publish {
   margin-top: 10px;
   background: #45ad78;
@@ -79,5 +115,11 @@ export default {
   cursor: pointer;
   font-weight: 800;
   color: #fff;
+}
+.post-author {
+  font-weight: 800;
+  text-align: left;
+  text-transform: capitalize;
+  padding: 5px 10px;
 }
 </style>

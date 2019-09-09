@@ -50,7 +50,7 @@ const mutations = {
     addUser: (state, user) => state.users.unshift(user),
     setCurrentUser: (state, user) => {
         state.current_user = user;
-        console.log(state.current_user.email);
+
     },
 
 }
