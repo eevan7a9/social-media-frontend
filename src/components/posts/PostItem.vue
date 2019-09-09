@@ -48,8 +48,8 @@
             />
           </p>
           <ul v-if="options">
-            <li @click="edit">edit</li>
-            <li @click="remove">delete</li>
+            <li @click="edit" v-if="post.user_id == currentUser.id">edit</li>
+            <li @click="remove" v-if="post.user_id == currentUser.id">delete</li>
             <li>report</li>
             <li class="close-options" @click="showOptions">...</li>
           </ul>
@@ -61,7 +61,7 @@
 
 <script>
 import Like from "../likes/Like";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "postItem",
   components: {
@@ -76,6 +76,7 @@ export default {
       update: 0
     };
   },
+  computed: mapGetters(["currentUser"]),
   methods: {
     ...mapActions(["deletePost", "editPost"]),
     showOptions() {
@@ -108,6 +109,7 @@ export default {
 }
 a {
   text-decoration: none;
+  color: #333;
 }
 .star-comment {
   display: flex;
@@ -131,7 +133,7 @@ a {
 .post-options ul {
   background: #45ad78;
   position: initial;
-  margin-top: -98px;
+  margin-top: -10px;
   list-style: none;
   border-radius: 10px;
   border: #fff 1px solid;
@@ -148,6 +150,8 @@ a {
 }
 .post-options li:hover {
   background: #4c926e;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 .open-options {
   color: #45ad78;
