@@ -3,20 +3,25 @@
     <form @submit="submit">
       <div class="create-comment">
         <div>
-          <h3>Luffy</h3>
+          <h3 v-if="!visitor">{{currentUser.username}}</h3>
+          <h3 v-else>Stranger</h3>
           <label for="message">Comment</label>
         </div>
         <textarea class="bg-lightdient" v-model="message" id="message" cols="30" rows="3"></textarea>
       </div>
       <section class="section-submit">
-        <button class="btn-submit bg-vuedient" type="submit">Done</button>
+        <button
+          class="btn-submit bg-vuedient"
+          type="submit"
+          :style="visitor ? 'cursor:not-allowed;' : 'cursor:pointer;'"
+        >Done</button>
       </section>
     </form>
   </main>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "CommentAdd",
   props: {
@@ -24,23 +29,32 @@ export default {
   },
   data() {
     return {
-      message: ""
+      message: "",
+      visitor: 0
     };
   },
+  computed: mapGetters(["currentUser"]),
   methods: {
     ...mapActions(["addComment", "addPostComment"]),
     submit(e) {
       e.preventDefault();
-      this.addComment({
-        post_id: this.post_id,
-        user_id: 1,
-        user_username: "luffy",
-        message: this.message
-      }).then(() => {
-        this.message = "";
-        this.addPostComment();
-      });
+      if (!this.visitor) {
+        this.addComment({
+          post_id: this.post_id,
+          user_id: this.currentUser.id,
+          user_username: this.currentUser.username,
+          message: this.message
+        }).then(() => {
+          this.message = "";
+          this.addPostComment();
+        });
+      } else {
+        alert("Sorry, Strangers are not allowed to comment.");
+      }
     }
+  },
+  created() {
+    this.visitor = Object.keys(this.currentUser).length === 0 ? 1 : 0;
   }
 };
 </script>
