@@ -3,7 +3,7 @@ import axios from "axios";
 const state = {
     comments: [], // all comments
     post_comments: [], // all comments of a single post
-    created_id: 21,
+    created_id: 25,
 }
 const getters = {
     allComments: (state) => state.comments,
@@ -49,7 +49,7 @@ const actions = {
         // })
     },
     deleteComment: async ({ commit }, id) => {
-        if (id > 20) { // we just check if id belongs to our fake server
+        if (id > 24) { // we just check if id belongs to our fake server
             commit("removeComment", id)
         } else {
             // if comment's id exists in fake server
@@ -63,7 +63,7 @@ const actions = {
         }
     },
     updateComment: async ({ commit }, comment) => {
-        if (comment.id > 20) { // we checo if comment exists in the fake server
+        if (comment.id > 24) { // we checo if comment exists in the fake server
             commit("updateComment", comment)
         } else {
             await axios.put(`/comments/${comment.id}`, {

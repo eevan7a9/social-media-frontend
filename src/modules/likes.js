@@ -2,7 +2,7 @@ import axios from "axios";
 
 const state = {
     likes: [],
-    created_id: 23,  // we are sing fake api, this holds value for new created, to avoid error
+    created_id: 28,  // we are sing fake api, this holds value for new created, to avoid error
 }
 const getters = {
     allLikes: function (state) {

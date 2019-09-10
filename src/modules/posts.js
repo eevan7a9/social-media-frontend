@@ -4,7 +4,7 @@ import router from "../router";
 const state = {
     posts: [],
     post_details: {},
-    created_id: 18, // serves as a holder for new fake post
+    created_id: 19, // serves as a holder for new fake post
 }
 const getters = {
     allPosts: function (state) {
@@ -81,7 +81,7 @@ const actions = {
             })
     },
     deletePost: async ({ commit }, id) => {
-        if (id > 17) { // our fake server's last id of the post is 17.
+        if (id > 18) { // our fake server's last id of the post is 17.
             // we check if the id exist on the fake server or not
             // if not we just remove it rightaway.
             commit("removePost", id);
