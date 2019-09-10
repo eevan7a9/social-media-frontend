@@ -11,6 +11,10 @@
           <input type="password" v-model="password" id="password" />
         </div>
         <section class="submit-container">
+          <div>
+            <h5>For Demo:</h5>
+            <p>Email :<i>test@test.test </i> | Password : <i>password</i></p>
+          </div>
           <button type="submit">Continue</button>
         </section>
       </form>
@@ -80,7 +84,12 @@ main {
   border-radius: 5px;
 }
 .submit-container {
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
+}
+.submit-container i{
+  color: #4c926e;
+  
 }
 .submit-container button {
   margin-top: 10px;
