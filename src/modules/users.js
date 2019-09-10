@@ -2,7 +2,7 @@ import axios from "axios";
 
 const state = {
     users: [],
-    created_id: 9, // I am using Fake server so I mannualy created id for created user
+    created_id: 10, // I am using Fake server so I mannualy created id for created user
     current_user: {}, // current user will be store here
 }
 const getters = {
