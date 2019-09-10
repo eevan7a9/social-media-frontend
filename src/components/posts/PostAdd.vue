@@ -53,6 +53,7 @@ export default {
           title: this.title,
           created_at: `${year}/${month}/${date}`
         });
+        this.title = '';
       }
     }
   },
