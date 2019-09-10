@@ -10,6 +10,7 @@
           <a>Register</a>
         </router-link>
         <router-link to="/sign-in" class="nav-item color-white">Sign in</router-link>
+        <router-link to="/sign-out" class="nav-item color-white">Sign out</router-link>  
       </div>
     </div>
   </div>

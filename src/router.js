@@ -40,6 +40,11 @@ export default new Router({
       path: "/sign-in",
       name: "sign-in",
       component: () => import('./views/SignIn.vue'),
+    },
+    {
+      name:"sign-out",
+      path: "/sign-out",
+      component: () => import('./views/SignOut.vue'),
     }
   ]
 })
