@@ -5,10 +5,13 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
 export default {
     name:"SignOut",
+    methods:mapActions(["removeCurrentUser"]),
     created(){
-        console.log("signout");
+        this.removeCurrentUser().then(() => this.$router.push({name:"sign-in", query:{path:"/sign-in"}}));
+
     }
 
 }

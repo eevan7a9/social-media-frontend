@@ -42,8 +42,10 @@ const actions = {
         } else {
             return Promise.reject("Wrong Credentials")
         }
+    },
+    removeCurrentUser: async ({commit}) => {
+        await commit("clearCurrentUser");
     }
-
 }
 const mutations = {
     setUsers: (state, users) => state.users = users,
@@ -52,6 +54,7 @@ const mutations = {
         state.current_user = user;
 
     },
+    clearCurrentUser: (state) => state.current_user = {},
 
 }
 // export
