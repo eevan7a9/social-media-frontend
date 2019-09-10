@@ -6,19 +6,31 @@
         <router-link to="/about" class="nav-item color-white">About</router-link>
       </div>
       <div>
-        <router-link to="/register" class="nav-item color-white">
+        <router-link to="/register" class="nav-item color-white" v-if="Object.keys(currentUser).length == 0">
           <a>Register</a>
         </router-link>
-        <router-link to="/sign-in" class="nav-item color-white">Sign in</router-link>
-        <router-link to="/sign-out" class="nav-item color-white">Sign out</router-link>  
+        <router-link to="/sign-in" class="nav-item color-white" v-if="Object.keys(currentUser).length == 0">Sign in</router-link>
+        <router-link to="/sign-out" class="nav-item color-white" v-else>Sign out</router-link>  
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters} from "vuex";
 export default {
-  name: "TopNavBar"
+  name: "TopNavBar",
+  data(){
+    return{
+      visitor: 1
+    }
+  },
+  computed:mapGetters(["currentUser"]),
+  // created(){
+  //   if (Object.keys(this.currentUser).length != 0) {
+  //     this.visitor = 1;
+  //   }
+  // }
 };
 </script>
 
