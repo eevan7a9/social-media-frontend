@@ -35,16 +35,19 @@ export default new Router({
       path: "/register",
       name: "register",
       component: () => import('./views/Register.vue'),
+      meta: {requiresVisitor: true}
     },
     {
       path: "/sign-in",
       name: "sign-in",
       component: () => import('./views/SignIn.vue'),
+      meta: {requiresVisitor: true}
     },
     {
       name:"sign-out",
       path: "/sign-out",
       component: () => import('./views/SignOut.vue'),
+      meta: {requiresAuth: true}
     }
   ]
 })
