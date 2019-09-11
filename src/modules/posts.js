@@ -11,6 +11,7 @@ const getters = {
         return state.posts;
     },
     postDetails: (state) => state.post_details,
+    recommendedPosts : (state) => state.posts.slice(-5),
 }
 const actions = {
     getPosts: async ({ commit, rootState }) => {

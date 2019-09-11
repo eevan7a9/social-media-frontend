@@ -1,24 +1,18 @@
 <template>
   <main>
-    <h4>Recent Posts</h4>
-    <ul class="recent-posts">
-      <li class="recent-items">Lorem ipsum dolor sit amet.</li>
-      <li
-        class="recent-items"
-      >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, minima.</li>
-      <li
-        class="recent-items"
-      >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, minima.</li>
-      <li
-        class="recent-items"
-      >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, minima.</li>
-    </ul>
+   <section>
+     <RecommendPosts />
+   </section>
   </main>
 </template>
 
 <script>
+import RecommendPosts from "./posts/RecommendPosts";
 export default {
-  name: "SideBar"
+  name: "SideBar",
+  components:{
+    RecommendPosts
+  }
 };
 </script>
 
@@ -29,14 +23,5 @@ main {
   margin: 20px 20px 0 0;
   padding: 20px;
 }
-h4 {
-  margin-bottom: 15px;
-}
-ul {
-  list-style: none;
-}
-.recent-items {
-  padding: 10px 5px;
-  border: 1px solid rgb(148, 141, 141);
-}
+
 </style>
