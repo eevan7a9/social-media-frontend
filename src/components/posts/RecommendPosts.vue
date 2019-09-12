@@ -3,10 +3,12 @@
     <h4>Recommended Posts</h4>
     <ul class="recent-posts">
       <li class="recent-items" v-for="(post, index) in recommendedPosts" :key="index">
-        <p>{{post.title}}</p>
-        <small>
-          <i>- {{post.user_username}}</i>
-        </small>
+        <router-link :to="{name:'postdetails', params:{id:post.id}}">
+          <p>{{post.title}}</p>
+          <small>
+            <i>- {{post.user_username}}</i>
+          </small>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -38,5 +40,9 @@ ul {
   border-radius: 5px;
   margin-bottom: 5px;
   font-size: 15px;
+}
+a {
+  text-decoration: none;
+  color: #333;
 }
 </style>
