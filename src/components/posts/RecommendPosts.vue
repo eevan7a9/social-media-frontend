@@ -4,23 +4,25 @@
     <ul class="recent-posts">
       <li class="recent-items" v-for="(post, index) in recommendedPosts" :key="index">
         <p>{{post.title}}</p>
-        <small><i>- {{post.user_username}}</i></small>
+        <small>
+          <i>- {{post.user_username}}</i>
+        </small>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 export default {
-    name:"RecommendPosts",
-    data(){
-      return{
-        posts:[],
-      }
-    },
-    computed:mapGetters(["recommendedPosts"]),
-}
+  name: "RecommendPosts",
+  data() {
+    return {
+      posts: []
+    };
+  },
+  computed: mapGetters(["recommendedPosts"])
+};
 </script>
 
 <style>

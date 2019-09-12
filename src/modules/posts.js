@@ -11,7 +11,7 @@ const getters = {
         return state.posts;
     },
     postDetails: (state) => state.post_details,
-    recommendedPosts : (state) => state.posts.slice(-5),
+    recommendedPosts: (state) => state.posts.slice(-5),
 }
 const actions = {
     getPosts: async ({ commit, rootState }) => {
@@ -117,15 +117,16 @@ const actions = {
         const post = state.post_details;
         commit("decreasePostComment", post);
     },
-    addPostLikes({ commit }, like) {
-        commit("increasePostLikes", like)
-    },
-    subtractPostLikes({ commit }, like) {
-        commit("decreasePostLikes", like)
-    }
+    addPostLikes: ({ commit }, like) => commit("increasePostLikes", like),
+
+    subtractPostLikes: ({ commit }, like) => commit("decreasePostLikes", like),
+    sortOldest: ({ commit }) => commit("setOldestPost"),
+    sortNewest: ({ commit }) => commit("setNewestPost"),
 }
 const mutations = {
-    setPosts: (state, posts) => state.posts = posts,
+    setPosts: (state, posts) => {
+        state.posts = posts;
+    },
     insertPost: (state, post) => state.posts.unshift(post),
     updatePost: (state, updated_post) => state.posts.forEach(post => post.id == updated_post.id ? post = updated_post : post),
     removePost: (state, id) => state.posts = state.posts.filter(post => post.id != id),
@@ -152,6 +153,20 @@ const mutations = {
             post.likes = post.likes.filter(like => like.id != remove_like.id);
         }
     }),
+    setOldestPost: (state) => {
+        state.posts.sort((a, b) => {
+            let c = new Date(a.created_at).getTime();
+            let d = new Date(b.created_at).getTime();
+            return c - d;
+        });
+    },
+    setNewestPost: (state) => {
+        state.posts.sort((a, b) => {
+            let c = new Date(a.created_at).getTime();
+            let d = new Date(b.created_at).getTime();
+            return d - c;
+        });
+    }
 }
 // export
 export default {

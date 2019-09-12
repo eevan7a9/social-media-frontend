@@ -14,7 +14,13 @@ export default {
     TopNavBar
   },
   methods: {
-    ...mapActions(["getPosts", "getLikes", "getUsers", "getAllComments"])
+    ...mapActions([
+      "getPosts",
+      "getLikes",
+      "getUsers",
+      "getAllComments",
+      "sortNewest"
+    ])
   },
   computed: mapGetters(["allPosts"]),
   created() {
@@ -22,7 +28,7 @@ export default {
       this.getAllComments().then(() => {
         this.getLikes().then(() => {
           if (this.allPosts.length === 0) {
-            this.getPosts();
+            this.getPosts().then(() => this.sortNewest());
           }
         });
       });

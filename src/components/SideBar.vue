@@ -1,16 +1,21 @@
 <template>
   <main>
-   <section>
-     <RecommendPosts />
-   </section>
+    <section class="Sort">
+      <SortPosts />
+    </section>
+    <section>
+      <RecommendPosts />
+    </section>
   </main>
 </template>
 
 <script>
+import SortPosts from "./posts/SortPosts";
 import RecommendPosts from "./posts/RecommendPosts";
 export default {
   name: "SideBar",
-  components:{
+  components: {
+    SortPosts,
     RecommendPosts
   }
 };
@@ -23,5 +28,7 @@ main {
   margin: 20px 20px 0 0;
   padding: 20px;
 }
-
+.Sort {
+  margin-bottom: 20px;
+}
 </style>
