@@ -27,7 +27,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 h4 {
   margin-bottom: 15px;
 }
