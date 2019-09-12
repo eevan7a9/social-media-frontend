@@ -36,6 +36,9 @@ export default {
 </script>
 
 <style scoped>
+ul {
+  list-style: none;
+}
 li {
   width: 120px;
   text-align: right;
