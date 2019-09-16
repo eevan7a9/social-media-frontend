@@ -6,7 +6,9 @@
     <hr class="hr-green" />
     <router-link :to="{name:'postdetails', params:{id: post.id}}" v-if="!update">
       <div class="title">
-        <h4>{{post.user_username}} -</h4>
+        <h4
+          :style="post.user_id == currentUser.id ? 'color:rgb(25, 147, 85);' : 'color:#333;'"
+        >{{post.user_username}} -</h4>
         <p>{{post.title}}</p>
       </div>
     </router-link>
