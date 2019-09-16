@@ -11,9 +11,9 @@
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      :fill="fillStar()"
+      :fill="user_liked() > 0 ? 'rgb(25, 147, 85)' : '#fff'"
       stroke="currentColor"
-      stroke-width="2"
+      :stroke-width="user_liked() > 0 ? 1 : 2"
       stroke-linecap="round"
       stroke-linejoin="round"
     >
@@ -35,7 +35,8 @@ export default {
   },
   data() {
     return {
-      visitor: 0
+      visitor: 0,
+      liked: 0
     };
   },
   computed: mapGetters(["currentUser"]),
@@ -58,11 +59,11 @@ export default {
           );
       }
     },
-    fillStar() {
+    user_liked() {
       const my_like = this.likes.filter(
         like => like.user_id === this.currentUser.id
       );
-      return my_like.length > 0 ? "#45ad78" : "white";
+      return my_like.length > 0 ? 1 : 0;
     }
   },
   created() {
