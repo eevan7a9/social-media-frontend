@@ -45,4 +45,12 @@ li {
   letter-spacing: 1.5px;
   margin-bottom: 10px;
 }
+@media (max-width: 700px) {
+  ul {
+    display: flex;
+  }
+  div {
+    display: flex;
+  }
+}
 </style>
