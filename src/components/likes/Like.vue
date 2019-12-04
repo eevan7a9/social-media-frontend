@@ -1,27 +1,32 @@
 <template>
   <div>
-    <svg
-      :style="visitor ? 'cursor:not-allowed' : 'cursor:pointer'"
-      class="feather feather-star"
-      data="star.svg"
-      alt
-      srcset
-      @click="like"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      :fill="user_liked() > 0 ? 'rgb(25, 147, 85)' : '#fff'"
-      stroke="currentColor"
-      :stroke-width="user_liked() > 0 ? 1 : 2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <polygon
-        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
-      />
-    </svg>
-    <span class="star">{{likes.length}}</span>
+    <div>
+      <transition name="bounce_" mode="out-in">
+        <svg
+          :key="likes.length"
+          :style="visitor ? 'cursor:not-allowed' : 'cursor:pointer'"
+          class="feather feather-star"
+          data="star.svg"
+          alt
+          srcset
+          @click="like"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          :fill="user_liked() > 0 ? 'rgb(25, 147, 85)' : '#fff'"
+          stroke="currentColor"
+          :stroke-width="user_liked() > 0 ? 1 : 2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polygon
+            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+          />
+        </svg>
+      </transition>
+      <span class="star">{{likes.length}}</span>
+    </div>
   </div>
 </template>
 
