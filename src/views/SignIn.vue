@@ -1,25 +1,29 @@
 <template>
   <main>
-    <div class="sign-in-container box-shadow-1">
+    <div class="sign-in-container box-shadow-2">
+      <h1>SIGN-IN</h1>
       <form @submit="signIn">
+        <hr class="hr-green" />
         <div class="input-fields">
           <label for="email">Email</label>
-          <input type="email" v-model="email" id="email" />
+          <input type="email" v-model.trim="email" id="email" />
         </div>
         <div class="input-fields">
           <label for="password">Password</label>
-          <input type="password" v-model="password" id="password" />
+          <input type="password" v-model.trim="password" id="password" />
         </div>
         <section class="submit-container">
           <div>
             <h5>For Demo:</h5>
             <p>Email :<i>test@test.test </i> | Password : <i>password</i></p>
           </div>
-          <button type="submit">Continue</button>
+          <button type="submit">CONTINUE</button>
         </section>
       </form>
     </div>
-    <p class="not-yet-registerd">Not yet Registered?</p>
+    <router-link :to="{name:'register'}">
+      <p class="not-yet-registerd">Not yet Registered?</p>
+    </router-link>
   </main>
 </template>
 
@@ -50,13 +54,17 @@ export default {
 </script>
 
 <style scoped>
+a{
+  text-decoration: none;
+}
 main {
   height: 700px;
   width: 100%;
-  padding: 30px 0;
+  padding-top: 70px;
 }
 .sign-in-container {
   background: white;
+  max-width: 700px;
   padding: 30px 45px;
   border: 2px solid #4c926e;
   border-radius: 10px;
@@ -78,10 +86,13 @@ main {
 }
 .input-fields input {
   font-weight: 400;
-  font-size: 16px;
-  padding: 15px 10px;
-  border: 1.5px solid #4c926e;
-  border-radius: 5px;
+  width: 100%;
+  font-size: 18px;
+  color: #4c926e;
+  padding: 5px 5px;
+  background: #f7f0f0;
+  border: 0px solid;
+  border-bottom: 2.5px solid #4c926e;
 }
 .submit-container {
   display: flex;
@@ -102,9 +113,11 @@ main {
   color: #fff;
 }
 .not-yet-registerd {
-  padding: 40px 0;
-  text-align: center;
+  margin-top: 30px;
   width: 100%;
+  color: #036282;
+  font-weight: bold;
+  text-align: center;
   cursor: pointer;
 }
 @media (max-width: 800px) {

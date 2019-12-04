@@ -1,7 +1,7 @@
 <template>
   <div class="register-container">
-    <div class="register-box box-shadow-1">
-      <h1>Register</h1>
+    <div class="register-box box-shadow-2">
+      <h1>REGISTER</h1>
       <form @submit="submit">
         <hr class="hr-green" />
         <div class="name-input">
@@ -37,11 +37,13 @@
           <p class="error-required">Password is not confirmed</p>
         </div>
         <section>
-          <button type="submit">Submit</button>
+          <button type="submit">SUBMIT</button>
         </section>
       </form>
-    </div>
-    <p class="already">Already registered?</p>
+    </div> 
+    <router-link :to="{name:'sign-in'}">
+      <p class="already">Already registered?</p>
+    </router-link>
   </div>
 </template>
 
@@ -115,14 +117,22 @@ export default {
 </script>
 
 <style scoped>
+a{
+  text-decoration: none;
+}
 .register-container {
-  padding: 50px 50px;
+  padding-top: 100px;
+  width: 100%;
+  min-height: 100vh;
 }
 .register-box {
   background: white;
   padding: 30px 45px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;
   border: 2px solid #4c926e;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .email-input,
 .name-input,
@@ -144,10 +154,13 @@ export default {
 .name-input input,
 .password-input input {
   font-weight: 400;
-  font-size: 16px;
-  padding: 10px 10px;
-  border: 1.5px solid #4c926e;
-  border-radius: 5px;
+  width: 100%;
+  font-size: 18px;
+  color: #4c926e;
+  padding: 5px 5px;
+  background: #f7f0f0;
+  border: 0px solid;
+  border-bottom: 2.5px solid #4c926e;
 }
 .register-box section {
   width: 100%;
@@ -158,14 +171,23 @@ export default {
   background: #45ad78;
   border-color: white;
   border-radius: 5px;
-  padding: 17px 15px;
+  border: #45ad78 solid 2px;
+  padding: 17px 25px;
   cursor: pointer;
   font-weight: 800;
   color: #fff;
 }
+.register-box button:hover {
+  background: #cae6d7;
+  border-color: #45ad78;
+  color: #45ad78;
+  transition: 1s;
+}
 .already {
   margin-top: 30px;
   width: 100%;
+  color: #036282;
+  font-weight: bold;
   text-align: center;
   cursor: pointer;
 }
