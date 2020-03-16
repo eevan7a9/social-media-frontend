@@ -4,114 +4,119 @@ import router from "../router";
 const state = {
     posts: [],
     post_details: {},
-    created_id: 19, // serves as a holder for new fake post
-}
+    created_id: 19 // serves as a holder for new fake post
+};
 const getters = {
     allPosts: function (state) {
         return state.posts;
     },
-    postDetails: (state) => state.post_details,
-    recommendedPosts: (state) => state.posts.slice(-5),
-}
+    postDetails: state => state.post_details,
+    recommendedPosts: state => state.posts.slice(-5)
+};
 const actions = {
     getPosts: async ({ commit, rootState }) => {
-        await axios.get("/posts")
+        await axios
+            .get("/posts")
             .then(res => {
-                const likes = rootState.likes.likes // we access the state of likes module
+                const likes = rootState.likes.likes; // we access the state of likes module
                 const comments = rootState.comments.comments; // we access the state of comments module
                 const users = rootState.users.users; // we access the state of users module
-                const posts = res.data // we store the result of our api request
+                const posts = res.data; // we store the result of our api request
                 posts.forEach(post => {
-                    post.user_username = users.filter(user =>
-                        user.id === post.user_id // we check if post belongs to the user
-                    ).map(user => user.username)[0]; // we get the username of the user
-                    post.comments = comments.filter(comment =>
-                        comment.post_id === post.id // we check if comments belong to the post
+                    post.user_username = users
+                        .filter(
+                            user => user.id === post.user_id // we check if post belongs to the user
+                        )
+                        .map(user => user.username)[0]; // we get the username of the user
+                    post.comments = comments.filter(
+                        comment => comment.post_id === post.id // we check if comments belong to the post
                     ).length; // we get the number of comments belong to the post
-                    post.likes = likes.filter(like =>
-                        like.post_id == post.id
-                    );
+                    post.likes = likes.filter(like => like.post_id == post.id);
                 });
                 commit("setPosts", posts);
             })
-            .catch((e) => {
+            .catch(e => {
                 alert(e);
-            })
+            });
     },
-    addPost: async ({ commit, rootState, state }, newPost) => {
-        await axios.post("/posts", {
-            id: state.created_id,
-            user_id: newPost.user_id,
-            title: newPost.title,
-            created_at: newPost.created_at
-        })
-            .then(res => {
-                state.created_id++; // we increase the new fake post id holder
-                const users = rootState.users.users;
-                const comments = rootState.comments.comments;
-                const likes = rootState.likes.likes;
-                const post = res.data;
-                post.user_username = users.filter(user =>
-                    user.id == post.user_id).map(user => user.username)[0];
-                post.comments = comments.filter(comment => comment.post_id == post.id).length;
-                post.likes = likes.filter(like => like.post_id == post.id);
-                commit("insertPost", post);
-            })
-        // .catch(err => {
-        //     console.error(err);
-        // })
+    addPost: async ({ commit, rootState }, newPost) => {
+        try {
+            const addedPost = await axios.post("/posts", {
+                id: new Date().getTime(),
+                user_id: newPost.user_id,
+                title: newPost.title,
+                created_at: newPost.created_at
+            });
+            const users = rootState.users.users;
+            const comments = rootState.comments.comments;
+            const likes = rootState.likes.likes;
+            const post = addedPost.data;
+            post.user_username = users
+                .filter(user => user.id == post.user_id)
+                .map(user => user.username)[0];
+            post.comments = comments.filter(
+                comment => comment.post_id == post.id
+            ).length;
+            post.likes = likes.filter(like => like.post_id == post.id);
+            commit("insertPost", post);
+        } catch (error) {
+            alert(error);
+        }
     },
     editPost: async ({ commit }, post) => {
         const date = new Date();
-        const this_month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
-        const date_day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
-        await axios.put(`/posts/${post.id}`, {
-            user_id: post.user_id,
-            title: post.title,
-            created_at: `${date.getFullYear()}/${this_month}/${date_day}`,
-        })
-            .then(() => {
-                post.created_at = `${date.getFullYear()}/${this_month}/${date_day}`;
-                commit("updatePost", post);
-            })
-            .catch(() => {
-                // error 404 will appear because we using fake server
-                // to fix this, we catch the error and procceed to update
-                post.created_at = `${date.getFullYear()}/${this_month}/${date_day}`;
-                commit("updatePost", post);
-            })
+        const this_month =
+            date.getMonth() + 1 < 10
+                ? `0${date.getMonth() + 1}`
+                : date.getMonth() + 1;
+        const date_day =
+            date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+        try {
+            await axios
+                .put(`/posts/${post.id}`, {
+                    user_id: post.user_id,
+                    title: post.title,
+                    created_at: `${date.getFullYear()}/${this_month}/${date_day}`
+                });
+            post.created_at = `${date.getFullYear()}/${this_month}/${date_day}`;
+            commit("updatePost", post);
+        } catch (err) {
+            // error 404 will appear because we using fake server
+            // to fix this, we catch the error and procceed to update
+            post.created_at = `${date.getFullYear()}/${this_month}/${date_day}`;
+            commit("updatePost", post);
+        }
     },
     deletePost: async ({ commit }, id) => {
-        if (id > 18) { // our fake server's last id of the post is 17.
-            // we check if the id exist on the fake server or not
-            // if not we just remove it rightaway.
-            commit("removePost", id);
-        } else {
-            await axios.delete(`/posts/${id}`)
-                .then(() => {
-                    commit("removePost", id)
-                })
-        }
+        commit("removePost", id);
     },
     viewPost: ({ state, commit, rootState }, id) => {
         const post = state.posts.filter(post => post.id == id)[0];
         if (post == undefined) {
-            router.push({ name: "home", query: { redirect: "/" } });
+            router.push({
+                name: "home",
+                query: {
+                    redirect: "/"
+                }
+            });
         } else {
             const users = rootState.users.users;
             const comments = rootState.comments.comments;
             const likes = rootState.likes.likes;
 
-            post.user_username = users.filter(user =>
-                user.id == post.user_id).map(user => user.username)[0];
-            post.comments = comments.filter(comment => comment.post_id == post.id).length;
+            post.user_username = users
+                .filter(user => user.id == post.user_id)
+                .map(user => user.username)[0];
+            post.comments = comments.filter(
+                comment => comment.post_id == post.id
+            ).length;
             post.likes = likes.filter(like => like.post_id == post.id);
             commit("setPostDetails", post);
         }
     },
     addPostComment({ commit, state }) {
         const post = state.post_details;
-        commit("increasePostComment", post)
+        commit("increasePostComment", post);
     },
     subtractPostComment({ commit, state }) {
         const post = state.post_details;
@@ -121,16 +126,20 @@ const actions = {
 
     subtractPostLikes: ({ commit }, like) => commit("decreasePostLikes", like),
     sortOldest: ({ commit }) => commit("setOldestPost"),
-    sortNewest: ({ commit }) => commit("setNewestPost"),
-}
+    sortNewest: ({ commit }) => commit("setNewestPost")
+};
 const mutations = {
     setPosts: (state, posts) => {
         state.posts = posts;
     },
     insertPost: (state, post) => state.posts.unshift(post),
-    updatePost: (state, updated_post) => state.posts.forEach(post => post.id == updated_post.id ? post = updated_post : post),
-    removePost: (state, id) => state.posts = state.posts.filter(post => post.id != id),
-    setPostDetails: (state, post_details) => state.post_details = post_details,
+    updatePost: (state, updated_post) =>
+        state.posts.forEach(post =>
+            post.id == updated_post.id ? (post = updated_post) : post
+        ),
+    removePost: (state, id) =>
+        (state.posts = state.posts.filter(post => post.id != id)),
+    setPostDetails: (state, post_details) => (state.post_details = post_details),
     increasePostComment: (state, updated_post) => {
         state.posts.forEach(post => {
             if (post.id == updated_post.id) {
@@ -147,31 +156,35 @@ const mutations = {
         });
         state.post_details.comments - 1;
     },
-    increasePostLikes: (state, like) => state.posts.forEach(post => post.id == like.post_id ? post.likes.unshift(like) : post.likes),
-    decreasePostLikes: (state, remove_like) => state.posts.forEach(post => {
-        if (post.id == remove_like.post_id) {
-            post.likes = post.likes.filter(like => like.id != remove_like.id);
-        }
-    }),
-    setOldestPost: (state) => {
+    increasePostLikes: (state, like) =>
+        state.posts.forEach(post =>
+            post.id == like.post_id ? post.likes.unshift(like) : post.likes
+        ),
+    decreasePostLikes: (state, remove_like) =>
+        state.posts.forEach(post => {
+            if (post.id == remove_like.post_id) {
+                post.likes = post.likes.filter(like => like.id != remove_like.id);
+            }
+        }),
+    setOldestPost: state => {
         state.posts.sort((a, b) => {
             let c = new Date(a.created_at).getTime();
             let d = new Date(b.created_at).getTime();
             return c - d;
         });
     },
-    setNewestPost: (state) => {
+    setNewestPost: state => {
         state.posts.sort((a, b) => {
             let c = new Date(a.created_at).getTime();
             let d = new Date(b.created_at).getTime();
             return d - c;
         });
     }
-}
+};
 // export
 export default {
     state,
     getters,
     actions,
-    mutations,
+    mutations
 };
