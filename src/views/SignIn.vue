@@ -15,7 +15,11 @@
         <section class="submit-container">
           <div>
             <h5>For Demo:</h5>
-            <p>Email :<i>test@test.test </i> | Password : <i>password</i></p>
+            <p>
+              Email :
+              <i>test@test.test</i> | Password :
+              <i>password</i>
+            </p>
           </div>
           <button type="submit">CONTINUE</button>
         </section>
@@ -33,8 +37,8 @@ export default {
   name: "SignIn",
   data() {
     return {
-      email: "",
-      password: ""
+      email: "test@test.test",
+      password: "password"
     };
   },
   computed: mapGetters(["allUsers"]),
@@ -54,7 +58,7 @@ export default {
 </script>
 
 <style scoped>
-a{
+a {
   text-decoration: none;
 }
 main {
@@ -98,9 +102,8 @@ main {
   display: flex;
   justify-content: space-between;
 }
-.submit-container i{
+.submit-container i {
   color: #4c926e;
-  
 }
 .submit-container button {
   margin-top: 10px;
