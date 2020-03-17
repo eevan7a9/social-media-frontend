@@ -23,16 +23,12 @@ export default {
     ])
   },
   computed: mapGetters(["allPosts"]),
-  created() {
-    this.getUsers().then(() => {
-      this.getAllComments().then(() => {
-        this.getLikes().then(() => {
-          if (this.allPosts.length === 0) {
-            this.getPosts().then(() => this.sortNewest());
-          }
-        });
-      });
-    });
+  async created() {
+    await this.getUsers();
+    await this.getAllComments();
+    await this.getLikes();
+    await this.getPosts();
+    await this.sortNewest();
   }
 };
 </script>
