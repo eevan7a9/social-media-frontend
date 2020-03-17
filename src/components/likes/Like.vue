@@ -52,16 +52,27 @@ export default {
       "addPostLikes",
       "subtractPostLikes"
     ]),
-    like() {
+    async like() {
       if (Object.keys(this.currentUser).length !== 0) {
-        this.addLike({
-          id: this.post_id,
-          user_id: this.currentUser.id
-        })
-          .then(like => this.addPostLikes(like))
-          .catch(like =>
-            this.deleteLike(like.id).then(() => this.subtractPostLikes(like))
-          );
+        // we find if user already liked
+        const foundLiked = this.likes.find(
+          like => like.user_id == this.currentUser.id
+        );
+        if (foundLiked) {
+          // remove like if user already liked
+          this.deleteLike(foundLiked.id);
+          this.subtractPostLikes(foundLiked);
+        } else {
+          try {
+            const result = await this.addLike({
+              id: this.post_id,
+              user_id: this.currentUser.id
+            });
+            this.addPostLikes(result);
+          } catch (error) {
+            alert(error);
+          }
+        }
       }
     },
     user_liked() {
