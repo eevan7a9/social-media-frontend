@@ -16,7 +16,7 @@ export default new Router({
     {
       path: '/post/:id',
       name: 'postdetails',
-      component: () => import('./components/posts/PostDetails.vue'),
+      component: () => import('./views/PostDetails.vue'),
       props(route) { // by doing this we can prevent the params.id Type 
         let props = { ...route.params } // from changing when entered from url
         props.id = parseInt(props.id)
@@ -35,19 +35,19 @@ export default new Router({
       path: "/register",
       name: "register",
       component: () => import('./views/Register.vue'),
-      meta: {requiresVisitor: true}
+      meta: { requiresVisitor: true }
     },
     {
       path: "/sign-in",
       name: "sign-in",
       component: () => import('./views/SignIn.vue'),
-      meta: {requiresVisitor: true}
+      meta: { requiresVisitor: true }
     },
     {
-      name:"sign-out",
+      name: "sign-out",
       path: "/sign-out",
       component: () => import('./views/SignOut.vue'),
-      meta: {requiresAuth: true}
+      meta: { requiresAuth: true }
     }
   ]
 })

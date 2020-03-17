@@ -2,7 +2,7 @@
   <main class="container">
     <div class="post-container" id="post-container">
       <div class="back" @click="returnHome">
-        <img src="../../assets/icons/x.svg" alt srcset />
+        <img src="@/assets/icons/x.svg" alt srcset />
       </div>
       <div class="created-date">
         <small>{{postDetails.created_at}}</small>
@@ -29,28 +29,28 @@
           <Like :likes="postDetails.likes" :post_id="postDetails.id" />
           <!-- Likes end here -->
           <div>
-            <img class="icon-img" src="../../assets/icons/message-square.svg" alt="comment" />
+            <img class="icon-img" src="@/assets/icons/message-square.svg" alt="comment" />
             <span>{{postDetails.comments}}</span>
           </div>
         </div>
         <div class="post-options">
           <ul v-if="!update">
             <li @click="edit" class="color-green" v-if="postDetails.user_id === currentUser.id">
-              <img src="../../assets/icons/edit.svg" alt="edit" />
+              <img src="@/assets/icons/edit.svg" alt="edit" />
             </li>
             <li @click="delPost" class="color-red" v-if="postDetails.user_id === currentUser.id">
-              <img src="../../assets/icons/trash-2.svg" alt="delete" />
+              <img src="@/assets/icons/trash-2.svg" alt="delete" />
             </li>
             <li class="color-muted">
-              <img src="../../assets/icons/flag.svg" alt="report" srcset />
+              <img src="@/assets/icons/flag.svg" alt="report" srcset />
             </li>
           </ul>
           <ul class="update-option" v-if="update">
             <li class="cancel" @click="cancel">
-              <img src="../../assets/icons/cancel.svg" alt="cancel" />
+              <img src="@/assets/icons/cancel.svg" alt="cancel" />
             </li>
             <li class="submit" @click="submit">
-              <img src="../../assets/icons/check.svg" alt="submit" />
+              <img src="@/assets/icons/check.svg" alt="submit" />
             </li>
           </ul>
         </div>
@@ -61,8 +61,8 @@
 </template>
 
 <script>
-import Like from "../likes/Like";
-import CommentsList from "../comments/CommentsList";
+import Like from "@/components/likes/Like";
+import CommentsList from "@/components/comments/CommentsList";
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "PostDetails",
