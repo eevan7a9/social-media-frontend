@@ -5,9 +5,7 @@ const state = {
   current_user: {} // current user will be store here
 };
 const getters = {
-  allUsers: function(state) {
-    return state.users;
-  },
+  allUsers: state => state.users,
   currentUser: state => state.current_user
 };
 const actions = {
@@ -40,18 +38,19 @@ const actions = {
     }
   },
   newCurrentUser: async ({ commit, state }, signed_user) => {
-    const check_user = state.users.filter(
+    // we don't have a backend so we try & replicate the login process
+    const check_user = state.users.find(
       user =>
         user.email == signed_user.email && user.password == signed_user.password
     );
-    if (check_user.length > 0) {
-      commit("setCurrentUser", check_user[0]);
+    if (check_user) {
+      commit("setCurrentUser", check_user);
     } else {
       return Promise.reject("Wrong Credentials");
     }
   },
-  removeCurrentUser: async ({ commit }) => {
-    await commit("clearCurrentUser");
+  removeCurrentUser: ({ commit }) => {
+    commit("clearCurrentUser");
   }
 };
 const mutations = {
