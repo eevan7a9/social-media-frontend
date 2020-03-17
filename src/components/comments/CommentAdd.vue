@@ -46,7 +46,14 @@ export default {
           message: this.message
         }).then(() => {
           this.message = "";
-          this.addPostComment();
+          this.addPostComment().then(() => {
+            this.$swal.fire({
+              icon: "success",
+              title: "Well done!",
+              text: "Success, comment submitted!"
+              //   footer: "<a href>Why do I have this issue?</a>"
+            });
+          });
         });
       } else {
         alert("Sorry, Strangers are not allowed to comment.");

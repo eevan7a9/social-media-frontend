@@ -52,6 +52,13 @@ export default {
           user_id: this.currentUser.id,
           title: this.title,
           created_at: `${year}/${month}/${date}`
+        }).then(() => {
+          this.$swal.fire({
+            icon: "success",
+            title: "New Post!",
+            text: "Successfully published new post."
+            // footer: "<a href>Why do I have this issue?</a>"
+          });
         });
         this.title = "";
       }

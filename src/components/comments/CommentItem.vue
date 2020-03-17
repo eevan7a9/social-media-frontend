@@ -62,6 +62,14 @@ export default {
       this.updateComment({
         id: this.comment.id,
         message: this.message
+      }).then(() => {
+        this.$swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your comment has been updated",
+          showConfirmButton: false,
+          timer: 2000
+        });
       });
     }
   }
