@@ -1,4 +1,5 @@
-# social-media-clone
+# social-media-frontend
+
 
 Is a Social Media Application.
 
