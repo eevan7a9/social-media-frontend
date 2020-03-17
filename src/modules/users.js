@@ -39,11 +39,24 @@ const actions = {
   },
   newCurrentUser: async ({ commit, state }, signed_user) => {
     // we don't have a backend so we try & replicate the login process
-    const check_user = state.users.find(
+    let check_user = state.users.find(
       user =>
         user.email == signed_user.email && user.password == signed_user.password
     );
     if (check_user) {
+      const follows = await axios.get("/follows");
+      // we get the followers & followings
+      const follower = follows.data
+        .filter(follow => follow.following == check_user.id)
+        .map(follow => follow.follower);
+      const following = follows.data
+        .filter(follow => follow.follower == check_user.id)
+        .map(follow => follow.following);
+      // we add follower & following to our user
+      check_user = {
+        ...check_user,
+        ...{ follower: follower, following: following }
+      };
       commit("setCurrentUser", check_user);
     } else {
       return Promise.reject("Wrong Credentials");
