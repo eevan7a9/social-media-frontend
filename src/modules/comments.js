@@ -3,7 +3,6 @@ import axios from "axios";
 const state = {
     comments: [], // all comments
     post_comments: [], // all comments of a single post
-    created_id: 25,
 }
 const getters = {
     allComments: (state) => state.comments,
@@ -31,15 +30,14 @@ const actions = {
         commit("setPostComments", comments);
 
     },
-    addComment: async ({ state, commit }, comment) => {
+    addComment: async ({ commit }, comment) => {
         await axios.post(`/comments`, {
-            id: state.created_id,
+            id: new Date().getTime(),
             post_id: comment.post_id,
             user_id: comment.user_id,
             message: comment.message
         })
             .then(res => {
-                state.created_id++;
                 const new_comment = res.data;
                 new_comment.user_username = comment.user_username;
                 commit("insertComment", new_comment);
