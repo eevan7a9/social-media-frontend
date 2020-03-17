@@ -9,7 +9,7 @@ Social media are interactive computer-mediated technologies that facilitate the 
 
 This is a **Frontend Only** application. and we are using Json placeholder to give us **Fake Api**
 
-**Social-media-clone** a front-end only application is written in a sort of way to mimic a fullstack application for demo purpose only
+**Social-media-frontend** a front-end only application is written in a sort of way to mimic a fullstack application for demo purpose only
 
 ## Json placeholder?
 >https://jsonplaceholder.typicode.com/
