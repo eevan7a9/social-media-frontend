@@ -1,7 +1,7 @@
 <template>
   <main>
     <transition-group name="slide-fade" tag="div">
-      <div class="post-container" v-for="(post) in allPosts" :key="post.id">
+      <div class="post-container" v-for="post in allPosts" :key="post.id">
         <PostItem :post="post" />
       </div>
     </transition-group>

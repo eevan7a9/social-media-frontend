@@ -1,19 +1,28 @@
 <template>
-  <main class="post-container">
+  <main>
     <div class="created-date">
-      <small>{{post.created_at}}</small>
+      <small>{{ post.created_at }}</small>
     </div>
     <hr class="hr-green" />
-    <router-link :to="{name:'postdetails', params:{id: post.id}}" v-if="!update">
+    <router-link
+      :to="{ name: 'postdetails', params: { id: post.id } }"
+      v-if="!update"
+    >
       <div class="title">
         <h4
-          :style="post.user_id == currentUser.id ? 'color:rgb(25, 147, 85);' : 'color:#333;'"
-        >{{post.user_username}} -</h4>
-        <p>{{post.title}}</p>
+          :style="
+            post.user_id == currentUser.id
+              ? 'color:rgb(25, 147, 85);'
+              : 'color:#333;'
+          "
+        >
+          {{ post.user_username }} -
+        </h4>
+        <p>{{ post.title }}</p>
       </div>
     </router-link>
     <div class="title" v-if="update">
-      <h4>{{post.user_username}} -</h4>
+      <h4>{{ post.user_username }} -</h4>
       <textarea
         type="text"
         name="title"
@@ -27,10 +36,14 @@
         <!-- Likes starts here -->
         <Like :likes="post.likes" :post_id="post.id" />
         <!-- Likes ends here -->
-        <router-link :to="{name:'postdetails', params:{id: post.id}}">
+        <router-link :to="{ name: 'postdetails', params: { id: post.id } }">
           <div>
-            <img class="icon-img" src="../../assets/icons/message-square.svg" alt="comment" />
-            <span>{{post.comments}}</span>
+            <img
+              class="icon-img"
+              src="../../assets/icons/message-square.svg"
+              alt="comment"
+            />
+            <span>{{ post.comments }}</span>
           </div>
         </router-link>
       </div>
@@ -51,7 +64,9 @@
           </p>
           <ul v-if="options">
             <li @click="edit" v-if="post.user_id == currentUser.id">edit</li>
-            <li @click="remove" v-if="post.user_id == currentUser.id">delete</li>
+            <li @click="remove" v-if="post.user_id == currentUser.id">
+              delete
+            </li>
             <li>report</li>
             <li class="close-options" @click="showOptions">...</li>
           </ul>

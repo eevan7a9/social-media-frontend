@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 /* utilities */
 .container {
   max-width: 1170px;
@@ -11,94 +12,99 @@
   overflow: hidden;
   padding: 0 15px;
 }
+
 .bg-vuedient {
-  background: linear-gradient(
-    0deg,
-    rgba(113, 181, 150, 1) 5%,
-    rgba(49, 170, 116, 1) 46%,
-    rgba(65, 184, 131, 1) 100%
-  );
+  background: linear-gradient(0deg,
+      rgba(113, 181, 150, 1) 5%,
+      rgba(49, 170, 116, 1) 46%,
+      rgba(65, 184, 131, 1) 100%);
 }
+
 .bg-greendient {
-  background: linear-gradient(
-    0deg,
-    rgba(79, 143, 34, 1) 5%,
-    rgba(48, 162, 31, 1) 46%,
-    rgba(29, 148, 48, 1) 100%
-  );
+  background: linear-gradient(0deg,
+      rgba(79, 143, 34, 1) 5%,
+      rgba(48, 162, 31, 1) 46%,
+      rgba(29, 148, 48, 1) 100%);
 }
+
 .bg-orangdient {
-  background: linear-gradient(
-    0deg,
-    rgba(237, 192, 97, 1) 12%,
-    rgba(232, 133, 7, 1) 58%,
-    rgba(198, 98, 0, 1) 100%
-  );
+  background: linear-gradient(0deg,
+      rgba(237, 192, 97, 1) 12%,
+      rgba(232, 133, 7, 1) 58%,
+      rgba(198, 98, 0, 1) 100%);
 }
+
 .bg-lightdient {
-  background-image: radial-gradient(
-    circle farthest-corner at 18.7% 37.8%,
-    rgba(250, 250, 250, 1) 0%,
-    rgba(225, 234, 238, 1) 90%
-  );
+  background-image: radial-gradient(circle farthest-corner at 18.7% 37.8%,
+      rgba(250, 250, 250, 1) 0%,
+      rgba(225, 234, 238, 1) 90%);
 }
+
 .bg-darkdient {
-  background-image: radial-gradient(
-    circle,
-    #22251c,
-    #292c22,
-    #313427,
-    #383c2d,
-    #404433
-  );
+  background-image: radial-gradient(circle,
+      #22251c,
+      #292c22,
+      #313427,
+      #383c2d,
+      #404433);
 }
+
 .bg-danger {
-  background-image: radial-gradient(
-    circle 820px at -14.8% -18.7%,
-    rgba(242, 7, 7, 1) 0%,
-    rgba(242, 165, 13, 1) 90%
-  );
+  background-image: radial-gradient(circle 820px at -14.8% -18.7%,
+      rgba(242, 7, 7, 1) 0%,
+      rgba(242, 165, 13, 1) 90%);
 }
+
 .bg-success {
-  background-image: radial-gradient(
-    circle 1124px at 1.6% 5%,
-    rgba(9, 249, 0, 0.36) 7.4%,
-    rgba(216, 245, 34, 0.34) 48.1%,
-    rgba(16, 186, 88, 0.35) 80.1%
-  );
+  background-image: radial-gradient(circle 1124px at 1.6% 5%,
+      rgba(9, 249, 0, 0.36) 7.4%,
+      rgba(216, 245, 34, 0.34) 48.1%,
+      rgba(16, 186, 88, 0.35) 80.1%);
 }
+
 .color-white {
   color: aliceblue;
 }
+
 .color-red {
   color: rgb(235, 42, 42);
 }
+
 .color-green {
   color: #4c926e;
 }
+
 .color-muted {
   color: grey;
 }
+
 .box-shadow-1 {
   -webkit-box-shadow: -19px 16px 35px -15px rgba(0, 0, 0, 1);
   -moz-box-shadow: -19px 16px 35px -15px rgba(0, 0, 0, 1);
   box-shadow: -19px 16px 35px -15px rgba(0, 0, 0, 1);
 }
+
 .box-shadow-2 {
   -webkit-box-shadow: 0px 14px 25px -10px rgb(172, 157, 157);
   -moz-box-shadow: 0px 14px 25px -10px rgb(172, 157, 157);
   box-shadow: 0px 14px 25px -10px rgb(172, 157, 157);
 }
+
 .hr-green {
   color: #45ad78;
   margin: 5px 0;
 }
+
 .post-container {
-  padding: 10px 15px;
+  padding: 30px 25px;
   background: white;
   margin: 20px 0;
   border-radius: 10px;
+  box-shadow: -1px 8px 13px -11px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 8px 13px -11px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 8px 13px -11px rgba(0, 0, 0, 0.75);
 }
+
 .title {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -108,82 +114,111 @@
   color: #333;
   text-decoration: none;
 }
+
 .icon-img {
   margin-right: 10px;
   cursor: pointer;
 }
+
 .comment {
   padding: 0 30px;
 }
+
 .star {
   margin-right: 30px;
 }
+
 .update-option {
   display: flex;
   width: 150px;
   justify-content: space-between;
 }
+
 .update-option .cancel {
   color: red;
   cursor: pointer;
 }
+
 .update-option .submit {
   color: #4c926e;
   cursor: pointer;
 }
+
 /* transition animation */
 .bounce-enter-active {
   animation: bounce-in 0.3s;
 }
+
 .bounce-leave-active {
   position: absolute;
 }
+
 @keyframes bounce-in {
   0% {
     transform: scale(0);
   }
+
   50% {
     transform: scale(1);
   }
+
   100% {
     transform: scale(0.5);
   }
 }
+
 .fade-enter-active {
   transition: opacity .5s;
 }
+
 .fade-leave-active {
   transition: opacity .5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+.fade-enter,
+.fade-leave-to
+
+/* .fade-leave-active below version 2.1.8 */
+  {
   opacity: 0;
 }
+
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }
+
 .slide-fade-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
+
+.slide-fade-enter,
+.slide-fade-leave-to
+
+/* .slide-fade-leave-active below version 2.1.8 */
+  {
   transform: translateX(10px);
   opacity: 0;
 }
+
 .bounce_-enter-active {
   animation: bounce_-in .5s;
 }
+
 .bounce_-leave-active {
   animation: bounce_-in .5s reverse;
 }
+
 @keyframes bounce_-in {
   0% {
     transform: scale(0);
   }
+
   50% {
     transform: scale(1.5);
   }
+
   100% {
     transform: scale(1);
   }

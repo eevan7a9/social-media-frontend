@@ -106,6 +106,9 @@ export default {
   background: white;
   padding: 10px;
   border-radius: 10px;
+  box-shadow: -1px 8px 13px -11px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 8px 13px -11px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 8px 13px -11px rgba(0, 0, 0, 0.75);
 }
 .create-container label {
   font-weight: 800;
