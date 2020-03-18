@@ -29,10 +29,19 @@ export default {
 
 <style scoped>
 main {
-  background: white;
+  /* background: white; */
   height: 100%;
   margin: 20px 20px 0 0;
   padding: 20px;
+}
+section {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+
+  box-shadow: -1px 8px 17px -8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 8px 17px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 8px 17px -8px rgba(0, 0, 0, 0.75);
 }
 .Sort {
   margin-bottom: 20px;
