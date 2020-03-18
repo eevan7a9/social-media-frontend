@@ -1,32 +1,30 @@
 <template>
-  <main>
+  <main class="post-container" @click="visitPost">
     <div class="created-date">
       <small>{{ post.created_at }}</small>
     </div>
     <hr class="hr-green" />
-    <router-link
-      :to="{ name: 'postdetails', params: { id: post.id } }"
-      v-if="!update"
-    >
-      <div class="title">
-        <h4
-          :style="
-            post.user_id == currentUser.id
-              ? 'color:rgb(25, 147, 85);'
-              : 'color:#333;'
-          "
-        >
-          {{ post.user_username }} -
-        </h4>
-        <p>{{ post.title }}</p>
-      </div>
-    </router-link>
+
+    <div class="title" v-if="!update">
+      <h4
+        @click.stop
+        :style="
+          post.user_id == currentUser.id
+            ? 'color:rgb(25, 147, 85);'
+            : 'color:#333;'
+        "
+      >
+        {{ post.user_username }} -
+      </h4>
+      <p>{{ post.title }}</p>
+    </div>
     <div class="title" v-if="update">
       <h4>{{ post.user_username }} -</h4>
       <textarea
         type="text"
         name="title"
         id="edit_title"
+        @click.stop
         v-model="post.title"
         @keypress.enter="submit"
       />
@@ -48,27 +46,28 @@
         </router-link>
       </div>
       <div class="update-option" v-if="update">
-        <p class="cancel" @click="cancel">Cancel</p>
-        <p class="submit" @click="submit">Submit</p>
+        <p class="cancel" @click.stop="cancel">Cancel</p>
+        <p class="submit" @click.stop="submit">Submit</p>
       </div>
       <div class="post-options" v-if="!update">
         <transition name="bounce">
-          <p class="open-options" v-if="!options">
+          <p class="open-options" @click.stop="showOptions" v-if="!options">
             <img
               class="icon-img"
-              @click="showOptions"
               src="../../assets/icons/more-horizontal.svg"
               alt
               srcset
             />
           </p>
           <ul v-if="options">
-            <li @click="edit" v-if="post.user_id == currentUser.id">edit</li>
-            <li @click="remove" v-if="post.user_id == currentUser.id">
+            <li @click.stop="edit" v-if="post.user_id == currentUser.id">
+              edit
+            </li>
+            <li @click.stop="remove" v-if="post.user_id == currentUser.id">
               delete
             </li>
-            <li @click="reportPost">report</li>
-            <li class="close-options" @click="showOptions">...</li>
+            <li @click.stop="reportPost">report</li>
+            <li class="close-options" @click.stop="showOptions">...</li>
           </ul>
         </transition>
       </div>
@@ -96,6 +95,9 @@ export default {
   computed: mapGetters(["currentUser"]),
   methods: {
     ...mapActions(["deletePost", "editPost"]),
+    visitPost() {
+      this.$router.push({ name: "postdetails", params: { id: this.post.id } });
+    },
     showOptions() {
       this.options = !this.options;
     },
@@ -157,6 +159,26 @@ export default {
 </script>
 
 <style scoped>
+.post-container {
+  padding: 30px 25px;
+  background: white;
+  margin: 20px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: -1px 8px 13px -11px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 8px 13px -11px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 8px 13px -11px rgba(0, 0, 0, 0.75);
+}
+
+.post-container:hover {
+  box-shadow: -1px 11px 20px -8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 11px 20px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 11px 20px -8px rgba(0, 0, 0, 0.75);
+  transition: 0.5s;
+}
+.post-container:hover .title {
+  background: #e5ebe8;
+}
 #edit_title {
   border: 1px solid #4c926e;
   padding: 5px;
@@ -169,9 +191,7 @@ a {
 .star-comment {
   display: flex;
 }
-.title:hover {
-  background: #e5ebe8;
-}
+
 .created-date {
   width: 100%;
   text-align: right;
