@@ -67,7 +67,7 @@
             <li @click="remove" v-if="post.user_id == currentUser.id">
               delete
             </li>
-            <li>report</li>
+            <li @click="reportPost">report</li>
             <li class="close-options" @click="showOptions">...</li>
           </ul>
         </transition>
@@ -100,11 +100,49 @@ export default {
       this.options = !this.options;
     },
     remove() {
-      this.showOptions();
-      this.deletePost(this.post.id);
+      this.options = !this.options;
+      this.$swal
+        .fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!"
+        })
+        .then(result => {
+          if (result.value) {
+            this.deletePost(this.post.id).then(() => {
+              this.$swal.fire(
+                "Deleted!",
+                "Your file has been deleted.",
+                "success"
+              );
+            });
+          }
+        });
     },
     edit() {
       this.update = !this.update;
+      this.options = 0;
+    },
+    reportPost() {
+      if (this.currentUser.id) {
+        this.$swal.fire({
+          icon: "success",
+          title: "Post Reported!",
+          text: "We will take a look!"
+          //   footer: "<a href>Why do I have this issue?</a>"
+        });
+      } else {
+        this.$swal.fire({
+          icon: "info",
+          title: "Not Allowed!",
+          text: "Sorry, you need to register & sign-in"
+          //   footer: "<a href>Why do I have this issue?</a>"
+        });
+      }
       this.options = 0;
     },
     submit() {
