@@ -43,14 +43,17 @@ export default {
   },
   computed: mapGetters(["allUsers"]),
   methods: {
-    ...mapActions(["newCurrentUser"]),
+    ...mapActions(["newCurrentUser", "getWhoToFollow"]),
     signIn(e) {
       e.preventDefault();
       this.newCurrentUser({
         email: this.email,
         password: this.password
       })
-        .then(() => this.$router.push({ name: "home", query: { path: "/" } }))
+        .then(() => {
+          this.$router.push({ name: "home", query: { path: "/" } });
+          this.getWhoToFollow();
+        })
         .catch(err => alert(err));
     }
   }

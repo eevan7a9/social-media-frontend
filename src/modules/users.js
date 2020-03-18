@@ -2,11 +2,13 @@ import axios from "axios";
 
 const state = {
   users: [],
-  current_user: {} // current user will be store here
+  current_user: {}, // current user will be store here
+  whoToFollow: []
 };
 const getters = {
   allUsers: state => state.users,
-  currentUser: state => state.current_user
+  currentUser: state => state.current_user,
+  usersToFollow: state => state.whoToFollow
 };
 const actions = {
   getUsers: async ({ commit }) => {
@@ -64,6 +66,17 @@ const actions = {
   },
   removeCurrentUser: ({ commit }) => {
     commit("clearCurrentUser");
+  },
+  getWhoToFollow: ({ commit, state }) => {
+    let users;
+    if (!state.current_user.id) {
+      users = state.users;
+    } else {
+      users = state.users.filter(user => {
+        return !state.current_user.following.includes(user.id);
+      });
+    }
+    commit("setWhoToFollow", users.slice(0, 4));
   }
 };
 const mutations = {
@@ -72,7 +85,8 @@ const mutations = {
   setCurrentUser: (state, user) => {
     state.current_user = user;
   },
-  clearCurrentUser: state => (state.current_user = {})
+  clearCurrentUser: state => (state.current_user = {}),
+  setWhoToFollow: (state, users) => (state.whoToFollow = users)
 };
 // export
 export default {

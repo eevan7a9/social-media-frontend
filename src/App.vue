@@ -19,7 +19,8 @@ export default {
       "getLikes",
       "getUsers",
       "getAllComments",
-      "sortNewest"
+      "sortNewest",
+      "getWhoToFollow"
     ])
   },
   computed: mapGetters(["allPosts"]),
@@ -29,6 +30,7 @@ export default {
     await this.getLikes();
     await this.getPosts();
     await this.sortNewest();
+    await this.getWhoToFollow();
   }
 };
 </script>
