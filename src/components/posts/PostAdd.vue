@@ -100,6 +100,7 @@ export default {
   border-radius: 10px;
   padding: 5px 10px;
   margin-top: 10px;
+  resize: none;
 }
 .create-container {
   margin: 20px 0;
