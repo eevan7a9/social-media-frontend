@@ -25,7 +25,7 @@
           />
         </svg>
       </transition>
-      <span class="star">{{likes.length}}</span>
+      <span class="star">{{ likes.length }}</span>
     </div>
   </div>
 </template>
@@ -73,6 +73,16 @@ export default {
             alert(error);
           }
         }
+      } else {
+        this.$swal
+          .fire({
+            icon: "info",
+            title: "Not Allowed!",
+            text: "Sorry, you need to register & sign-in"
+          })
+          .then(() => {
+            this.$router.push({ name: "sign-in" });
+          });
       }
     },
     user_liked() {
@@ -88,5 +98,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
