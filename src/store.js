@@ -5,6 +5,7 @@ import users from './modules/users'
 import likes from './modules/likes'
 import comments from './modules/comments'
 import posts from './modules/posts'
+import pageLoader from './modules/fullPageLoader'
 
 
 Vue.use(Vuex)
@@ -15,5 +16,6 @@ export default new Vuex.Store({
     likes,
     comments,
     posts,
+    pageLoader
   }
 })
