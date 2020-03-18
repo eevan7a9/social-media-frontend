@@ -3,18 +3,26 @@
     <form @submit="submit">
       <div class="create-comment">
         <div>
-          <h3 v-if="!visitor">{{currentUser.username}}</h3>
+          <h3 v-if="!visitor">{{ currentUser.username }}</h3>
           <h3 v-else>Stranger</h3>
           <label for="message">Comment</label>
         </div>
-        <textarea class="bg-lightdient" v-model="message" id="message" cols="30" rows="3"></textarea>
+        <textarea
+          class="bg-lightdient"
+          v-model="message"
+          id="message"
+          cols="30"
+          rows="3"
+        ></textarea>
       </div>
       <section class="section-submit">
         <button
           class="btn-submit bg-vuedient"
           type="submit"
           :style="visitor ? 'cursor:not-allowed;' : 'cursor:pointer;'"
-        >Done</button>
+        >
+          Done
+        </button>
       </section>
     </form>
   </main>
@@ -56,7 +64,15 @@ export default {
           });
         });
       } else {
-        alert("Sorry, Strangers are not allowed to comment.");
+        this.$swal
+          .fire({
+            icon: "info",
+            title: "Not Allowed!",
+            text: "Sorry, you need to register & sign-in"
+          })
+          .then(() => {
+            this.$router.push({ name: "sign-in" });
+          });
       }
     }
   },
