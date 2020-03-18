@@ -76,7 +76,7 @@ export default {
           .fire({
             icon: "info",
             title: "Not Allowed!",
-            text: "Sorry, you need to sign-up & sign-in"
+            text: "Sorry, you need to register & sign-in"
           })
           .then(() => {
             this.$router.push({ name: "sign-in" });
