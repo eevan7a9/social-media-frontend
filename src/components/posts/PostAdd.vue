@@ -9,19 +9,29 @@
       <br />
       <hr class="hr-green" />
       <div class="post-author">
-        <p v-if="!visitor">{{currentUser.username}} :</p>
+        <p v-if="!visitor">{{ currentUser.username }} :</p>
       </div>
-      <textarea class="bg-lightdient" v-model="title" id="title" cols="30" rows="3"></textarea>
+      <textarea
+        class="bg-lightdient"
+        v-model="title"
+        id="title"
+        cols="30"
+        rows="3"
+      ></textarea>
       <div class="publish-container">
         <!-- if user is visitor -->
-        <p class="visitor" v-if="visitor">You need to Sign in, to publish a post.</p>
+        <p class="visitor" v-if="visitor">
+          You need to Sign in, to publish a post.
+        </p>
         <!-- is signed -->
         <p class="signed" v-else>Share something.</p>
         <button
           class="publish"
           type="submit"
           :style="visitor ? 'cursor:not-allowed' : 'cursor:pointer'"
-        >PUBLISH</button>
+        >
+          PUBLISH
+        </button>
       </div>
     </form>
   </div>
@@ -61,6 +71,16 @@ export default {
           });
         });
         this.title = "";
+      } else {
+        this.$swal
+          .fire({
+            icon: "info",
+            title: "Not Allowed!",
+            text: "Sorry, you need to sign-up & sign-in"
+          })
+          .then(() => {
+            this.$router.push({ name: "sign-in" });
+          });
       }
     }
   },
