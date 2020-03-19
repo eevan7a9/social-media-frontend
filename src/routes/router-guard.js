@@ -4,7 +4,7 @@ router.beforeEach((to, from, next) => {
   // check the meta of routes record and see if they required Auth
   if (to.matched.some(record => record.meta.requiresAuth)) {
     //  we get if there is a current user from users module's state
-    if (Object.keys(store.getters.currentUser).length === 0) {
+    if (!store.getters.currentUser.token) {
       next({
         path: "/sign-in",
         query: { redirect: to.fullPath }
@@ -13,7 +13,8 @@ router.beforeEach((to, from, next) => {
       next();
     }
   } else if (to.matched.some(record => record.meta.requiresVisitor)) {
-    if (Object.keys(store.getters.currentUser).length > 0) {
+    // if user is signed-in redirect to home
+    if (store.getters.currentUser.token) {
       next({
         path: "/",
         query: {
@@ -21,6 +22,7 @@ router.beforeEach((to, from, next) => {
         }
       });
     } else {
+      // user is not signed-in so we procceed
       next();
     }
   } else {

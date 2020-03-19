@@ -2,7 +2,8 @@ import axios from "axios";
 
 const state = {
   users: [],
-  current_user: {}, // current user will be store here
+  // current user will be store here
+  current_user: JSON.parse(localStorage.getItem("user_token")) || {},
   whoToFollow: []
 };
 const getters = {
@@ -57,14 +58,16 @@ const actions = {
       // we add follower & following to our user
       check_user = {
         ...check_user,
-        ...{ follower: follower, following: following }
+        ...{ token: Date.now(), follower: follower, following: following }
       };
+      localStorage.setItem("user_token", JSON.stringify(check_user));
       commit("setCurrentUser", check_user);
     } else {
       return Promise.reject("Wrong Credentials");
     }
   },
   removeCurrentUser: ({ commit }) => {
+    localStorage.removeItem("user_token"); // remove dummy token
     commit("clearCurrentUser");
   },
   getWhoToFollow: ({ commit, state }) => {
@@ -83,7 +86,7 @@ const mutations = {
   setUsers: (state, users) => (state.users = users),
   addUser: (state, user) => state.users.unshift(user),
   setCurrentUser: (state, user) => {
-    state.current_user = user;
+    state.current_user = { ...user };
   },
   clearCurrentUser: state => (state.current_user = {}),
   setWhoToFollow: (state, users) => (state.whoToFollow = users)

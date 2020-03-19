@@ -11,21 +11,21 @@
         <router-link
           to="/register"
           class="nav-item color-white"
-          v-if="Object.keys(currentUser).length == 0"
+          v-if="!currentUser.token"
         >
           <a>Register</a>
         </router-link>
         <router-link
           to="/sign-in"
           class="nav-item color-white"
-          v-if="Object.keys(currentUser).length == 0"
+          v-if="!currentUser.token"
           >Sign in</router-link
         >
       </div>
       <div
         class="dropdown"
         @click="openDropdown = true"
-        v-if="Object.keys(currentUser).length != 0"
+        v-if="currentUser.token"
       >
         <a class="color-white">
           User
