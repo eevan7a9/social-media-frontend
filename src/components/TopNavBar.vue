@@ -1,9 +1,11 @@
 <template>
-  <div id="nav" class="bg-vuedient" @mouseleave="openDropdown=false">
+  <div id="nav" class="bg-vuedient" @mouseleave="openDropdown = false">
     <div class="container top-nav-bar">
       <div>
         <router-link to="/" class="nav-item color-white">Home</router-link>
-        <router-link to="/about" class="nav-item color-white">About</router-link>
+        <router-link to="/about" class="nav-item color-white"
+          >About</router-link
+        >
       </div>
       <div>
         <router-link
@@ -17,9 +19,14 @@
           to="/sign-in"
           class="nav-item color-white"
           v-if="Object.keys(currentUser).length == 0"
-        >Sign in</router-link>
+          >Sign in</router-link
+        >
       </div>
-      <div class="dropdown" @click="openDropdown=true" v-if="Object.keys(currentUser).length != 0">
+      <div
+        class="dropdown"
+        @click="openDropdown = true"
+        v-if="Object.keys(currentUser).length != 0"
+      >
         <a class="color-white">
           User
           <svg
@@ -36,9 +43,11 @@
             <polyline points="6 9 12 15 18 9" />
           </svg>
         </a>
-        <ul :style="openDropdown ? 'display:block': 'display:none'">
+        <ul :style="openDropdown ? 'display:block' : 'display:none'">
           <li>
-            <a href>Account</a>
+            <router-link :to="{ name: 'user', params: { id: currentUser.id } }"
+              >Account</router-link
+            >
           </li>
           <li>
             <router-link to="/sign-out">Sign out</router-link>
