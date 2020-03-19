@@ -24,6 +24,7 @@ export default {
   async created() {
     if (this.id == this.currentUser.id) {
       this.user = this.currentUser;
+      this.user.currentUser = true;
     } else {
       try {
         const res = await axios.get(`/users/${this.id}`);

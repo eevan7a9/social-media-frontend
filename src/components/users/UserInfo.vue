@@ -2,6 +2,15 @@
   <div class="user-info-container">
     <div class="user-inner-container">
       <h1>User info:</h1>
+      <div class="inner-container-header">
+        <div class="profile-container">
+          <div>
+            <img :src="user.photo" alt="" srcset="" />
+          </div>
+        </div>
+        <button class="upload" v-if="user.currentUser">Upload</button>
+        <button class="follow" v-else>Follow</button>
+      </div>
       <div class="user-info">
         <div>
           <label for="username">Username:</label>
@@ -46,8 +55,42 @@ export default {
   padding: 15px;
   color: #333;
 }
+.inner-container-header {
+  margin-bottom: 20px;
+  padding-left: 30px;
+}
 .user-inner-container > h1 {
   margin-bottom: 30px;
+}
+.profile-container > div {
+  position: relative;
+  width: 180px;
+  background: #ebebe4;
+  border-radius: 10px;
+  border: 2px solid #4c926e;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.inner-container-header button {
+  margin-top: 10px;
+  background: #4c926e;
+  color: aliceblue;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 10px;
+  border: solid 0px transparent;
+  padding: 10px 15px;
+  width: 180px;
+}
+.inner-container-header .upload {
+  background: #007bff;
+}
+.profile-container > div > img {
+  width: 100%;
+  height: 140px;
+  border: 2px solid #4c926e;
+  border-radius: 100%;
 }
 .user-info {
   display: grid;
@@ -71,7 +114,6 @@ export default {
   border-radius: 5px;
   border: 0 solid transparent;
 }
-
 @media (max-width: 900px) {
   .user-info-container {
     width: 90%;
