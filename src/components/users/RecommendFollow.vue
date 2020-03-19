@@ -2,11 +2,16 @@
   <div>
     <h4>Looking to follow someone?</h4>
     <ul>
-      <li class="recomend-users" v-for="(user, index) in usersToFollow" :key="index">
+      <li
+        class="recomend-users"
+        v-for="(user, index) in usersToFollow"
+        :key="index"
+        @click="visitUser(user.id)"
+      >
         <a>
-          <h5>{{user.username}}</h5>
+          <h5>{{ user.username }}</h5>
           <small>
-            <i>- {{user.created_at}}</i>
+            <i>- {{ user.created_at }}</i>
           </small>
         </a>
       </li>
@@ -19,6 +24,11 @@ import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters(["usersToFollow"])
+  },
+  methods: {
+    visitUser(id) {
+      this.$router.push({ name: "user", params: { id: id } });
+    }
   }
 };
 </script>
@@ -44,6 +54,11 @@ li {
   border-radius: 5px;
   margin-bottom: 5px;
   font-size: 15px;
+  cursor: pointer;
+}
+.recomend-users:hover {
+  background: #b5e9ce;
+  transition: 0.5s;
 }
 a {
   text-decoration: none;

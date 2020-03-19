@@ -6,7 +6,7 @@
 
 <script>
 import UserInfo from "@/components/users/UserInfo.vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import axios from "axios";
 export default {
   components: {
@@ -14,6 +14,9 @@ export default {
   },
   props: {
     id: Number
+  },
+  methods: {
+    ...mapActions(["toggleLoader"])
   },
   data() {
     return {
@@ -26,9 +29,13 @@ export default {
       this.user = this.currentUser;
       this.user.currentUser = true;
     } else {
+      this.toggleLoader(true);
       try {
         const res = await axios.get(`/users/${this.id}`);
         this.user = res.data;
+        setTimeout(() => {
+          this.toggleLoader(false);
+        }, 500);
       } catch (error) {
         alert(error);
       }
