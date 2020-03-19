@@ -32,8 +32,7 @@ export default new Router({
         let props = { ...route.params };
         props.id = parseInt(props.id);
         return props;
-      },
-      meta: { requiresAuth: true }
+      }
     },
     {
       path: "/about",

@@ -4,7 +4,7 @@ const state = {
   users: [],
   // current user will be store here
   current_user: JSON.parse(localStorage.getItem("user_token")) || {},
-  whoToFollow: []
+  whoToFollow: [] // atleast 4 random users to follow
 };
 const getters = {
   allUsers: state => state.users,
