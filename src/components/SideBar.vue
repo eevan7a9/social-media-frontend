@@ -16,7 +16,7 @@
 <script>
 import SortPosts from "./posts/SortPosts";
 import RecommendPosts from "./posts/RecommendPosts";
-import RecommendFollow from "./follow/RecommendFollow";
+import RecommendFollow from "./users/RecommendFollow";
 export default {
   name: "SideBar",
   components: {
