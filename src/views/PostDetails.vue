@@ -5,15 +5,15 @@
         <img src="@/assets/icons/x.svg" alt srcset />
       </div>
       <div class="created-date">
-        <small>{{postDetails.created_at}}</small>
+        <small>{{ postDetails.created_at }}</small>
       </div>
       <hr class="hr-green" />
       <div class="title" v-if="!update">
-        <h4>{{postDetails.user_username}} -</h4>
-        <p class="post-title">{{postDetails.title}}</p>
+        <h4>{{ postDetails.user_username }} -</h4>
+        <p class="post-title">{{ postDetails.title }}</p>
       </div>
       <div class="to-update" v-if="update">
-        <h4>{{postDetails.user_username}} -</h4>
+        <h4>{{ postDetails.user_username }} -</h4>
         <textarea
           class="bg-lightdient"
           v-model="postDetails.title"
@@ -29,16 +29,28 @@
           <Like :likes="postDetails.likes" :post_id="postDetails.id" />
           <!-- Likes end here -->
           <div>
-            <img class="icon-img" src="@/assets/icons/message-square.svg" alt="comment" />
-            <span>{{postDetails.comments}}</span>
+            <img
+              class="icon-img"
+              src="@/assets/icons/message-square.svg"
+              alt="comment"
+            />
+            <span>{{ postDetails.comments }}</span>
           </div>
         </div>
         <div class="post-options">
           <ul v-if="!update">
-            <li @click="edit" class="color-green" v-if="postDetails.user_id === currentUser.id">
+            <li
+              @click="edit"
+              class="color-green"
+              v-if="postDetails.user_id === currentUser.id"
+            >
               <img src="@/assets/icons/edit.svg" alt="edit" />
             </li>
-            <li @click="delPost" class="color-red" v-if="postDetails.user_id === currentUser.id">
+            <li
+              @click="delPost"
+              class="color-red"
+              v-if="postDetails.user_id === currentUser.id"
+            >
               <img src="@/assets/icons/trash-2.svg" alt="delete" />
             </li>
             <li class="color-muted">
@@ -107,6 +119,10 @@ export default {
 
 <style scoped>
 #post-container {
+  padding: 30px 25px;
+  background: white;
+  margin: 30px 0;
+  border-radius: 10px;
   margin-bottom: 0;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
