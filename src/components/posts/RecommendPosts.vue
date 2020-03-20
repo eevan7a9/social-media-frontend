@@ -7,7 +7,7 @@
         v-for="(post, index) in recommendedPosts"
         :key="index"
       >
-        <router-link :to="{ name: 'postdetails', params: { id: post.id } }">
+        <router-link :to="{ name: 'postDetails', params: { id: post.id } }">
           <p>{{ post.title }}</p>
           <small>
             <i>- {{ post.user_username }}</i>

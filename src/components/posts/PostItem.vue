@@ -34,7 +34,7 @@
         <!-- Likes starts here -->
         <Like :likes="post.likes" :post_id="post.id" />
         <!-- Likes ends here -->
-        <router-link :to="{ name: 'postdetails', params: { id: post.id } }">
+        <router-link :to="{ name: 'postDetails', params: { id: post.id } }">
           <div>
             <img
               class="icon-img"
@@ -96,7 +96,7 @@ export default {
   methods: {
     ...mapActions(["deletePost", "editPost"]),
     visitPost() {
-      this.$router.push({ name: "postdetails", params: { id: this.post.id } });
+      this.$router.push({ name: "postDetails", params: { id: this.post.id } });
     },
     showOptions() {
       this.options = !this.options;

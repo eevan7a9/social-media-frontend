@@ -2,7 +2,7 @@
   <div id="app">
     <TopNavBar />
     <FullPageLoader v-if="showLoader" />
-    <transition name="fade" mode="out-in">
+    <transition name="fade" mode="out-in" v-else>
       <router-view class="container" />
     </transition>
   </div>

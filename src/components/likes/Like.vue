@@ -3,8 +3,7 @@
     <div>
       <transition name="bounce_" mode="out-in">
         <svg
-          :key="likes.length"
-          :style="visitor ? 'cursor:not-allowed' : 'cursor:pointer'"
+          :style="currentUser.token ? 'cursor:not-allowed' : 'cursor:pointer'"
           class="feather feather-star"
           data="star.svg"
           alt
@@ -40,7 +39,6 @@ export default {
   },
   data() {
     return {
-      visitor: 0,
       liked: 0
     };
   },
@@ -53,7 +51,7 @@ export default {
       "subtractPostLikes"
     ]),
     async like() {
-      if (Object.keys(this.currentUser).length !== 0) {
+      if (this.currentUser.token) {
         // we find if user already liked
         const foundLiked = this.likes.find(
           like => like.user_id == this.currentUser.id
@@ -91,9 +89,6 @@ export default {
       );
       return my_like.length > 0 ? 1 : 0;
     }
-  },
-  created() {
-    this.visitor = Object.keys(this.currentUser).length === 0 ? 1 : 0;
   }
 };
 </script>
