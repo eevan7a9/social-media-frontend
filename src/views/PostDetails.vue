@@ -5,18 +5,18 @@
         <img src="@/assets/icons/x.svg" alt srcset />
       </div>
       <div class="created-date">
-        <small>{{ postDetails.created_at }}</small>
+        <small>{{ singlePost.created_at }}</small>
       </div>
       <hr class="hr-green" />
       <div class="title" v-if="!update">
-        <h4>{{ postDetails.user_username }} -</h4>
-        <p class="post-title">{{ postDetails.title }}</p>
+        <h4>{{ singlePost.user_username }} -</h4>
+        <p class="post-title">{{ singlePost.title }}</p>
       </div>
       <div class="to-update" v-if="update">
-        <h4>{{ postDetails.user_username }} -</h4>
+        <h4>{{ singlePost.user_username }} -</h4>
         <textarea
           class="bg-lightdient"
-          v-model="postDetails.title"
+          v-model="singlePost.title"
           id="title"
           cols="30"
           rows="5"
@@ -26,7 +26,7 @@
       <div class="post-bottom">
         <div class="star-comment">
           <!-- Likes Starts here -->
-          <Like :likes="postDetails.likes" :post_id="postDetails.id" />
+          <Like :likes="singlePost.likes" :post_id="singlePost.id" />
           <!-- Likes end here -->
           <div>
             <img
@@ -34,7 +34,7 @@
               src="@/assets/icons/message-square.svg"
               alt="comment"
             />
-            <span>{{ postDetails.comments }}</span>
+            <span>{{ singlePost.comments }}</span>
           </div>
         </div>
         <div class="post-options">
@@ -42,14 +42,14 @@
             <li
               @click="edit"
               class="color-green"
-              v-if="postDetails.user_id === currentUser.id"
+              v-if="singlePost.user_id === currentUser.id"
             >
               <img src="@/assets/icons/edit.svg" alt="edit" />
             </li>
             <li
               @click="delPost"
               class="color-red"
-              v-if="postDetails.user_id === currentUser.id"
+              v-if="singlePost.user_id === currentUser.id"
             >
               <img src="@/assets/icons/trash-2.svg" alt="delete" />
             </li>
@@ -68,7 +68,7 @@
         </div>
       </div>
     </div>
-    <CommentsList :post_id="postDetails.id" />
+    <CommentsList :post_id="singlePost.id" />
   </main>
 </template>
 
@@ -77,7 +77,7 @@ import Like from "@/components/likes/Like";
 import CommentsList from "@/components/comments/CommentsList";
 import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "PostDetails",
+  name: "postsDetails",
   components: {
     Like,
     CommentsList
@@ -90,21 +90,21 @@ export default {
       update: 0
     };
   },
-  computed: mapGetters(["postDetails", "currentUser"]),
+  computed: mapGetters(["singlePost", "currentUser"]),
   methods: {
-    ...mapActions(["viewPost", "deletePost", "editPost"]),
+    ...mapActions(["singlePost", "deletePost", "editPost"]),
     cancel() {
       this.update = 0;
     },
     delPost() {
-      this.deletePost(this.postDetails.id);
+      this.deletePost(this.singlePost.id);
       this.$router.push({ name: "home", query: { redirect: "/" } });
     },
     edit() {
       this.update = !this.update;
     },
     submit() {
-      this.editPost(this.postDetails);
+      this.editPost(this.singlePost);
       this.update = 0;
     },
     returnHome() {
@@ -112,7 +112,7 @@ export default {
     }
   },
   created() {
-    this.viewPost(this.id);
+    this.singlePost(this.id);
   }
 };
 </script>
