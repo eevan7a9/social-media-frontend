@@ -1,5 +1,5 @@
 <template>
-  <main class="container">
+  <main class="container" v-if="isFetched">
     <div class="post-container" id="post-container">
       <div class="back" @click="returnHome">
         <img src="@/assets/icons/x.svg" alt srcset />
@@ -87,7 +87,8 @@ export default {
   },
   data() {
     return {
-      update: 0
+      update: 0,
+      isFetched: false
     };
   },
   computed: mapGetters(["singlePost", "currentUser"]),
@@ -112,7 +113,9 @@ export default {
     }
   },
   created() {
-    this.viewPost(this.id);
+    this.viewPost(this.id).then(() => {
+      this.isFetched = true;
+    });
   }
 };
 </script>

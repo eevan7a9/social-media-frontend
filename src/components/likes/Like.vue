@@ -3,19 +3,18 @@
     <div>
       <transition name="bounce_" mode="out-in">
         <svg
-          :style="currentUser.token ? 'cursor:not-allowed' : 'cursor:pointer'"
+          :key="likes.length"
+          :style="!currentUser.token ? 'cursor:not-allowed' : 'cursor:pointer'"
           class="feather feather-star"
           data="star.svg"
-          alt
-          srcset
           @click.stop="like"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
           viewBox="0 0 24 24"
-          :fill="user_liked() > 0 ? 'rgb(25, 147, 85)' : '#fff'"
+          :fill="userLiked() > 0 ? 'rgb(25, 147, 85)' : '#fff'"
           stroke="currentColor"
-          :stroke-width="user_liked() > 0 ? 1 : 2"
+          :stroke-width="userLiked() > 0 ? 1 : 2"
           stroke-linecap="round"
           stroke-linejoin="round"
         >
@@ -36,11 +35,6 @@ export default {
   props: {
     post_id: Number,
     likes: Array
-  },
-  data() {
-    return {
-      liked: 0
-    };
   },
   computed: mapGetters(["currentUser"]),
   methods: {
@@ -83,7 +77,7 @@ export default {
           });
       }
     },
-    user_liked() {
+    userLiked() {
       const my_like = this.likes.filter(
         like => like.user_id === this.currentUser.id
       );

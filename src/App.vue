@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <TopNavBar />
-    <FullPageLoader v-if="showLoader" />
-    <transition name="fade" mode="out-in" v-else>
+    <FullPageLoader v-show="showLoader" />
+    <transition name="fade" mode="out-in">
       <router-view class="container" />
     </transition>
   </div>
