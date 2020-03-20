@@ -25,7 +25,7 @@
         </section>
       </form>
     </div>
-    <router-link :to="{name:'register'}">
+    <router-link :to="{ name: 'register' }">
       <p class="not-yet-registerd">Not yet Registered?</p>
     </router-link>
   </main>
@@ -43,7 +43,7 @@ export default {
   },
   computed: mapGetters(["allUsers"]),
   methods: {
-    ...mapActions(["newCurrentUser", "getWhoToFollow"]),
+    ...mapActions(["getUsers", "newCurrentUser", "getWhoToFollow"]),
     signIn(e) {
       e.preventDefault();
       this.newCurrentUser({
@@ -55,6 +55,11 @@ export default {
           this.getWhoToFollow();
         })
         .catch(err => alert(err));
+    }
+  },
+  async created() {
+    if (!this.allUsers.length) {
+      await this.getUsers();
     }
   }
 };
