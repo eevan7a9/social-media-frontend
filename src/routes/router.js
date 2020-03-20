@@ -15,7 +15,7 @@ export default new Router({
     },
     {
       path: "/post/:id",
-      name: "postdetails",
+      name: "postDetails",
       component: () => import("@/views/PostDetails.vue"),
       props(route) {
         // by doing this we can prevent the params.id Type

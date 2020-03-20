@@ -10,37 +10,13 @@
 <script>
 import TopNavBar from "./components/TopNavBar";
 import FullPageLoader from "./components/FullPageLoader";
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   components: {
     TopNavBar,
     FullPageLoader
   },
-  methods: {
-    ...mapActions([
-      "getPosts",
-      "getLikes",
-      "getUsers",
-      "getAllComments",
-      "sortNewest",
-      "getWhoToFollow",
-      "toggleLoader"
-    ])
-  },
-  computed: mapGetters(["allPosts", "showLoader"]),
-
-  async created() {
-    this.toggleLoader(true);
-    await this.getUsers();
-    await this.getAllComments();
-    await this.getLikes();
-    await this.getPosts();
-    await this.sortNewest();
-    await this.getWhoToFollow();
-    setTimeout(() => {
-      this.toggleLoader(false);
-    }, 500);
-  }
+  computed: mapGetters(["showLoader"])
 };
 </script>
 <style>
