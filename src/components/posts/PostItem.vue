@@ -7,12 +7,9 @@
 
     <div class="title" v-if="!update">
       <h4
-        @click.stop
-        :style="
-          post.user_id == currentUser.id
-            ? 'color:rgb(25, 147, 85);'
-            : 'color:#333;'
-        "
+        class="author-name"
+        @click.stop="visitUser(post.user_id)"
+        :class="{ owned: post.user_id == currentUser.id }"
       >
         {{ post.user_username }} -
       </h4>
@@ -98,6 +95,9 @@ export default {
     visitPost() {
       this.$router.push({ name: "postDetails", params: { id: this.post.id } });
     },
+    visitUser(id) {
+      this.$router.push({ name: "user", params: { id: id } });
+    },
     showOptions() {
       this.options = !this.options;
     },
@@ -179,8 +179,14 @@ export default {
 .post-container:hover .title {
   background: #e5ebe8;
 }
+.author-name:hover {
+  color: rgb(40, 159, 228);
+}
+.author-name.owned {
+  color: #18d457;
+}
 #edit_title {
-  border: 1px solid #4c926e;
+  border: 1px solid #00803e;
   padding: 5px;
   border-radius: 5px;
 }

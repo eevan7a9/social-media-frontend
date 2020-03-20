@@ -9,7 +9,9 @@
       </div>
       <hr class="hr-green" />
       <div class="title" v-if="!update">
-        <h4>{{ singlePost.user_username }} -</h4>
+        <h4 @click="visitUser(singlePost.user_id)" class="author-name">
+          {{ singlePost.user_username }} -
+        </h4>
         <p class="post-title">{{ singlePost.title }}</p>
       </div>
       <div class="to-update" v-if="update">
@@ -110,6 +112,9 @@ export default {
     },
     returnHome() {
       this.$router.push({ name: "home", query: { redirect: "/" } });
+    },
+    visitUser(id) {
+      this.$router.push({ name: "user", params: { id: id } });
     }
   },
   created() {
@@ -141,6 +146,9 @@ export default {
 .created-date {
   width: 100%;
   text-align: right;
+}
+.author-name:hover {
+  color: rgb(40, 159, 228);
 }
 .post-bottom {
   display: flex;
