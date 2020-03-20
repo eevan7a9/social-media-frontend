@@ -2,11 +2,15 @@
   <div>
     <h4>Recommended Posts</h4>
     <ul class="recent-posts">
-      <li class="recent-items" v-for="(post, index) in recommendedPosts" :key="index">
-        <router-link :to="{name:'postdetails', params:{id:post.id}}">
-          <p>{{post.title}}</p>
+      <li
+        class="recent-items"
+        v-for="(post, index) in recommendedPosts"
+        :key="index"
+      >
+        <router-link :to="{ name: 'postdetails', params: { id: post.id } }">
+          <p>{{ post.title }}</p>
           <small>
-            <i>- {{post.user_username}}</i>
+            <i>- {{ post.user_username }}</i>
           </small>
         </router-link>
       </li>
@@ -36,10 +40,15 @@ ul {
 }
 .recent-items {
   padding: 10px 10px;
+  cursor: pointer;
   border: 1px solid #45ad78;
   border-radius: 5px;
   margin-bottom: 5px;
   font-size: 15px;
+}
+.recent-items:hover {
+  background: #b5e9ce;
+  transition: 0.5s;
 }
 a {
   text-decoration: none;
