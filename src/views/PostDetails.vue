@@ -77,7 +77,7 @@ import Like from "@/components/likes/Like";
 import CommentsList from "@/components/comments/CommentsList";
 import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "postsDetails",
+  name: "postDetails",
   components: {
     Like,
     CommentsList
@@ -92,7 +92,7 @@ export default {
   },
   computed: mapGetters(["singlePost", "currentUser"]),
   methods: {
-    ...mapActions(["singlePost", "deletePost", "editPost"]),
+    ...mapActions(["viewPost", "deletePost", "editPost"]),
     cancel() {
       this.update = 0;
     },
@@ -112,7 +112,7 @@ export default {
     }
   },
   created() {
-    this.singlePost(this.id);
+    this.viewPost(this.id);
   }
 };
 </script>
