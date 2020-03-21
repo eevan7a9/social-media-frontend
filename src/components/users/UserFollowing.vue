@@ -1,7 +1,7 @@
 <template>
   <div class="user-following-container">
     <div class="user-inner-container">
-      <h1>Following:</h1>
+      <h1>This user is following:</h1>
       <div class="following">
         <div
           class="profile-container"

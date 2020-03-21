@@ -80,6 +80,12 @@ const actions = {
       });
     }
     commit("setWhoToFollow", users.slice(0, 4));
+  },
+  followUser: ({ commit }, id) => {
+    commit("addFollowedUser", id);
+  },
+  unfollowUser: ({ commit }, id) => {
+    commit("removeFollowedUser", id);
   }
 };
 const mutations = {
@@ -89,7 +95,12 @@ const mutations = {
     state.current_user = { ...user };
   },
   clearCurrentUser: state => (state.current_user = {}),
-  setWhoToFollow: (state, users) => (state.whoToFollow = users)
+  setWhoToFollow: (state, users) => (state.whoToFollow = users),
+  addFollowedUser: (state, id) => state.current_user.following.push(id),
+  removeFollowedUser: (state, id) =>
+    (state.current_user.following = state.current_user.following.filter(
+      item => item != id
+    ))
 };
 // export
 export default {
