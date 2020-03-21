@@ -1,6 +1,7 @@
 <template>
   <main>
     <section class="Sort">
+      <FilterPosts />
       <SortPosts />
     </section>
     <section>
@@ -14,12 +15,14 @@
 </template>
 
 <script>
+import FilterPosts from './posts/FilterPosts'
 import SortPosts from "./posts/SortPosts";
 import RecommendPosts from "./posts/RecommendPosts";
 import RecommendFollow from "./users/RecommendFollow";
 export default {
   name: "SideBar",
   components: {
+    FilterPosts,
     SortPosts,
     RecommendPosts,
     RecommendFollow

@@ -1,16 +1,30 @@
 <template>
   <div>
     <h4>Sort :</h4>
-    <ul>
-      <li>
-        Newest
-        <input type="radio" name="sort" v-model="sort" value="1" @change="sortByNewest" />
-      </li>
-      <li>
-        Oldest
-        <input type="radio" name="sort" v-model="sort" value="2" @change="sortByOldest" />
-      </li>
-    </ul>
+    <form action="">
+      <ul>
+        <li>
+          Newest
+          <input
+            type="radio"
+            name="sortPosts"
+            v-model="sortPosts"
+            value="1"
+            @change="sortByNewest"
+          />
+        </li>
+        <li>
+          Oldest
+          <input
+            type="radio"
+            name="sortPosts"
+            v-model="sortPosts"
+            value="2"
+            @change="sortByOldest"
+          />
+        </li>
+      </ul>
+    </form>
   </div>
 </template>
 
@@ -20,7 +34,7 @@ export default {
   name: "SortPosts",
   data() {
     return {
-      sort: 1
+      sortPosts: 1
     };
   },
   methods: {

@@ -3,13 +3,23 @@ import router from "@/routes/router";
 
 const state = {
   posts: [],
+  showAll: true,
   postDetails: {},
   myPosts: []
 };
 const getters = {
-  allPosts: state => state.posts,
+  allPosts: (state, getters, rootState) => {
+    if (state.showAll) {
+      return state.posts;
+    } else {
+      return state.posts.filter(post =>
+        rootState.users.current_user.following.includes(post.user_id)
+      );
+    }
+  },
   singlePost: state => state.postDetails,
   ownedPosts: state => state.myPosts,
+  showingAll: state => state.showAll,
   recommendedPosts: state => state.posts.slice(-5)
 };
 const actions = {
@@ -29,7 +39,7 @@ const actions = {
         ).length; // we get the number of comments belong to the post
         post.likes = likes.filter(like => like.post_id == post.id);
       });
-      commit("setPosts", posts);
+      commit("setPosts", { posts: posts });
     } catch (error) {
       alert(error);
     }
@@ -126,10 +136,18 @@ const actions = {
   // Sorts Posts
 
   sortOldest: ({ commit }) => commit("setOldestPost"),
-  sortNewest: ({ commit }) => commit("setNewestPost")
+  sortNewest: ({ commit }) => commit("setNewestPost"),
+
+  // Filter Posts
+
+  showFollowedPosts: ({ commit, state }) => {
+    const posts = state.posts;
+    commit("setPosts", { posts: posts, followed: true });
+  }
 };
 const mutations = {
-  setPosts: (state, posts) => {
+  setPosts: (state, { posts, followed = false }) => {
+    followed ? (state.showAll = false) : (state.showAll = true);
     state.posts = posts;
   },
   insertPost: (state, post) => state.posts.unshift(post),

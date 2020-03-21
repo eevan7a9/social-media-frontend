@@ -4,6 +4,7 @@
     <div class="main">
       <PostAdd />
       <div class="sort">
+        <FilterPosts />
         <SortPosts />
       </div>
       <PostsList />
@@ -15,6 +16,7 @@
 // @ is an alias to /src
 import SideBar from "../components/SideBar";
 import PostAdd from "../components/posts/PostAdd";
+import FilterPosts from "../components/posts/FilterPosts";
 import SortPosts from "../components/posts/SortPosts";
 import PostsList from "../components/posts/PostsList";
 import { mapActions, mapGetters } from "vuex";
@@ -23,6 +25,7 @@ export default {
   components: {
     SideBar,
     PostAdd,
+    FilterPosts,
     SortPosts,
     PostsList
   },
