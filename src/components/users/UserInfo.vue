@@ -214,9 +214,9 @@ export default {
   border-radius: 5px;
   border: 0 solid transparent;
 }
-@media (max-width: 900px) {
+@media (max-width: 700px) {
   .user-info-container {
-    width: 90%;
+    width: 95%;
   }
 }
 </style>

@@ -56,4 +56,9 @@ export default {
 .inner-posts-container > h1 {
   margin-bottom: 10px;
 }
+@media (max-width: 700px) {
+  .recent-posts-container {
+    width: 100%;
+  }
+}
 </style>

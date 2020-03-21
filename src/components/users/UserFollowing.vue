@@ -87,4 +87,12 @@ export default {
   border: 2px solid #4c926e;
   border-radius: 100%;
 }
+@media (max-width: 700px) {
+  .user-following-container {
+    width: 95%;
+  }
+  .user-inner-container {
+    padding: 0;
+  }
+}
 </style>
