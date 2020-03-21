@@ -3,7 +3,7 @@
     <TopNavBar />
     <FullPageLoader v-show="showLoader" />
     <transition name="fade" mode="out-in">
-      <router-view class="container" />
+      <router-view :key="$route.fullPath" class="container" />
     </transition>
   </div>
 </template>
