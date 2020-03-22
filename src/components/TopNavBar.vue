@@ -10,7 +10,7 @@
     <div class="container inner-nav">
       <div class="logo-menu-container">
         <div class="logo-container">
-          <h1>Logo</h1>
+          <img src="@/assets/logo.png" alt="log" />
         </div>
         <button class="menu-btn-container" @click="mobileNav = !mobileNav">
           <img src="@/assets/icons/justify-align.svg" />
@@ -125,6 +125,10 @@ export default {
   display: flex;
   color: aliceblue;
   align-items: center;
+}
+.logo-container img {
+  height: 50px;
+  width: 100%;
 }
 .menu-btn-container {
   display: none;
