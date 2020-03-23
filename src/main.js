@@ -9,6 +9,11 @@ import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import "@/routes/router-guard";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+AOS.init();
+
 Vue.use(VueSweetalert2);
 Vue.config.productionTip = false;
 

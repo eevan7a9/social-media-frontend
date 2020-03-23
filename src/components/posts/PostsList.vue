@@ -2,7 +2,17 @@
   <main>
     <transition-group name="slide-fade" tag="div">
       <div v-for="post in allPosts" :key="post.id">
-        <PostItem :post="post" />
+        <PostItem
+          :post="post"
+          data-aos="fade-up"
+          data-aos-offset="-100"
+          data-aos-delay="10"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out"
+          data-aos-mirror="true"
+          data-aos-once="false"
+          data-aos-anchor-placement="bottom-bottom"
+        />
       </div>
     </transition-group>
   </main>
