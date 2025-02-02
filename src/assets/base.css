@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --breakpoint-xs: 450px;
+  --breakpoint-sm: 650px;
+  --breakpoint-md: 1080px;
+  --breakpoint-lg: 1440px;
+  --breakpoint-xl: 1920px;
+}
+
+@theme {
+  --color-primary: #0e4281;
+  --color-secondary: #8536b9;
+  --color-accent: #e060f9;
+
+  --color-success: #22970b;
+  --color-danger: #d70c22;
+  --color-warning: #f79309;
+
+  --color-dark: #060608;
+  --color-light: #f7f4f7;
+}
