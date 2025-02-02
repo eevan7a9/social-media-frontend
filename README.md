@@ -10,14 +10,6 @@ This is a **Frontend Only** application. and we are using Json placeholder to gi
 
 **Social-media-frontend** a front-end only application is written in a sort of way to mimic a fullstack application for demo purpose only
 
-## Json placeholder?
-
-> https://jsonplaceholder.typicode.com/
-
-we are using this repo to serve api source for our data
-
-> https://github.com/eevan7a9/social-media-db
-
 ## What can You do?
 
 ### As a visitor -
@@ -48,43 +40,54 @@ we are using this repo to serve api source for our data
 - HTML5
 - CSS 3
 - Javascript
-- Vuejs 2 - Javascript Framework
-- Vuex - State Management
-- Vue Router - Routing
+- Typescript
+- Vuejs 3
+- Pinia
+- Vue Router
 - Axios - HTTP requests
-- SweetAlert2 - A beautiful, responsive, customizable, accessible (WAI-ARIA) replacement for JavaScript's popup boxes
-- JSONPlaceholder - a free online REST API that you can use whenever you need some fake data.
 
-## Project setup
+## Project Setup
 
-```
+```sh
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compile and Hot-Reload for Development
 
-```
-npm run serve
+```sh
+npm run dev
 ```
 
-### Compiles and minifies for production
+### Type-Check, Compile and Minify for Production
 
-```
+```sh
 npm run build
 ```
 
-### Run your tests
+### Run Unit Tests with [Vitest](https://vitest.dev/)
 
-```
-npm run test
+```sh
+npm run test:unit
 ```
 
-### Lints and fixes files
+### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
 
+```sh
+npm run test:e2e:dev
 ```
+
+This runs the end-to-end tests against the Vite development server.
+It is much faster than the production build.
+
+But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
+
+```sh
+npm run build
+npm run test:e2e
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
 npm run lint
 ```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
