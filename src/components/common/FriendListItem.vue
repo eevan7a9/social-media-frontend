@@ -1,0 +1,28 @@
+<script lang="ts" setup>
+import { FriendStatus } from '@/shared/enums/Friend';
+import type { FriendItem } from '@/shared/types/Friend';
+import { IconVerticalDots } from '../icons';
+
+defineProps<{ friend: FriendItem }>();
+</script>
+
+<template>
+  <li class="flex items-center gap-x-3">
+    <div class="relative">
+      <span
+        class="h-2 w-2 absolute z-10 bottom-1 right-1 rounded-full"
+        :class="{
+          'bg-success': friend.status === FriendStatus.Active,
+          'bg-warning': friend.status === FriendStatus.Inactive,
+          'bg-danger': friend.status === FriendStatus.Offline,
+        }"
+      ></span>
+      <img :src="friend.image" class="w-[50px] h-[50px] rounded-full" />
+    </div>
+    <span class="text-[14px]">{{ friend.title }}</span>
+
+    <button class="absolute group right-4 hover:bg-slate-200/50 p-3 rounded-full cursor-pointer">
+      <IconVerticalDots class="w-[20px] opacity-60 group-hover:opacity-100" fill="#333" />
+    </button>
+  </li>
+</template>

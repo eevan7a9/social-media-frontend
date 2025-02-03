@@ -12,7 +12,7 @@ import { RouterLink, RouterView } from 'vue-router'
     </nav>
   </header>
 
-  <main class="block bg-light dark:bg-dark min-h-screen">
+  <main class="bg-light dark:bg-dark h-full min-h-screen">
     <RouterView />
   </main>
 </template>
