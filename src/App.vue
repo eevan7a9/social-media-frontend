@@ -1,20 +1,15 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router';
+import NavbarTop from '@/components/layouts/NavbarTop.vue';
+import MainFooter from '@/components/layouts/MainFooter.vue';
 </script>
 
 <template>
-  <header>
-    <nav class="flex w-full bg-white py-3 lg:py-4 max-w-screen-lg mx-auto">
-      <ul class="flex gap-3 mr-0 ml-auto">
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/profile">Profile</RouterLink>
-      </ul>
-    </nav>
-  </header>
-
-  <main class="bg-light dark:bg-dark h-full min-h-screen">
+  <NavbarTop class="z-40" />
+  <main class="bg-light dark:bg-dark text-dark dark:text-light h-full min-h-screen pb-4 relative z-0">
     <RouterView />
   </main>
+  <MainFooter class="border-t border-gray-300" />
 </template>
 
 <style scoped></style>
