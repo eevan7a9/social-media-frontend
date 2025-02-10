@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, shallowRef } from 'vue';
+import { computed, shallowRef, ref } from 'vue';
 import { IconBookmark, IconHouse, IconThumbUp, IconCommunity, IconFollowers, IconPeople } from '../icons';
 import type { GroupItem } from '@/shared/types/Group';
 import type { MenuLink } from '@/shared/types/Menu';
 import { GroupListItem, PageMenuItem } from '../common';
-const groups = ref<GroupItem[]>([
+const groups = computed<GroupItem[]>(() => [
   {
     image: 'https://placehold.co/100x100',
     title: 'Naruto Community',
@@ -37,8 +37,8 @@ const menuLinks = ref<MenuLink[]>([
     icon: shallowRef(IconHouse),
     title: 'home',
     path: '/',
-    bg: 'bg-primary/30',
-    fill: '#0e4281',
+    bg: 'bg-blue-500/30',
+    fill: '#255fdd',
   },
   {
     icon: shallowRef(IconPeople),
@@ -83,7 +83,7 @@ const menuLinks = ref<MenuLink[]>([
     <div class="px-3 py-2 h-full">
       <div class="px-3 mt-4 border-b pb-6 mb-4 border-gray-300">
         <h1 class="text-[16px] font-bold flex gap-x-2 items-center">
-          My Groups
+          Top Groups
           <component :is="IconCommunity" fill="#8536b9" class="max-w-[30px] inline-block" />
         </h1>
         <ul class="flex flex-col gap-y-4 mt-4">

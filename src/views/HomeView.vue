@@ -1,18 +1,21 @@
 <script setup lang="ts">
-import LeftSide from '@/components/Home/LeftSide.vue';
-import RightSide from '@/components/Home/RightSide.vue';
-
+import LeftSide from '@/components/home/LeftSide.vue';
+import RightSide from '@/components/home/RightSide.vue';
+import CreatePost from '@/components/home/CreatePost.vue';
+import FeedsList from '@/components/home/feeds/FeedsList.vue';
 </script>
 
 <template>
   <div class="grid grid-cols-12 w-full max-w-screen-lg mx-auto relative">
-    <LeftSide class="col-span-3 pt-3 lg:pt-4" />
+    <LeftSide class="col-span-3 pt-3 lg:pt-4 z-0" />
 
-    <section class="col-span-6 h-full pt-4 px-3">
-      <div class="h-[3000px] w-2">Feeds</div>
+    <section class="col-span-6 h-full pt-4 px-3 z-10">
+      <CreatePost class="sticky top-3 z-20" />
+      <div class="bg-gray-300 w-full h-[1px] my-5"></div>
+      <FeedsList class="z-10" />
     </section>
 
-    <RightSide class="col-span-3 relative pt-3 lg:pt-4" />
+    <RightSide class="col-span-3 relative pt-3 lg:pt-4 z-0" />
   </div>
 </template>
 
