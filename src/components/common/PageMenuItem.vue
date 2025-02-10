@@ -13,6 +13,6 @@ defineProps<{ menu: MenuLink }>();
     <div class="max-w-[40px] p-2 rounded-full" :class="menu.bg">
       <component :is="menu.icon" class="w-full h-auto" :fill="menu.fill" />
     </div>
-    <span class="pl-2 lg:pl-3">{{ menu.title }}</span>
+    <span class="pl-2 lg:pl-3 capitalize">{{ menu.title }}</span>
   </li>
 </template>

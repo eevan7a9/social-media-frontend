@@ -11,8 +11,8 @@ defineProps<{ group: GroupItem }>();
   >
     <img src="https://placehold.co/100x100" class="w-[50px] h-[50px] rounded-sm" />
     <div class="flex flex-col max-w-[200px]">
-      <span>{{ group.title }}</span>
-      <small class="text-[12px] text-gray-700 text-ellipsis line-clamp-1">{{ group.desc }} </small>
+      <span class="font-medium">{{ group.title }}</span>
+      <small class="text-[12px] text-gray-700 text-ellipsis line-clamp-1 font-light">{{ group.desc }} </small>
     </div>
   </li>
 </template>

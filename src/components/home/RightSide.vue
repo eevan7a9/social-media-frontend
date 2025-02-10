@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { FriendStatus } from '@/shared/enums/Friend';
 import type { FriendItem } from '@/shared/types/Friend';
-import { ref } from 'vue';
+import { computed } from 'vue';
 import { ActivityListItem, FriendListItem, StoryListItem } from '@/components/common';
 import type { TopStory } from '@/shared/types/Stories';
 import type { ActivityItem } from '@/shared/types/Activity';
 
-const topStories = ref<TopStory[]>([
+const topStories = computed<TopStory[]>(() => [
   {
     title: 'New Movie Release 2025',
     image: '',
@@ -19,7 +19,7 @@ const topStories = ref<TopStory[]>([
   },
 ]);
 
-const friends = ref<FriendItem[]>([
+const friends = computed<FriendItem[]>(() => [
   {
     title: 'John Doe III',
     image: 'https://placehold.co/100x100',
@@ -62,7 +62,7 @@ const friends = ref<FriendItem[]>([
   },
 ]);
 
-const latestActivities = ref<ActivityItem[]>([
+const latestActivities = computed<ActivityItem[]>(() => [
   {
     image: 'https://placehold.co/100x100',
     title: 'Highlight Reel Event',
