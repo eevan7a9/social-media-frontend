@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { TopStory } from '@/shared/types/Stories';
+import type { Story } from '@/shared/types/Stories';
 
-defineProps<{ story: TopStory }>();
+defineProps<{ story: Story }>();
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { GroupItem } from '@/shared/types/Group';
+import type { Group } from '@/shared/types/Group';
 
-defineProps<{ group: GroupItem }>();
+defineProps<{ group: Group }>();
 </script>
 
 <template>
