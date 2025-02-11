@@ -1,37 +1,11 @@
 <script setup lang="ts">
-import { computed, shallowRef, ref } from 'vue';
+import { shallowRef, ref, onMounted } from 'vue';
 import { IconBookmark, IconHouse, IconThumbUp, IconCommunity, IconFollowers, IconPeople } from '../icons';
-import type { GroupItem } from '@/shared/types/Group';
 import type { MenuLink } from '@/shared/types/Menu';
 import { GroupListItem, PageMenuItem } from '../common';
-const groups = computed<GroupItem[]>(() => [
-  {
-    image: 'https://placehold.co/100x100',
-    title: 'Naruto Community',
-    desc: 'Amet consectetur, adipisicing elit. Facere, earum?',
-  },
-  {
-    image: 'https://placehold.co/100x100',
-    title: 'NBA News & Trends',
-    desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet consectetur, adipisicing elit. Facere, earum?',
-  },
-  {
-    image: 'https://placehold.co/100x100',
-    title: 'Comedy & Memes',
-    desc: 'Amet consectetur, adipisicing elit. Facere, earum?',
-  },
-  {
-    image: 'https://placehold.co/100x100',
-    title: 'Football Community',
-    desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet consectetur, adipisicing elit. Facere, earum?',
-  },
-  {
-    image: 'https://placehold.co/100x100',
-    title: 'Tech & Science',
-    desc: 'Amet consectetur, adipisicing elit. Facere, earum?',
-  },
-]);
+import { useGroupsStore } from '@/stores/groups';
 
+const groupsStore = useGroupsStore();
 const menuLinks = ref<MenuLink[]>([
   {
     icon: shallowRef(IconHouse),
@@ -76,6 +50,15 @@ const menuLinks = ref<MenuLink[]>([
     fill: '#884302',
   },
 ]);
+
+onMounted(() => {
+  if (!groupsStore.initialFetchDone) {
+    groupsStore.fetchGroups().then((res) => {
+      groupsStore.setGroups(res.groups);
+      groupsStore.setInitialFetchDone(true);
+    });
+  }
+});
 </script>
 
 <template>
@@ -87,7 +70,7 @@ const menuLinks = ref<MenuLink[]>([
           <component :is="IconCommunity" fill="#8536b9" class="max-w-[30px] inline-block" />
         </h1>
         <ul class="flex flex-col gap-y-4 mt-4">
-          <group-list-item v-for="group of groups" :key="group.title" :group="group" />
+          <group-list-item v-for="group of groupsStore.list" :key="group.title" :group="group" />
         </ul>
       </div>
 
