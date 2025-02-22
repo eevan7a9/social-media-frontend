@@ -1,18 +1,18 @@
 import type { PostTypes } from '../enums/Post';
 
 export interface PostActions {
-  like?: number;
-  share?: number;
+  like: number;
+  share: number;
 }
 
 export interface PostComment {
   id: string;
   content: string;
-  actions: PostActions;
+  actions?: PostActions;
   image?: string;
   created?: string | Date;
   updated?: string | Date;
-  author: PostAuthor;
+  author?: PostAuthor;
 }
 
 export interface PostAuthor {
@@ -30,6 +30,7 @@ export interface Post {
   actions: PostActions;
   author: PostAuthor;
   image?: string;
+  tags?: string[];
   link?: string;
   latlng?: [number, number];
   created: string | Date;

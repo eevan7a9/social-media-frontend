@@ -8,6 +8,13 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+      children: [
+        {
+          name: 'feedDetailView',
+          path: '/feed/:id',
+          component: () => import('../views/FeedDetailView.vue'),
+        },
+      ],
     },
     {
       path: '/profile',
@@ -16,6 +23,10 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/ProfileView.vue'),
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/',
     },
   ],
 });

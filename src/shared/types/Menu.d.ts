@@ -6,4 +6,5 @@ export interface MenuLink {
   path: string;
   bg: string;
   fill: string;
+  disable: boolean;
 }

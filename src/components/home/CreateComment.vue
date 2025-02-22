@@ -1,11 +1,22 @@
 <script lang="ts" setup>
+import { useAlert } from '@/composables/alert';
+import { AlertType } from '@/shared/enums/Alert';
+import type { Post } from '@/shared/types/Post';
+import { useFeedsStore } from '@/stores/feeds';
 import { ref } from 'vue';
 
+const feedStore = useFeedsStore();
+const alert = useAlert();
+const props = defineProps<{ post: Post }>();
 const comment = ref('');
 
 function send(): void {
-  console.log('send');
+  if (!comment.value) return;
+
+  feedStore.addComment(props.post.id, { content: comment.value });
   comment.value = '';
+
+  alert.showAlert('Comment posted successfully! 🎉', AlertType.Success);
 }
 </script>
 
