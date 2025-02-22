@@ -13,6 +13,7 @@ const menuLinks = ref<MenuLink[]>([
     path: '/',
     bg: 'bg-blue-500/30',
     fill: '#255fdd',
+    disable: false,
   },
   {
     icon: shallowRef(IconPeople),
@@ -20,6 +21,7 @@ const menuLinks = ref<MenuLink[]>([
     path: '/',
     bg: 'bg-success/30',
     fill: '#22970b',
+    disable: true,
   },
   {
     icon: shallowRef(IconCommunity),
@@ -27,6 +29,7 @@ const menuLinks = ref<MenuLink[]>([
     path: '/',
     bg: 'bg-secondary/30',
     fill: '#8536b9',
+    disable: true,
   },
   {
     icon: shallowRef(IconBookmark),
@@ -34,6 +37,7 @@ const menuLinks = ref<MenuLink[]>([
     path: '/',
     bg: 'bg-pink-500/30',
     fill: '#f6339a',
+    disable: true,
   },
   {
     icon: shallowRef(IconThumbUp),
@@ -41,6 +45,8 @@ const menuLinks = ref<MenuLink[]>([
     path: '/',
     bg: 'bg-sky-400/30',
     fill: '#11111',
+
+    disable: true,
   },
   {
     icon: shallowRef(IconFollowers),
@@ -48,6 +54,7 @@ const menuLinks = ref<MenuLink[]>([
     path: '/',
     bg: 'bg-orange-500/30',
     fill: '#884302',
+    disable: true,
   },
 ]);
 

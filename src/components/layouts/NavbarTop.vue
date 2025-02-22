@@ -7,8 +7,8 @@ import MenuChat from '../common/menu/MenuChat.vue';
 </script>
 
 <template>
-  <header class="relative">
-    <nav class="flex items-center w-full bg-white px-3 lg:pr-6 py-1 max-w-screen-lg mx-auto">
+  <header class="relative bg-white dark:bg-dark">
+    <nav class="flex items-center w-full px-3 lg:pr-6 py-1 max-w-screen-lg mx-auto">
       <RouterLink to="/" class="cursor-pointer">
         <img src="/logo.svg" class="max-w-[64px]" />
       </RouterLink>

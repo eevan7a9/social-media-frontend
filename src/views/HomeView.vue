@@ -2,7 +2,7 @@
 import LeftSide from '@/components/home/LeftSide.vue';
 import RightSide from '@/components/home/RightSide.vue';
 import CreatePost from '@/components/home/CreatePost.vue';
-import FeedsList from '@/components/home/feeds/FeedsList.vue';
+import FeedsList from '@/components/feeds/FeedsList.vue';
 </script>
 
 <template>
@@ -13,6 +13,7 @@ import FeedsList from '@/components/home/feeds/FeedsList.vue';
       <CreatePost class="sticky top-3 z-20" />
       <div class="bg-gray-300 w-full h-[1px] my-5"></div>
       <FeedsList class="z-10" />
+      <RouterView class="z-20" />
     </section>
 
     <RightSide class="col-span-3 relative pt-3 lg:pt-4 z-0" />

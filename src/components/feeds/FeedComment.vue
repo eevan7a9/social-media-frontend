@@ -2,18 +2,22 @@
 import MenuMore from '@/components/common/menu/MenuMore.vue';
 import { IconFlag } from '@/components/icons';
 import type { PostComment } from '@/shared/types/Post';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
-defineProps<{ comment: PostComment }>();
+const props = defineProps<{ comment: PostComment; showAll?: boolean }>();
 
 const menuMore = ref<InstanceType<typeof MenuMore> | undefined>(undefined);
+const createdDate = computed(() => {
+  const date = new Date(props.comment?.created || '').toLocaleString();
+  return date;
+});
 </script>
 
 <template>
   <div class="bg-white border-t border-gray-200 px-3 py-4 rounded-xl flex items-center gap-x-3">
     <div class="lg:pl-2">
       <img
-        :src="comment.author.image || 'https://placehold.co/100x100/333/FFF'"
+        :src="comment.author?.image || 'https://placehold.co/100x100/333/FFF'"
         class="w-[50px] h-auto rounded-full"
       />
     </div>
@@ -22,9 +26,11 @@ const menuMore = ref<InstanceType<typeof MenuMore> | undefined>(undefined);
       <div class="flex items-start">
         <div class="flex items-center gap-x-2">
           <h1 class="text-[15px] font-medium">
-            {{ comment.author.name }}
+            {{ comment.author?.name }}
           </h1>
-          <small class="font-light text-gray-600 dark:text-gray-300 text-[12px]">{{ comment.created }}</small>
+          <small class="font-light text-gray-600 dark:text-gray-300 text-[12px]">
+            {{ createdDate }}
+          </small>
         </div>
         <!-- <button
           class="w-[25px] group lg:w-[30px] rounded-full px-1 cursor-pointer hover:bg-gray-200/20"
@@ -47,7 +53,10 @@ const menuMore = ref<InstanceType<typeof MenuMore> | undefined>(undefined);
           </ul>
         </MenuMore>
       </div>
-      <p class="text-[14px] font-light text-ellipsis line-clamp-1">{{ comment?.content }}</p>
+
+      <p class="text-[14px] font-light" :class="showAll ? 'text-wrap' : 'text-ellipsis line-clamp-1'">
+        {{ comment?.content }}
+      </p>
     </div>
   </div>
 </template>

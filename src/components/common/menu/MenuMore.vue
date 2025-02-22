@@ -45,7 +45,7 @@ watch(show, (val) => {
     <div
       ref="moreContainer"
       @click.stop
-      class="absolute top-[40px] left-1/2 -translate-x-1/2 border border-gray-200 min-w-[200px] rounded-md bg-white"
+      class="absolute top-[40px] right-0 border border-gray-200 min-w-[200px] rounded-md bg-white"
       v-if="show"
     >
       <slot></slot>

@@ -24,9 +24,15 @@ import IconBell from './IconBell.vue';
 import IconPersonCircle from './IconPersonCircle.vue';
 import IconMagnify from './IconMagnify.vue';
 import IconClose from './IconClose.vue';
+import IconCloseOctagon from './IconCloseOctagon.vue';
 import IconFlag from './IconFlag.vue';
+import IconCheckDecagram from './IconCheckDecagram.vue';
+import IconAlert from './IconAlert.vue';
 
 export {
+  IconAlert,
+  IconCheckDecagram,
+  IconCloseOctagon,
   IconFlag,
   IconClose,
   IconMagnify,

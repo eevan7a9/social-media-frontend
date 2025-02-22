@@ -11,6 +11,6 @@ export interface UserFriend extends User {
   status?: FriendStatus;
 }
 
-export interface UserCurrent extends User {
+export interface AuthUser extends User {
   password: string;
 }
