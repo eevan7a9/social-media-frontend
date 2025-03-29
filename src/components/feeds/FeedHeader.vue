@@ -3,6 +3,9 @@ import MenuMore from '@/components/common/menu/MenuMore.vue';
 import { IconFlag } from '@/components/icons';
 import type { PostAuthor } from '@/shared/types/Post';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const props = defineProps<{
   author: PostAuthor;
@@ -23,13 +26,20 @@ function report() {
   console.log('report()', menuMore.value);
   menuMore.value?.close();
 }
+
+function viewProfile() {
+  router.push({ path: '/profile', query: { user: props.author.id } });
+}
 </script>
 
 <template>
-  <div class="flex justify-between px-3 lg:px-5 items-start">
-    <div class="flex items-center gap-x-2 z-0">
-      <img src="https://placehold.co/60x60/162456/fff" class="rounded-full" />
-      <div class="flex flex-col" @click="emits('viewDetails')">
+  <div class="flex justify-between px-3 lg:px-5 items-start" @click="emits('viewDetails')">
+    <div class="flex items-center gap-x-2 z-0" @click.stop="viewProfile">
+      <img
+        :src="props.author.image || 'https://placehold.co/60x60/162456/fff'"
+        class="w-[60px] rounded-full"
+      />
+      <div class="flex flex-col">
         <span class="font-medium leading-4">{{ props.author.name }}</span>
         <small class="text-[13px] font-light text-gray-800 dark:text-gray-200">{{ props.created }}</small>
       </div>

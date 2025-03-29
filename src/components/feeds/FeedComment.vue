@@ -3,6 +3,9 @@ import MenuMore from '@/components/common/menu/MenuMore.vue';
 import { IconFlag } from '@/components/icons';
 import type { PostComment } from '@/shared/types/Post';
 import { computed, ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const props = defineProps<{ comment: PostComment; showAll?: boolean }>();
 
@@ -11,11 +14,15 @@ const createdDate = computed(() => {
   const date = new Date(props.comment?.created || '').toLocaleString();
   return date;
 });
+
+function viewProfile() {
+  router.push({ path: '/profile', query: { user: props.comment.author?.id } });
+}
 </script>
 
 <template>
   <div class="bg-white border-t border-gray-200 px-3 py-4 rounded-xl flex items-center gap-x-3">
-    <div class="lg:pl-2">
+    <div class="lg:pl-2" @click="viewProfile">
       <img
         :src="comment.author?.image || 'https://placehold.co/100x100/333/FFF'"
         class="w-[50px] h-auto rounded-full"
@@ -24,7 +31,7 @@ const createdDate = computed(() => {
 
     <div class="w-full">
       <div class="flex items-start">
-        <div class="flex items-center gap-x-2">
+        <div class="flex items-center gap-x-2 hover:underline" @click="viewProfile">
           <h1 class="text-[15px] font-medium">
             {{ comment.author?.name }}
           </h1>

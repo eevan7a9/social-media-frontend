@@ -6,14 +6,20 @@ import { onMounted, ref } from 'vue';
 import FeedHeader from './FeedHeader.vue';
 import FeedAction from './FeedAction.vue';
 import FeedContent from './FeedContent.vue';
+import { useRoute, useRouter } from 'vue-router';
+
+const router = useRouter();
+const route = useRoute();
 
 const props = defineProps<{ post: Post; onInitShowCreate?: boolean; showTags?: boolean }>();
-const emits = defineEmits(['viewPost']);
-
 const showCreateComment = ref(false);
 
-function viewDetails(): void {
-  emits('viewPost', props.post.id);
+function viewPost(id: string | number) {
+  if (route.name === 'home') {
+    router.push('/feed/' + id);
+  } else if (route.name === 'profile') {
+    router.push({ path: '/profile/feed/' + id, query: route.query });
+  }
 }
 
 onMounted(() => {
@@ -36,11 +42,11 @@ onMounted(() => {
         :id="props.post.id"
         :author="props.post.author"
         :created="props.post.created"
-        @viewDetails="viewDetails()"
+        @viewDetails="viewPost(props.post.id)"
       />
-      <FeedContent :post="props.post" :show-tags="props.showTags" @click="viewDetails()" />
+      <FeedContent :post="props.post" :show-tags="props.showTags" @click="viewPost(props.post.id)" />
       <FeedAction
-        @click="viewDetails()"
+        @click="viewPost(props.post.id)"
         :post="props.post"
         @toggleComment="showCreateComment = !showCreateComment"
       />
@@ -55,7 +61,11 @@ onMounted(() => {
     </div>
 
     <div class="" v-if="post.comments[0]">
-      <FeedComment @click="viewDetails()" class="rounded-t-none cursor-pointer" :comment="post.comments[0]" />
+      <FeedComment
+        @click="viewPost(props.post.id)"
+        class="rounded-t-none cursor-pointer"
+        :comment="post.comments[0]"
+      />
     </div>
   </div>
 </template>
