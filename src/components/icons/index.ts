@@ -28,8 +28,28 @@ import IconCloseOctagon from './IconCloseOctagon.vue';
 import IconFlag from './IconFlag.vue';
 import IconCheckDecagram from './IconCheckDecagram.vue';
 import IconAlert from './IconAlert.vue';
+import IconPencil from './IconPencil.vue';
+import IconPlus from './IconPlus.vue';
+import IconCheckCircle from './IconCheckCircle.vue';
+import IconFacebook from './IconFacebook.vue';
+import IconInstagram from './IconInstagram.vue';
+import IconTwiter from './IconTwiter.vue';
+import IconTwitch from './IconTwitch.vue';
+import IconYoutube from './IconYoutube.vue';
+import IconGithub from './IconGithub.vue';
+import IconLoading from './IconLoading.vue';
 
 export {
+  IconLoading,
+  IconGithub,
+  IconFacebook,
+  IconInstagram,
+  IconTwitch,
+  IconTwiter,
+  IconYoutube,
+  IconCheckCircle,
+  IconPlus,
+  IconPencil,
   IconAlert,
   IconCheckDecagram,
   IconCloseOctagon,

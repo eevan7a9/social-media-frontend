@@ -12,12 +12,12 @@ const menuContainer = ref<HTMLElement | undefined>(undefined);
 
 const items = ref([
   {
-    label: 'Account',
+    label: 'profile',
     path: '/',
     icon: shallowRef(IconPersonCircle),
     disable: false,
     func: () => {
-      router.push('/account/' + authStore.authUser?.id);
+      router.push('/profile');
     },
   },
   {
@@ -75,8 +75,8 @@ watch(show, (val) => {
         <li
           v-for="item of items"
           :key="item.label"
-          :class="item.disable ? 'cursor-not-allowed text-gray-500' : ''"
-          class="relative px-3 py-2 flex items-center gap-x-2 md:gap-x-3 hover:bg-slate-100"
+          :class="item.disable ? 'cursor-not-allowed text-gray-500' : 'cursor-pointer'"
+          class="relative capitalize px-3 py-2 flex items-center gap-x-2 md:gap-x-3 hover:bg-slate-100"
           @click="() => item.func && item?.func()"
         >
           <component

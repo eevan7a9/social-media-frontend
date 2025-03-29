@@ -2,7 +2,7 @@
 import CreateComment from '@/components/home/CreateComment.vue';
 import FeedHeader from '@/components/feeds/FeedHeader.vue';
 import { useFeedsStore } from '@/stores/feeds';
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import FeedContent from '@/components/feeds/FeedContent.vue';
 import FeedAction from '@/components/feeds/FeedAction.vue';
@@ -16,14 +16,20 @@ const feedsStore = useFeedsStore();
 
 const post = computed(() => feedsStore.lists.find((feed) => feed.id === route.params.id));
 
-function goHome() {
-  router.push('/');
+function goBack() {
+  router.back();
 }
+
+onMounted(() => {
+  if (!post.value) {
+    router.replace('/');
+  }
+});
 </script>
 
 <template>
   <article
-    @click="goHome()"
+    @click="goBack()"
     class="bg-gray-900/15 p-4 fixed top-0 h-svh right-0 left-0 bottom-0 flex justify-center md:items-center py-16 md:py-0"
   >
     <div class="w-full flex justify-center mt-4 pointer-events-none relative">
