@@ -39,13 +39,17 @@ watch(show, (val) => {
 </script>
 
 <template>
-  <button @click="toggle()" class="p-1 relative hover:bg-slate-200 rounded-full cursor-pointer">
-    <IconVerticalDots class="w-[30px]" :class="iconClass" v-if="vertical" />
-    <IconHorizontalDots class="w-[30px]" :class="iconClass" v-else />
+  <button
+    @click.stop="toggle()"
+    class="p-1 flex justify-center items-center size-[30px] relative hover:bg-slate-200 rounded-full cursor-pointer"
+  >
+    <IconVerticalDots class="w-full z-0" :class="iconClass" v-if="vertical" />
+    <IconHorizontalDots class="w-full z-0" :class="iconClass" v-else />
+
     <div
       ref="moreContainer"
       @click.stop
-      class="absolute top-[40px] right-0 border border-gray-200 min-w-[200px] rounded-md bg-white"
+      class="absolute top-[40px] right-0 border border-gray-200 min-w-[200px] rounded-md bg-white z-10"
       v-if="show"
     >
       <slot></slot>

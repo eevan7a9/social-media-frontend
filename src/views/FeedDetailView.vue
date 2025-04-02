@@ -14,7 +14,7 @@ const router = useRouter();
 const route = useRoute();
 const feedsStore = useFeedsStore();
 
-const post = computed(() => feedsStore.lists.find((feed) => feed.id === route.params.id));
+const post = computed(() => feedsStore.list.find((feed) => feed.id === route.params.id));
 
 function goBack() {
   router.back();
@@ -28,12 +28,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <article
+  <div
     @click="goBack()"
     class="bg-gray-900/15 p-4 fixed top-0 h-svh right-0 left-0 bottom-0 flex justify-center md:items-center py-16 md:py-0"
   >
     <div class="w-full flex justify-center mt-4 pointer-events-none relative">
-      <section
+      <article
         class="max-w-[1200px] w-full flex flex-col md:flex-row gap-2 md:gap-3 h-full pointer-events-auto"
         :class="{ 'pt-12': post?.type === PostTypes.Text }"
       >
@@ -90,7 +90,7 @@ onMounted(() => {
           </div>
           <div class="bg-white h-[50px] w-full rounded-b-xl"></div>
         </div>
-      </section>
+      </article>
     </div>
-  </article>
+  </div>
 </template>

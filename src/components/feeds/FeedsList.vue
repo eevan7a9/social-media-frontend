@@ -9,10 +9,10 @@ const feedsStore = useFeedsStore();
 const props = defineProps<{ userId?: string }>();
 const feeds = computed<Post[]>(() => {
   if (!props.userId) {
-    return feedsStore.lists;
+    return feedsStore.list;
   }
 
-  return feedsStore.lists.filter((feed) => feed.author.id === props.userId);
+  return feedsStore.list.filter((feed) => feed.author.id === props.userId);
 });
 
 onMounted(() => {});

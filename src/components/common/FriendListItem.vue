@@ -1,15 +1,25 @@
 <script lang="ts" setup>
 import { FriendStatus } from '@/shared/enums/Friend';
 import type { UserFriend } from '@/shared/types/User';
-import { IconVerticalDots } from '../icons';
+import { IconFlag } from '../icons';
 import { useRouter } from 'vue-router';
+import MenuMore from './menu/MenuMore.vue';
+import { ref } from 'vue';
+import { useReport } from '@/composables/report';
+
+const report = useReport();
 
 const props = defineProps<{ friend: UserFriend }>();
-
+const menuMore = ref<InstanceType<typeof MenuMore> | null>(null);
 const router = useRouter();
 
 function viewProfile() {
   router.push({ path: '/profile', query: { user: props.friend.id } });
+}
+
+function reportUser() {
+  report.user(props.friend.id);
+  menuMore.value?.close();
 }
 </script>
 
@@ -28,8 +38,20 @@ function viewProfile() {
     </div>
     <span class="text-[14px] hover:underline cursor-pointer" @click="viewProfile">{{ friend.username }}</span>
 
-    <button class="absolute group right-4 hover:bg-slate-200/50 p-3 rounded-full cursor-pointer">
-      <IconVerticalDots class="w-[20px] opacity-60 group-hover:opacity-100" fill="#333" />
-    </button>
+    <MenuMore
+      ref="menuMore"
+      vertical
+      class="ml-auto py-0 mr-0 fill-gray-500 hover:fill-gray-800 dark:hover:fill-gray-200"
+    >
+      <ul class="bg-white dark:bg-black py-1 flex flex-col text-[14px] z-50">
+        <li
+          class="flex items-center p-2 hover:bg-slate-200 dark:hover:bg-slate-600"
+          @click="() => reportUser()"
+        >
+          <IconFlag class="w-[30px] mr-2" />
+          <span>Report</span>
+        </li>
+      </ul>
+    </MenuMore>
   </li>
 </template>

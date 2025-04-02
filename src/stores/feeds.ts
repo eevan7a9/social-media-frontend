@@ -14,7 +14,7 @@ export const useFeedsStore = defineStore('feeds', () => {
     loading: false,
   });
 
-  const lists = computed(() => state.feeds);
+  const list = computed(() => state.feeds);
   const loading = computed(() => state.loading);
 
   async function fetchFeeds(): Promise<{ posts: Post[] }> {
@@ -88,7 +88,7 @@ export const useFeedsStore = defineStore('feeds', () => {
     state.feeds = [];
   }
   return {
-    lists,
+    list,
     loading,
     clearState,
     setLoading,
