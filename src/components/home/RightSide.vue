@@ -62,7 +62,9 @@ onMounted(() => {
     <div class="sticky top-4">
       <div class="px-3">
         <h1 class="text-[16px] font-bold">My Connections:</h1>
-        <ul class="flex flex-col gap-y-3 mt-2 lg:mt-3 h-[50dvh] max-h-[400px] overflow-auto relative">
+        <ul
+          class="custom-scrollbar flex flex-col gap-y-3 mt-2 lg:mt-3 h-[50dvh] max-h-[400px] overflow-auto relative"
+        >
           <friend-list-item v-for="friend of friendsStore.list" :key="friend.id" :friend="friend" />
         </ul>
       </div>

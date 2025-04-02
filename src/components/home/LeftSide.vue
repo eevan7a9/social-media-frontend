@@ -76,8 +76,9 @@ onMounted(() => {
           Top Groups
           <component :is="IconCommunity" fill="#8536b9" class="max-w-[30px] inline-block" />
         </h1>
+
         <ul class="flex flex-col gap-y-4 mt-4">
-          <group-list-item v-for="group of groupsStore.list" :key="group.title" :group="group" />
+          <group-list-item v-for="group of groupsStore.list" :key="group.name" :group="group" />
         </ul>
       </div>
 

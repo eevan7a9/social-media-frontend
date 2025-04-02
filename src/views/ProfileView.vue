@@ -37,6 +37,7 @@ function findUser() {
 
   axios.get<User[]>(url).then((res) => {
     loading.show();
+
     if (res.data) {
       profile.value = res.data.find(({ id }) => id === (userId.value || auth.authUser?.id)) || null;
       connections.value = res.data.filter((user) => profile.value?.connections?.includes(user.id));
@@ -109,8 +110,11 @@ onMounted(() => findUser());
             My Groups
             <component :is="IconCommunity" fill="#8536b9" class="max-w-[30px] inline-block" />
           </h1>
+
           <ul class="flex flex-col gap-y-4 mt-4">
-            <GroupListItem v-for="group of groups" :key="group.title" :group="group" />
+            <template v-for="group of groups" :key="group.id">
+              <GroupListItem :group="group" />
+            </template>
           </ul>
         </div>
       </div>

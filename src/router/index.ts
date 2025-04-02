@@ -14,6 +14,11 @@ const router = createRouter({
           path: '/feed/:id',
           component: () => import('../views/FeedDetailView.vue'),
         },
+        {
+          name: 'groupDetailView',
+          path: '/group/:id',
+          component: () => import('../views/GroupDetailView.vue'),
+        },
       ],
     },
     {
@@ -28,6 +33,11 @@ const router = createRouter({
           name: 'profileFeedDetailView',
           path: 'feed/:id',
           component: () => import('../views/FeedDetailView.vue'),
+        },
+        {
+          name: 'profileGroupDetailView',
+          path: 'group/:id',
+          component: () => import('../views/GroupDetailView.vue'),
         },
       ],
     },
