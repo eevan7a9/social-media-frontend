@@ -38,8 +38,20 @@ import IconTwitch from './IconTwitch.vue';
 import IconYoutube from './IconYoutube.vue';
 import IconGithub from './IconGithub.vue';
 import IconLoading from './IconLoading.vue';
+import IconHeart from './IconHeart.vue';
+import IconSmile from './IconSmile.vue';
+import IconLaugh from './IconLaugh.vue';
+import IconAngry from './IconAngry.vue';
+import IconFire from './IconFire.vue';
+import IconEye from './IconEye.vue';
 
 export {
+  IconEye,
+  IconHeart,
+  IconSmile,
+  IconLaugh,
+  IconAngry,
+  IconFire,
   IconLoading,
   IconGithub,
   IconFacebook,

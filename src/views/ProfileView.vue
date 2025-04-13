@@ -48,6 +48,7 @@ function findUser() {
         router.replace('/');
       }
     }
+    window.scrollTo({ behavior: 'smooth', top: 0 });
   });
 }
 
@@ -56,7 +57,6 @@ watch(
   () => {
     userId.value = route.query.user;
     findUser();
-    window.scrollTo({ behavior: 'smooth', top: 0 });
   },
 );
 
@@ -77,14 +77,14 @@ onMounted(() => findUser());
       <ProfileIntro :socials="profile.socials || []" :profile="profile" :is-me="isMe" />
     </div>
 
-    <div class="w-full max-w-screen-lg mx-auto grid md:grid-cols-7 gap-3 md:gap-5 mt-3 md:mt-6">
-      <div class="w-full md:col-span-4">
+    <div class="w-full max-w-screen-lg mx-auto grid md:grid-cols-12 gap-3 md:gap-5 mt-3 md:mt-6">
+      <div class="w-full md:col-span-7">
         <ProfileSummary
           :is-me="isMe"
           class="max-w-full rounded-md bg-white dark:bg-black px-3 lg:px-5 xl:px-8 py-3 lg:py-5"
         />
 
-        <div class="py-5">
+        <div class="py-5 lg:px-10">
           <FeedsList :user-id="profile.id">
             <template #empty>
               <div class="flex flex-col items-center justify-center" v-if="isMe">
@@ -101,7 +101,7 @@ onMounted(() => findUser());
         </div>
       </div>
 
-      <div class="w-full md:col-span-3">
+      <div class="w-full md:col-span-5">
         <ProfileSimilar class="rounded-md" />
         <ProfileConnections :connections="connections" />
 

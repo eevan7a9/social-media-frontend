@@ -1,4 +1,5 @@
 export enum AlertType {
+  Default = 'default',
   Info = 'info',
   Liked = 'liked',
   Shared = 'shared',
