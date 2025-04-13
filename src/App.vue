@@ -8,10 +8,14 @@ import { useFriendsStore } from './stores/friends';
 import { useGroupsStore } from './stores/groups';
 import { useFeedsStore } from './stores/feeds';
 import LoadingPage from './components/common/loading/LoadingPage.vue';
+import { useActivitiesStore } from './stores/activities';
+import { useStoriesStore } from './stores/stories';
 
 const feedsStore = useFeedsStore();
 const friendsStore = useFriendsStore();
 const groupsStore = useGroupsStore();
+const activitiesStore = useActivitiesStore();
+const storiesStore = useStoriesStore();
 
 const route = useRoute();
 const isDetailsView = computed(() => route.name === 'feedDetailView');
@@ -31,6 +35,18 @@ onMounted(() => {
     groupsStore.fetchGroups().then((res) => {
       groupsStore.setGroups(res.groups);
       groupsStore.setInitialFetchDone(true);
+    });
+  }
+  if (!storiesStore.initialFetchDone) {
+    storiesStore.fetchStories().then((e) => {
+      storiesStore.setStories(e.stories);
+      storiesStore.setInitialFetchDone(true);
+    });
+  }
+  if (!activitiesStore.initialFetchDone) {
+    activitiesStore.fetchActivities().then((e) => {
+      activitiesStore.setActivities(e.activities);
+      activitiesStore.setInitialFetchDone(true);
     });
   }
 });

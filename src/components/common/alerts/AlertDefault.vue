@@ -33,6 +33,10 @@ const { message, type, isVisible } = useAlert();
 </template>
 
 <style lang="scss" scoped>
+.alert-default {
+  background: rgb(245, 245, 245);
+  color: black;
+}
 .alert-info {
   background: #3498db;
   color: white;

@@ -1,35 +1,13 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue';
-import { ActivityListItem, FriendListItem, StoryListItem } from '@/components/common';
-
+import { ActivityListItem, FriendListItem } from '@/components/common';
 import { useFriendsStore } from '@/stores/friends';
 import { useActivitiesStore } from '@/stores/activities';
 import { useStoriesStore } from '@/stores/stories';
+import StoryListItem from '../story/StoryListItem.vue';
 
 const friendsStore = useFriendsStore();
 const activitiesStore = useActivitiesStore();
 const storiesStore = useStoriesStore();
-
-onMounted(() => {
-  if (!storiesStore.initialFetchDone) {
-    storiesStore.fetchStories().then((e) => {
-      storiesStore.setStories(e.stories);
-      storiesStore.setInitialFetchDone(true);
-    });
-  }
-  if (!activitiesStore.initialFetchDone) {
-    activitiesStore.fetchActivities().then((e) => {
-      activitiesStore.setActivities(e.activities);
-      activitiesStore.setInitialFetchDone(true);
-    });
-  }
-  if (!friendsStore.initialFetchDone) {
-    friendsStore.fetchFriends().then((res) => {
-      friendsStore.setFriends(res.friends);
-      friendsStore.setInitialFetchDone(true);
-    });
-  }
-});
 </script>
 
 <template>
@@ -55,7 +33,7 @@ onMounted(() => {
     <div class="px-3 mt-4 border-b pb-6 mb-4 border-gray-300">
       <h1 class="text-[16px] font-bold">Top Stories:</h1>
       <ul class="flex gap-x-3 mt-2">
-        <story-list-item v-for="story of storiesStore.topStories" :key="story.title" :story="story" />
+        <StoryListItem v-for="story of storiesStore.topStories" :key="story.id" :story="story" />
       </ul>
     </div>
 
@@ -65,14 +43,14 @@ onMounted(() => {
         <ul
           class="custom-scrollbar flex flex-col gap-y-3 mt-2 lg:mt-3 h-[50dvh] max-h-[400px] overflow-auto relative"
         >
-          <friend-list-item v-for="friend of friendsStore.list" :key="friend.id" :friend="friend" />
+          <FriendListItem v-for="friend of friendsStore.list" :key="friend.id" :friend="friend" />
         </ul>
       </div>
 
       <div class="mt-4 border-t pt-4 border-gray-300">
         <h1 class="text-[16px] font-bold">Latest Activities:</h1>
         <ul class="flex flex-col gap-y-1 mt-3">
-          <activity-list-item
+          <ActivityListItem
             v-for="activity of activitiesStore.list"
             :key="activity.title"
             :activity="activity"
