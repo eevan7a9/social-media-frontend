@@ -58,14 +58,7 @@ const menuLinks = ref<MenuLink[]>([
   },
 ]);
 
-onMounted(() => {
-  if (!groupsStore.initialFetchDone) {
-    groupsStore.fetchGroups().then((res) => {
-      groupsStore.setGroups(res.groups);
-      groupsStore.setInitialFetchDone(true);
-    });
-  }
-});
+onMounted(() => {});
 </script>
 
 <template>

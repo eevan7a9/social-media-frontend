@@ -16,7 +16,7 @@ const { message, type, isVisible } = useAlert();
   <Transition name="fade">
     <div
       v-if="isVisible"
-      :class="`fixed bottom-5 text-dark dark:text-light  bg-light/90 dark:bg-dark/80 right-5 py-4 px-5 rounded-lg  text-[16px] font-semibold z-50 shadow alert-${type}`"
+      :class="`fixed bottom-5 text-dark dark:text-light dark:bg-dark/80 right-5 py-4 px-5 rounded-lg  text-[16px] font-semibold z-50 shadow alert-${type}`"
     >
       <div class="flex items-center gap-x-2">
         <IconThumbUp filled class="w-[30px] fill-sky-600 scale-x-[-1]" v-if="type === AlertType.Liked" />

@@ -1,30 +1,57 @@
 <script lang="ts" setup>
 import MenuMore from '@/components/common/menu/MenuMore.vue';
-import { IconFlag } from '@/components/icons';
+import { IconFlag, IconTrash } from '@/components/icons';
+import { useAlert, useAlertConfirmation } from '@/composables/alert';
+import { AlertType } from '@/shared/enums/Alert';
+import { deleteFeed } from '@/shared/services/feedService';
 import type { PostAuthor } from '@/shared/types/Post';
+import { useAuthStore } from '@/stores/auth';
+import { useFeedsStore } from '@/stores/feeds';
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
+const route = useRoute();
 const router = useRouter();
+const auth = useAuthStore();
+const feedsStore = useFeedsStore();
+const alert = useAlert();
+const alertConfirmation = useAlertConfirmation();
 
 const props = defineProps<{
   author: PostAuthor;
   created: string | Date;
-  id: string | number;
+  id: string;
 }>();
 
 const emits = defineEmits<{ viewDetails: []; edit: []; report: [] }>();
 
 const menuMore = ref<InstanceType<typeof MenuMore> | undefined>();
 
-function edit() {
-  console.log('edit()', menuMore.value);
-  menuMore.value?.close();
-}
+// function edit() {
+//   console.log('edit()', menuMore.value);
+//   menuMore.value?.close();
+// }
 
 function report() {
   console.log('report()', menuMore.value);
   menuMore.value?.close();
+  alert.showAlert('Thanks for reporting. The post has been flagged for review. 🛡️', AlertType.Info, 4000);
+}
+
+async function remove() {
+  const confirmed = await alertConfirmation.value.show(
+    'Delete Post',
+    'Are you sure you want to delete this Post? This action cannot be undone.',
+  );
+
+  if (!confirmed || !props.id) return;
+  const id = await deleteFeed(props.id);
+
+  feedsStore.removePost(id);
+  if (route.name === 'feedDetailView') {
+    router.push('/');
+  }
+  alert.showAlert('Post deleted successfully. 🗑️', AlertType.Success, 4000);
 }
 
 function viewProfile() {
@@ -49,13 +76,21 @@ function viewProfile() {
       <MenuMore
         icon-class="!w-[32px]"
         ref="menuMore"
-        class="fill-gray-500 hover:fill-gray-800 dark:hover:fill-gray-200"
+        class="fill-gray-500 hover:fill-gray-800 dark:hover:fill-gray-100"
       >
         <ul class="bg-white dark:bg-black py-1 flex flex-col text-[14px]">
-          <li class="py-2 hover:bg-slate-200" @click="edit()" v-if="false">Edit</li>
+          <li
+            class="py-2 px-1 text-danger hover:bg-slate-200 flex items-center"
+            @click="remove()"
+            v-if="auth.authUser?.id === props.author.id"
+          >
+            <IconTrash class="w-[24px] fill-danger" /> Delete
+          </li>
+
           <li
             class="py-2 px-1 hover:bg-slate-200 dark:hover:bg-slate-600 flex items-center"
             @click="report()"
+            v-if="auth.authUser?.id !== props.author.id"
           >
             <IconFlag class="w-[30px] mr-2" />
             <span>Report</span>

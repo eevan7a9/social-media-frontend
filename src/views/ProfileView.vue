@@ -53,7 +53,7 @@ function findUser() {
 }
 
 watch(
-  () => route.query,
+  () => route.query.user,
   () => {
     userId.value = route.query.user;
     findUser();
@@ -97,7 +97,6 @@ onMounted(() => findUser());
               </div>
             </template>
           </FeedsList>
-          <RouterView />
         </div>
       </div>
 
@@ -120,6 +119,7 @@ onMounted(() => findUser());
       </div>
     </div>
   </div>
+  <RouterView class="z-20" />
 </template>
 
 <style lang="scss" scoped></style>

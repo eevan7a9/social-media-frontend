@@ -1,19 +1,23 @@
 <script lang="ts" setup>
 import { useAlert } from '@/composables/alert';
 import { AlertType } from '@/shared/enums/Alert';
-import type { Post } from '@/shared/types/Post';
+import { createFeedComment } from '@/shared/services/feedService';
+import type { Post, PostComment } from '@/shared/types/Post';
+import { useAuthStore } from '@/stores/auth';
 import { useFeedsStore } from '@/stores/feeds';
 import { ref } from 'vue';
 
 const feedStore = useFeedsStore();
+const authStore = useAuthStore();
+
 const alert = useAlert();
 const props = defineProps<{ post: Post }>();
 const comment = ref('');
 
-function send(): void {
-  if (!comment.value) return;
-
-  feedStore.addComment(props.post.id, { content: comment.value });
+async function send(): Promise<void> {
+  if (!comment.value || !authStore.authUser?.token) return;
+  const res = await createFeedComment(props.post.id, { content: comment.value }, authStore.authUser?.token);
+  feedStore.addComment(props.post.id, res as PostComment);
   comment.value = '';
 
   alert.showAlert('Comment posted successfully! 🎉', AlertType.Success);

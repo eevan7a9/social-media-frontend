@@ -7,6 +7,7 @@ export interface PostActions {
 
 export interface PostComment {
   id: string;
+  postId: string;
   content: string;
   actions?: PostActions;
   image?: string;

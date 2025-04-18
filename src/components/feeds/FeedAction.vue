@@ -44,17 +44,13 @@ function saved() {
       </span>
       <IconThumbUp
         :filled="props.post.hasLiked"
-        class="w-[32px] group-hover:fill-sky-500 scale-x-[-1] p-1 rounded-full"
+        class="w-[32px] group-hover:fill-sky-500 p-1 rounded-full group-hover:scale-150 transition-all duration-300 ease-in-out"
         :class="
           props.post.hasLiked
             ? 'fill-sky-600 bg-sky-400/20'
             : 'bg-gray-700/10 fill-gray-800 dark:fill-gray-200'
         "
       />
-      <!-- <IconThumbUpOutline
-          class="w-[25px] group-hover:fill-sky-500 scale-x-[-1] fill-gray-700 dark:fill-gray-300"
-          v-else
-        /> -->
     </button>
 
     <button
@@ -66,7 +62,7 @@ function saved() {
         {{ props.post.actions.share || 0 }}
       </span>
       <IconShare
-        class="w-[34px] group-hover:fill-yellow-500 group-hover:bg-warning/20 p-1 rounded-full"
+        class="w-[34px] group-hover:fill-yellow-500 group-hover:bg-warning/20 p-1 rounded-full group-hover:scale-150 transition-all duration-300 ease-in-out"
         :class="
           props.post.hasShared
             ? 'fill-warning bg-warning/20'
@@ -77,7 +73,7 @@ function saved() {
 
     <button @click.stop="saved()" class="p-1 flex items-center group cursor-pointer">
       <IconBookmarkDefault
-        class="w-[30px] group-hover:fill-accent"
+        class="w-[30px] lg:w-[35px] group-hover:fill-accent group-hover:scale-150 transition-all duration-300 ease-in-out"
         :filled="props.post.hasSaved"
         :class="props.post.hasSaved ? 'fill-accent' : 'fill-gray-700 dark:fill-gray-300'"
       />
@@ -97,7 +93,9 @@ function saved() {
       <span class="text-[16px] font-normal text-gray-700 dark:text-gray-200">
         {{ props.post.comments?.length || 0 }}
       </span>
-      <IconChat class="w-[30px] fill-gray-700 dark:fill-gray-300 group-hover:fill-sky-700" />
+      <IconChat
+        class="w-[30px] fill-gray-700 dark:fill-gray-300 group-hover:fill-sky-700 group-hover:scale-150 transition-all duration-300 ease-in-out"
+      />
     </button>
   </div>
 </template>

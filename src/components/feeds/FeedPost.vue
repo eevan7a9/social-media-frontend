@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Post } from '@/shared/types/Post';
 import FeedComment from './FeedComment.vue';
-import CreateComment from '@/components/home/CreateComment.vue';
+import FeedCreateComment from '@/components/feeds/FeedCreateComment.vue';
 import { onMounted, ref } from 'vue';
 import FeedHeader from './FeedHeader.vue';
 import FeedAction from './FeedAction.vue';
@@ -53,7 +53,7 @@ onMounted(() => {
     </article>
 
     <div v-if="showCreateComment">
-      <CreateComment
+      <FeedCreateComment
         class="border-t border-gray-200"
         :post="post"
         :class="{ 'border-b-0': post.comments.length, 'rounded-b-xl !pb-4': !post.comments.length }"
@@ -64,6 +64,7 @@ onMounted(() => {
       <FeedComment
         @click="viewPost(props.post.id)"
         class="rounded-t-none cursor-pointer"
+        :post-id="post.id"
         :comment="post.comments[0]"
       />
     </div>
