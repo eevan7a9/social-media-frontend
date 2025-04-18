@@ -44,8 +44,10 @@ import IconLaugh from './IconLaugh.vue';
 import IconAngry from './IconAngry.vue';
 import IconFire from './IconFire.vue';
 import IconEye from './IconEye.vue';
+import IconTrash from './IconTrash.vue';
 
 export {
+  IconTrash,
   IconEye,
   IconHeart,
   IconSmile,

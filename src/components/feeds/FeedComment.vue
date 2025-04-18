@@ -1,19 +1,43 @@
 <script setup lang="ts">
 import MenuMore from '@/components/common/menu/MenuMore.vue';
-import { IconFlag } from '@/components/icons';
+import { IconFlag, IconTrash } from '@/components/icons';
+import { useAlert, useAlertConfirmation } from '@/composables/alert';
+import { AlertType } from '@/shared/enums/Alert';
 import type { PostComment } from '@/shared/types/Post';
+import { useAuthStore } from '@/stores/auth';
+import { useFeedsStore } from '@/stores/feeds';
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
+const alert = useAlert();
+const alertConfirmation = useAlertConfirmation();
 const router = useRouter();
+const authStore = useAuthStore();
+const feedsStore = useFeedsStore();
 
-const props = defineProps<{ comment: PostComment; showAll?: boolean }>();
+const props = defineProps<{ postId: string; comment: PostComment; showAll?: boolean }>();
 
 const menuMore = ref<InstanceType<typeof MenuMore> | undefined>(undefined);
 const createdDate = computed(() => {
   const date = new Date(props.comment?.created || '').toLocaleString();
   return date;
 });
+
+function report() {
+  menuMore.value?.close();
+  alert.showAlert('Comment reported successfully. Our team will review it soon.', AlertType.Info, 4000);
+}
+
+async function remove() {
+  const confirm = await alertConfirmation.value.show(
+    'Delete Comment',
+    'Are you sure you want to delete this Comment? This action cannot be undone.',
+  );
+  if (!confirm) return;
+
+  feedsStore.removeComment(props.postId, props.comment.id);
+  alert.showAlert('Comment deleted successfully. 🗑️', AlertType.Success, 4000);
+}
 
 function viewProfile() {
   router.push({ path: '/profile', query: { user: props.comment.author?.id } });
@@ -39,11 +63,7 @@ function viewProfile() {
             {{ createdDate }}
           </small>
         </div>
-        <!-- <button
-          class="w-[25px] group lg:w-[30px] rounded-full px-1 cursor-pointer hover:bg-gray-200/20"
-        >
-          <IconHorizontalDots class="fill-gray-500 group-hover:fill-dark dark:group-hover:fill-white" />
-        </button> -->
+
         <MenuMore
           icon-class="!w-[24px]"
           ref="menuMore"
@@ -52,10 +72,20 @@ function viewProfile() {
           <ul class="bg-white dark:bg-black py-1 flex flex-col text-[14px]">
             <li
               class="flex items-center p-2 hover:bg-slate-200 dark:hover:bg-slate-600"
-              @click="() => menuMore?.close()"
+              @click="report()"
+              v-if="authStore.authUser?.id !== props.comment.author?.id"
             >
               <IconFlag class="w-[30px] mr-2" />
               <span>Report</span>
+            </li>
+
+            <li
+              class="flex items-center p-2 hover:bg-slate-200 dark:hover:bg-slate-600"
+              @click="remove()"
+              v-if="authStore.authUser?.id === props.comment.author?.id"
+            >
+              <IconTrash class="w-[30px] mr-2" />
+              <span>Delete</span>
             </li>
           </ul>
         </MenuMore>

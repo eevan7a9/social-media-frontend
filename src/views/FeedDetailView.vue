@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CreateComment from '@/components/home/CreateComment.vue';
+import FeedCreateComment from '@/components/feeds/FeedCreateComment.vue';
 import FeedHeader from '@/components/feeds/FeedHeader.vue';
 import { useFeedsStore } from '@/stores/feeds';
 import { computed, onMounted } from 'vue';
@@ -63,7 +63,7 @@ onMounted(() => {
               </div>
             </div>
 
-            <CreateComment :post="post" v-if="post" />
+            <FeedCreateComment :post="post" v-if="post" />
           </div>
         </div>
 
@@ -85,7 +85,7 @@ onMounted(() => {
             v-else
           >
             <template v-for="(comment, i) of post.comments" :key="i">
-              <FeedComment show-all class="!rounded-none" :comment="comment" />
+              <FeedComment show-all class="!rounded-none" :post-id="post.id" :comment="comment" />
             </template>
           </div>
           <div class="bg-white h-[50px] w-full rounded-b-xl"></div>
