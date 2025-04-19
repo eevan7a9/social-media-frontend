@@ -48,7 +48,9 @@ function setReaction(reaction: StoryReaction): void {
           {{ props.story.reactions?.heart || 0 }}
         </div>
 
-        <IconHeart class="w-[50px] fill-red-500 group-hover:fill-red-400" />
+        <IconHeart
+          class="group-hover:scale-125 transition-all duration-300 ease-in-out w-[50px] fill-red-500 group-hover:fill-red-400"
+        />
       </button>
     </li>
     <div class="w-[60%] h-[2px] bg-dark/10"></div>
@@ -66,7 +68,9 @@ function setReaction(reaction: StoryReaction): void {
           {{ props.story.reactions?.smile || 0 }}
         </div>
 
-        <IconSmile class="w-[50px] fill-yellow-400 group-hover:fill-yellow-500" />
+        <IconSmile
+          class="group-hover:scale-125 transition-all duration-300 ease-in-out w-[50px] fill-yellow-400 group-hover:fill-yellow-500"
+        />
       </button>
     </li>
     <div class="w-[60%] h-[2px] bg-dark/10"></div>
@@ -84,7 +88,9 @@ function setReaction(reaction: StoryReaction): void {
           {{ props.story.reactions?.laugh || 0 }}
         </div>
 
-        <IconLaugh class="w-[50px] fill-sky-500 group-hover:fill-sky-400" />
+        <IconLaugh
+          class="group-hover:scale-125 transition-all duration-300 ease-in-out w-[50px] fill-sky-500 group-hover:fill-sky-400"
+        />
       </button>
     </li>
     <div class="w-[60%] h-[2px] bg-dark/10"></div>
@@ -102,7 +108,9 @@ function setReaction(reaction: StoryReaction): void {
           {{ props.story.reactions?.angry || 0 }}
         </div>
 
-        <IconAngry class="w-[50px] fill-orange-600 group-hover:fill-orange-500" />
+        <IconAngry
+          class="group-hover:scale-125 transition-all duration-300 ease-in-out w-[50px] fill-orange-600 group-hover:fill-orange-500"
+        />
       </button>
     </li>
     <div class="w-[60%] h-[2px] bg-dark/10"></div>
@@ -120,7 +128,9 @@ function setReaction(reaction: StoryReaction): void {
           {{ props.story.reactions?.fire || 0 }}
         </div>
 
-        <IconFire class="w-[60px] fill-orange-500 group-hover:fill-red-400" />
+        <IconFire
+          class="group-hover:scale-125 transition-all duration-300 ease-in-out w-[60px] fill-orange-500 group-hover:fill-red-400"
+        />
       </button>
     </li>
   </ul>
