@@ -5,6 +5,7 @@ import { useAlert, useAlertConfirmation } from '@/composables/alert';
 import { AlertType } from '@/shared/enums/Alert';
 import { deleteFeed } from '@/shared/services/feedService';
 import type { PostAuthor } from '@/shared/types/Post';
+import { relativeDateFormat } from '@/shared/utils/date';
 import { useAuthStore } from '@/stores/auth';
 import { useFeedsStore } from '@/stores/feeds';
 import { ref } from 'vue';
@@ -21,6 +22,7 @@ const props = defineProps<{
   author: PostAuthor;
   created: string | Date;
   id: string;
+  formatDatesAgo?: boolean;
 }>();
 
 const emits = defineEmits<{ viewDetails: []; edit: []; report: [] }>();
@@ -68,7 +70,9 @@ function viewProfile() {
       />
       <div class="flex flex-col">
         <span class="font-medium leading-4">{{ props.author.name }}</span>
-        <small class="text-[13px] font-light text-gray-800 dark:text-gray-200">{{ props.created }}</small>
+        <small class="text-[13px] mt-1 font-light text-gray-800 dark:text-gray-200">{{
+          formatDatesAgo ? relativeDateFormat(props.created) : new Date(props.created).toLocaleString()
+        }}</small>
       </div>
     </div>
     <!--  -->

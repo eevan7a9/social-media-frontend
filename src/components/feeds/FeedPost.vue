@@ -42,6 +42,7 @@ onMounted(() => {
         :id="props.post.id"
         :author="props.post.author"
         :created="props.post.created"
+        format-dates-ago
         @viewDetails="viewPost(props.post.id)"
       />
       <FeedContent :post="props.post" :show-tags="props.showTags" @click="viewPost(props.post.id)" />
