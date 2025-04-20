@@ -4,3 +4,9 @@ export enum NotificationType {
   Post = 'post',
   App = 'app',
 }
+
+export enum NotificationTarget {
+  Feed = 'feed',
+  Story = 'story',
+  Profile = 'profile',
+}
