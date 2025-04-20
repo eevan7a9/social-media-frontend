@@ -4,6 +4,7 @@ import { useFriendsStore } from '@/stores/friends';
 import { useActivitiesStore } from '@/stores/activities';
 import { useStoriesStore } from '@/stores/stories';
 import StoryListItem from '../story/StoryListItem.vue';
+import EventsList from './EventsList.vue';
 
 const friendsStore = useFriendsStore();
 const activitiesStore = useActivitiesStore();
@@ -12,23 +13,7 @@ const storiesStore = useStoriesStore();
 
 <template>
   <section>
-    <div class="bg-white rounded-md px-3 lg:pl-5 py-2 lg:py-3">
-      <h1 class="text-[16px] font-bold">Upcoming Events</h1>
-      <ul class="flex flex-col gap-y-3 mt-2">
-        <li>
-          <span class="text-[14px] font-semibold text-blue-950 dark:text-gray-200">Birthday</span>
-          <p class="text-[13px] font-light max-w-[250px]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, modi.
-          </p>
-        </li>
-        <li>
-          <span class="text-[14px] font-semibold text-blue-950 dark:text-gray-200">Fiesta Cebu</span>
-          <p class="text-[13px] font-light max-w-[250px]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, modi.
-          </p>
-        </li>
-      </ul>
-    </div>
+    <EventsList />
 
     <div class="px-3 mt-4 border-b pb-6 mb-4 border-gray-300">
       <h1 class="text-[16px] font-bold">Top Stories:</h1>
