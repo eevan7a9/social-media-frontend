@@ -13,7 +13,7 @@ function viewStory() {
 <template>
   <li
     @click="viewStory()"
-    class="relative h-[200px] cursor-pointer w-full bg-slate-400 dark::bg-sky-950 rounded-md"
+    class="hover:scale-105 transition-all ease-in-out duration-500 relative h-[200px] cursor-pointer w-full bg-slate-400 dark::bg-sky-950 rounded-md"
   >
     <img
       :src="props.story.author.image"

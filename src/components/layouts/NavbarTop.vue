@@ -4,6 +4,7 @@ import MenuProfile from '@/components/common/menu/MenuProfile.vue';
 import SearchField from '@/components/common/SearchField.vue';
 import MenuNotification from '@/components/common/menu/MenuNotification.vue';
 import MenuChat from '../common/menu/MenuChat.vue';
+import { IconHouse } from '../icons';
 </script>
 
 <template>
@@ -12,6 +13,17 @@ import MenuChat from '../common/menu/MenuChat.vue';
       <RouterLink to="/" class="cursor-pointer">
         <img src="/logo.svg" class="max-w-[64px]" />
       </RouterLink>
+
+      <ul class="pl-8 lg:pl-12">
+        <RouterLink to="/">
+          <li
+            class="cursor-pointer hover:underline flex items-center gap-1 text-[18px] font-semibold text-primary"
+          >
+            <IconHouse class="w-[36px] fill-primary" />
+            <span>Home</span>
+          </li>
+        </RouterLink>
+      </ul>
 
       <SearchField class="w-full max-w-[400px] ml-auto mr-0" />
 

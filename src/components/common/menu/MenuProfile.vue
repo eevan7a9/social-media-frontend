@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, shallowRef, watch } from 'vue';
-import { IconCog, IconHelp, IconPersonCircle } from '../../icons';
+import { IconCog, IconHelp, IconLogout, IconPersonCircle } from '../../icons';
 import { useAuthStore } from '@/stores/auth';
 import { useRouter } from 'vue-router';
 
@@ -30,6 +30,12 @@ const items = ref([
     label: 'Settings',
     path: '/',
     icon: shallowRef(IconCog),
+    disable: true,
+  },
+  {
+    label: 'Logout',
+    path: '/',
+    icon: shallowRef(IconLogout),
     disable: true,
   },
 ]);

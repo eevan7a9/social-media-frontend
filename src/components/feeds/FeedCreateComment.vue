@@ -32,6 +32,7 @@ async function send(): Promise<void> {
         placeholder="Write your comment..."
         maxlength="100"
         class="text-[14px] w-full h-[50px] py-2 px-3 pl-5 bg-gray-100 rounded-l-2xl"
+        @keydown.enter="send()"
       />
       <button
         @click="send()"
