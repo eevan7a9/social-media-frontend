@@ -24,7 +24,15 @@ const activitiesStore = useActivitiesStore();
 const storiesStore = useStoriesStore();
 
 const route = useRoute();
-const isDetailsView = computed(() => route.name === 'feedDetailView');
+const isDetailsView = computed(() =>
+  [
+    'feedDetailView',
+    'groupDetailView',
+    'storyDetailView',
+    'profileFeedDetailView',
+    'profileGroupDetailView',
+  ].includes(route.name?.toString() || ''),
+);
 
 const alertConfirmationRef = ref<InstanceType<typeof AlertConfirmation> | null>(null);
 provide('alertConfirmationRef', alertConfirmationRef);
