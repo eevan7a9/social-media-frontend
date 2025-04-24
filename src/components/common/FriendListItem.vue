@@ -27,7 +27,7 @@ function reportUser() {
   <li class="flex items-center gap-x-3">
     <div class="relative">
       <span
-        class="h-2 w-2 absolute z-10 bottom-1 right-1 rounded-full"
+        class="border border-white size-[10px] absolute z-10 bottom-1 right-0 rounded-full"
         :class="{
           'bg-success': friend.status === FriendStatus.Active,
           'bg-warning': friend.status === FriendStatus.Inactive,
@@ -49,6 +49,7 @@ function reportUser() {
           @click="() => reportUser()"
         >
           <IconFlag class="w-[30px] mr-2" />
+
           <span>Report</span>
         </li>
       </ul>

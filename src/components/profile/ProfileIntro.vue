@@ -16,6 +16,7 @@ import type { User } from '@/shared/types/User';
 import { useAlert } from '@/composables/alert';
 import { AlertType } from '@/shared/enums/Alert';
 import { useAuthStore } from '@/stores/auth';
+import { ButtonSendMessage } from '../common/buttons';
 
 const alert = useAlert();
 const auth = useAuthStore();
@@ -47,6 +48,7 @@ function addUser(user: User) {
 function setIsConnected(user: User) {
   isConnected.value = !!user.connections?.includes(auth.authUser?.id || '');
 }
+
 
 watch(
   () => props.profile,
@@ -102,6 +104,8 @@ onMounted(() => setIsConnected(props.profile));
             <IconPeople class="w-[20px] sm:w-[28px] fill-light" />
             My Connections
           </button>
+
+          <ButtonSendMessage :profile="props.profile" />
         </div>
       </div>
     </div>
@@ -159,3 +163,5 @@ onMounted(() => setIsConnected(props.profile));
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped></style>

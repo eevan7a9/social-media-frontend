@@ -16,6 +16,7 @@ import { fetchGroups } from './shared/services/groupService';
 import { fetchStories } from './shared/services/storyService';
 import { fetchActivities } from './shared/services/activityService';
 import AlertConfirmation from './components/common/alerts/AlertConfirmation.vue';
+import ChatContainer from './components/chat/ChatContainer.vue';
 
 const feedsStore = useFeedsStore();
 const friendsStore = useFriendsStore();
@@ -67,8 +68,9 @@ onMounted(() => {
 
   <NavbarTop :class="isDetailsView ? 'z-0' : 'z-20'" />
   <main class="bg-light dark:bg-dark text-dark dark:text-light h-full min-h-screen pb-4 relative z-0">
-    <RouterView />
+    <RouterView class="z-0" />
   </main>
+  <ChatContainer class="fixed bottom-0 z-20" />
   <MainFooter class="border-t border-gray-300" />
 </template>
 

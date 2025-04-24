@@ -20,7 +20,7 @@ onMounted(async () => {
 
 <template>
   <div class="bg-white rounded-md px-3 lg:pl-5 py-2 lg:py-3">
-    <h1 class="text-[16px] font-bold">Upcoming Events</h1>
+    <h1 class="text-[16px] font-bold m-0">Upcoming Events</h1>
     <ul class="flex flex-col gap-y-3 mt-2">
       <li v-for="event of events" :key="event.id">
         <span class="text-[14px] font-semibold text-blue-950 dark:text-gray-200">

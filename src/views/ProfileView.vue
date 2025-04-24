@@ -64,6 +64,7 @@ onMounted(() => findUser());
 </script>
 
 <template>
+ <div>
   <section class="h-[300px] bg-gray-800 z-0">
     <img
       :src="profile?.imageConver || 'https://placehold.co/1200x300'"
@@ -120,6 +121,7 @@ onMounted(() => findUser());
     </div>
   </div>
   <RouterView class="z-20" />
+ </div>
 </template>
 
 <style lang="scss" scoped></style>
