@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
+const props = defineProps<{ popupClass?: string }>();
+
 const showPopup = ref(false);
 const pickerContainer = ref<HTMLElement | null>(null);
 
@@ -73,6 +75,7 @@ onBeforeUnmount(() => {
     <div
       v-if="showPopup"
       class="absolute z-10 mt-2 p-2 lg:p-3 bg-white border border-slate-400 shadow-lg rounded-lg"
+      :class="props.popupClass"
     >
       <p class="py-2 px-1 font-light">Smiley Emoji</p>
       <div class="w-[300px] md:max-w-[450px] grid grid-cols-5 gap-2">

@@ -16,6 +16,7 @@ import IconLink from './IconLink.vue';
 import IconEmoji from './IconEmoji.vue';
 import IconShare from './IconShare.vue';
 import IconChat from './IconChat.vue';
+import IconChatOutline from './IconChatOutline.vue';
 import IconChat2 from './IconChat2.vue';
 import IconBookmarkDefault from './IconBookmarkDefault.vue';
 import IconHelp from './IconHelp.vue';
@@ -46,8 +47,12 @@ import IconFire from './IconFire.vue';
 import IconEye from './IconEye.vue';
 import IconTrash from './IconTrash.vue';
 import IconLogout from './IconLogout.vue';
+import IconSend from './IconSend.vue';
+import IconChevronUp from './IconChevronUp.vue';
 
 export {
+  IconChevronUp,
+  IconSend,
   IconLogout,
   IconTrash,
   IconEye,
@@ -78,6 +83,7 @@ export {
   IconHelp,
   IconBookmarkDefault,
   IconChat,
+  IconChatOutline,
   IconChat2,
   IconShare,
   IconMapPin,

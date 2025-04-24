@@ -1,34 +1,18 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { IconChat2 } from '../../icons';
+import { useChatStore } from '@/stores/chat';
+import { fetchChatRooms } from '@/shared/services/chatService';
+
+const chatStore = useChatStore();
 
 const show = ref(false);
 const notifyContainer = ref<HTMLElement | undefined>(undefined);
-
-const chats = ref<
-  {
-    id: string | number;
-    image: string;
-    name: string;
-    message: string;
-    created: string | Date;
-  }[]
->([
-  {
-    id: 'chat1',
-    name: 'John Doe III',
-    message: 'Rise of the new Franchise!!! Yes!!!',
-    image: 'https://placehold.co/100x100/333/fff',
-    created: '2025 - 01 - 02',
-  },
-  {
-    id: 'chat2',
-    name: 'Monkey D. Luffy',
-    message: 'Have you seen it yet?',
-    image: 'https://placehold.co/100x100/333/fff',
-    created: '2025 - 01 - 01',
-  },
-]);
+const totalUnreads = computed<number>(() =>
+  chatStore.rooms.length
+    ? chatStore.rooms.map((room) => room.unreads || 0).reduce((prev, curr) => prev + curr)
+    : 0,
+);
 
 function toggle() {
   show.value = !show.value;
@@ -40,6 +24,15 @@ function detectOutsideClick(e: MouseEvent) {
   }
 }
 
+async function getChatRooms() {
+  try {
+    const res = await fetchChatRooms();
+    chatStore.setRooms(res);
+  } catch (error) {
+    throw Error('Error: ' + error);
+  }
+}
+
 watch(show, (val) => {
   if (val) {
     setTimeout(() => document.addEventListener('click', detectOutsideClick), 500);
@@ -47,15 +40,19 @@ watch(show, (val) => {
     document.removeEventListener('click', detectOutsideClick);
   }
 });
+
+onMounted(() => {
+  getChatRooms();
+});
 </script>
 
 <template>
   <div class="relative group">
     <div
       class="absolute text-[14px] h-[18px] w-[18px] rounded-full bg-success text-white flex items-center justify-center"
-      v-if="chats.length"
+      v-if="totalUnreads"
     >
-      {{ chats.length }}
+      {{ totalUnreads }}
     </div>
 
     <button @click="toggle()">
@@ -70,25 +67,32 @@ watch(show, (val) => {
       <h1 class="py-2 border-b border-gray-300 pl-3">Recent Messages:</h1>
 
       <article
-        v-for="(chatter, i) of chats"
-        :key="chatter.id"
-        class="relative px-3 py-2 flex items-center gap-x-2 md:gap-x-3"
-        :class="chats.length - 1 !== i ? 'border-b border-gray-200' : ''"
+        v-for="(room, i) of chatStore.rooms"
+        :key="room.id"
+        class="relative hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer px-3 py-2 flex items-center gap-x-2 md:gap-x-3"
+        :class="chatStore.rooms.length - 1 !== i ? 'border-b border-gray-200' : ''"
+        @click="chatStore.addRoomVisibility(room.id)"
       >
-        <img :src="chatter.image" class="w-[60px] rounded-full" alt="notify-image" />
+        <img :src="room.image" class="w-[60px] rounded-full" alt="notify-image" />
         <div class="flex flex-col w-full">
-          <h1 class="font-semibold flex justify-between">
-            {{ chatter.name }}
+          <h1 class="font-semibold flex justify-between items-center">
+            {{ room.title }}
 
-            <span class="text-[12px] font-light text-gray-600">{{
-              new Date(chatter.created).toDateString()
-            }}</span>
+            <span class="text-[12px] font-light text-gray-600">
+              {{ new Date(room.created).toDateString() }}
+            </span>
           </h1>
-          <p class="text-ellipsis line-clamp-1 text-[14px]">{{ chatter.message }}</p>
+          <p class="relative text-ellipsis line-clamp-1 text-[14px]">
+            {{ room.recentMessage?.content }}
+            <small
+              class="absolute bottom-2 right-3 bg-primary border border-white block p-[5px] rounded-full"
+              v-if="room.unreads"
+            ></small>
+          </p>
         </div>
       </article>
 
-      <p class="px-3 py-2 text-gray-700 dark:text-gray-300 text-[14px]" v-if="!chats.length">
+      <p class="px-3 py-2 text-gray-700 dark:text-gray-300 text-[14px]" v-if="!chatStore.rooms.length">
         Notification Empty
       </p>
     </div>
