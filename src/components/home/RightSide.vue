@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { ActivityListItem, FriendListItem } from '@/components/common';
-import { useFriendsStore } from '@/stores/friends';
+import { useUsersStore } from '@/stores/users';
 import { useActivitiesStore } from '@/stores/activities';
 import { useStoriesStore } from '@/stores/stories';
 import StoryListItem from '../story/StoryListItem.vue';
 import EventsList from './EventsList.vue';
 
-const friendsStore = useFriendsStore();
+const usersStore = useUsersStore();
 const activitiesStore = useActivitiesStore();
 const storiesStore = useStoriesStore();
 </script>
@@ -28,7 +28,7 @@ const storiesStore = useStoriesStore();
         <ul
           class="custom-scrollbar flex flex-col gap-y-3 mt-2 lg:mt-3 h-[50dvh] max-h-[400px] overflow-auto relative"
         >
-          <FriendListItem v-for="friend of friendsStore.list" :key="friend.id" :friend="friend" />
+          <FriendListItem v-for="friend of usersStore.friends" :key="friend.id" :friend="friend" />
         </ul>
       </div>
 

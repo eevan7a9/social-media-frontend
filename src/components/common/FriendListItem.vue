@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { FriendStatus } from '@/shared/enums/Friend';
+import { FriendStatus } from '@/shared/enums/User';
 import type { UserFriend } from '@/shared/types/User';
 import { IconFlag } from '../icons';
 import { useRouter } from 'vue-router';

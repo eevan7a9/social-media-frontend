@@ -49,8 +49,10 @@ import IconTrash from './IconTrash.vue';
 import IconLogout from './IconLogout.vue';
 import IconSend from './IconSend.vue';
 import IconChevronUp from './IconChevronUp.vue';
+import IconClockOutline from './IconClockOutline.vue';
 
 export {
+  IconClockOutline,
   IconChevronUp,
   IconSend,
   IconLogout,
