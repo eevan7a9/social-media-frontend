@@ -1,4 +1,4 @@
-import type { FriendStatus } from '../enums/Friend';
+import type { FriendStatus } from '../enums/User';
 
 export interface User {
   id: string;
@@ -14,6 +14,7 @@ export interface User {
   occupation?: string;
   company?: string;
   website?: string;
+  connected?: boolean;
   socials?: {
     github?: string;
     twitter?: string;
@@ -32,5 +33,5 @@ export interface UserAuth extends User {
   token: string;
 }
 export interface UserSimilar extends User {
-  connected: boolean;
+  pending?: boolean
 }

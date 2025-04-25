@@ -4,22 +4,22 @@ import NavbarTop from '@/components/layouts/NavbarTop.vue';
 import MainFooter from '@/components/layouts/MainFooter.vue';
 import { computed, onMounted, provide, ref } from 'vue';
 import AlertDefault from './components/common/alerts/AlertDefault.vue';
-import { useFriendsStore } from './stores/friends';
+import { useUsersStore } from './stores/users';
 import { useGroupsStore } from './stores/groups';
 import { useFeedsStore } from './stores/feeds';
 import LoadingPage from './components/common/loading/LoadingPage.vue';
 import { useActivitiesStore } from './stores/activities';
 import { useStoriesStore } from './stores/stories';
 import { fetchFeeds } from './shared/services/feedService';
-import { fetchFriends } from './shared/services/friendService';
 import { fetchGroups } from './shared/services/groupService';
 import { fetchStories } from './shared/services/storyService';
 import { fetchActivities } from './shared/services/activityService';
 import AlertConfirmation from './components/common/alerts/AlertConfirmation.vue';
 import ChatContainer from './components/chat/ChatContainer.vue';
+import { fetchUsers } from './shared/services/userService';
 
 const feedsStore = useFeedsStore();
-const friendsStore = useFriendsStore();
+const usersStore = useUsersStore();
 const groupsStore = useGroupsStore();
 const activitiesStore = useActivitiesStore();
 const storiesStore = useStoriesStore();
@@ -42,9 +42,8 @@ onMounted(() => {
   fetchFeeds().then((res) => {
     feedsStore.setFeeds(res.posts);
   });
-  fetchFriends().then((res) => {
-    friendsStore.setFriends(res.friends);
-    friendsStore.setInitialFetchDone(true);
+  fetchUsers().then((res) => {
+    usersStore.setUsers(res.users);
   });
   fetchGroups().then((res) => {
     groupsStore.setGroups(res.groups);

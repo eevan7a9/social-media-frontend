@@ -5,25 +5,15 @@ import { onMounted, ref } from 'vue';
 import ButtonConnection from '../common/buttons/ButtonConnection.vue';
 import { IconPeople } from '../icons';
 import { useRouter } from 'vue-router';
-import { useAlert } from '@/composables/alert';
-import { AlertType } from '@/shared/enums/Alert';
 
 const url = import.meta.env.VITE_APP_SIMILAR_USERS || import.meta.env.VITE_APP_BASE_URL + '/users-similar';
 
 const router = useRouter();
-const alert = useAlert();
 
 const users = ref<UserSimilar[]>([]);
 
 function viewProfile(id: string) {
   router.push({ path: '/profile', query: { user: id } });
-}
-
-function addUser(user: UserSimilar) {
-  user.connected = !user.connected;
-  if (user.connected) {
-    alert.showAlert(`You added ${user.username.slice(0, 10)}...`, AlertType.Info);
-  }
 }
 
 onMounted(async () => {
@@ -56,12 +46,7 @@ onMounted(async () => {
           </span>
         </div>
 
-        <ButtonConnection
-          label-not-connected="Add"
-          @click="addUser(user)"
-          :is-connected="user.connected"
-          class="ml-auto mr-0"
-        />
+        <ButtonConnection label-not-connected="Add" :is-connected="false" class="ml-auto mr-0" />
       </li>
     </ul>
   </div>

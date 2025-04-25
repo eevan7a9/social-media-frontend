@@ -1,25 +1,19 @@
 <script lang="ts" setup>
-import {
-  IconCheckDecagram,
-  IconFacebook,
-  IconGithub,
-  IconInstagram,
-  IconMapPin,
-  IconPeople,
-  IconTwitch,
-  IconTwiter,
-  IconYoutube,
-} from '@/components/icons';
+import { IconCheckDecagram, IconMapPin, IconPeople } from '@/components/icons';
 import { onMounted, ref, watch } from 'vue';
 import ButtonConnection from '../common/buttons/ButtonConnection.vue';
 import type { User } from '@/shared/types/User';
-import { useAlert } from '@/composables/alert';
+import { useAlert, useAlertConfirmation } from '@/composables/alert';
 import { AlertType } from '@/shared/enums/Alert';
 import { useAuthStore } from '@/stores/auth';
 import { ButtonSendMessage } from '../common/buttons';
+import ProfileSocials from './ProfileSocials.vue';
+import { useUsersStore } from '@/stores/users';
 
 const alert = useAlert();
+const usersStore = useUsersStore();
 const auth = useAuthStore();
+const alertConfirm = useAlertConfirmation();
 
 const props = defineProps<{
   profile: User;
@@ -27,28 +21,32 @@ const props = defineProps<{
   website?: string;
 }>();
 
-const github = props.profile.socials?.github;
-const twitch = props.profile.socials?.twitch;
-const twitter = props.profile.socials?.twitter;
-const instagram = props.profile.socials?.instagram;
-const facebook = props.profile.socials?.facebook;
-const youtube = props.profile.socials?.youtube;
-
 const isConnected = ref(false);
 const isVerified = ref(true);
 
-function addUser(user: User) {
-  isConnected.value = !isConnected.value;
-
+async function removeConnection() {
   if (isConnected.value) {
-    alert.showAlert(`You added ${user.username.slice(0, 10)}...`, AlertType.Info);
+    const res = await alertConfirm.value.show(
+      'Remove Connection',
+      'Are you sure you want to remove this user from your connections?',
+    );
+
+    if (res && auth.authUser) {
+      auth.removeConnection(props.profile.id);
+      usersStore.removeUserConnection(auth.authUser.id);
+
+      isConnected.value = false;
+      return alert.showAlert(
+        `You have removed ${props.profile.username.slice(0, 10)}... from your connections.`,
+        AlertType.Info,
+      );
+    }
   }
 }
 
 function setIsConnected(user: User) {
-  isConnected.value = !!user.connections?.includes(auth.authUser?.id || '');
+  isConnected.value = auth.authUser?.connections?.includes(user.id) || false;
 }
-
 
 watch(
   () => props.profile,
@@ -95,7 +93,7 @@ onMounted(() => setIsConnected(props.profile));
         </div>
 
         <div class="flex items-center gap-3">
-          <ButtonConnection :is-connected="isConnected" @click="addUser(props.profile)" v-if="!props.isMe" />
+          <ButtonConnection :is-connected="isConnected" @remove="removeConnection" v-if="!props.isMe" />
 
           <button
             class="text-[14px] sm:text-[16px] md:text-[18px] cursor-not-allowed text-light items-center bg-primary mt-2 py-1 sm:py-2 pl-3 pr-5 rounded-md flex gap-x-2"
@@ -105,53 +103,14 @@ onMounted(() => setIsConnected(props.profile));
             My Connections
           </button>
 
-          <ButtonSendMessage :profile="props.profile" />
+          <ButtonSendMessage :profile="props.profile" v-if="!isMe" />
         </div>
       </div>
     </div>
 
     <div class="flex flex-col items-start w-full md:pt-6 pl-3 sm:pl-8 md:pl-3">
       <h1 class="text-[16px] sm:text-[18px] font-semibold text-nowrap">My Socials:</h1>
-      <div class="flex flex-wrap md:w-[200px] gap-3">
-        <a target="__blank" :href="github" :class="github ? 'cursor-pointer' : 'cursor-not-allowed'">
-          <IconGithub
-            class="w-[38px]"
-            :class="github ? 'fill-primary' : 'fill-slate-400 dark:fill-slate-700'"
-          />
-        </a>
-
-        <a target="__blank" :href="twitter" :class="twitter ? 'cursor-pointer' : 'cursor-not-allowed'">
-          <IconTwiter
-            class="w-[38px]"
-            :class="twitter ? 'fill-primary' : 'fill-slate-400 dark:fill-slate-700'"
-          />
-        </a>
-
-        <a target="__blank" :href="instagram" :class="instagram ? 'cursor-pointer' : 'cursor-not-allowed'">
-          <IconInstagram
-            class="w-[35px]"
-            :class="instagram ? 'fill-primary' : 'fill-slate-400 dark:fill-slate-700'"
-          />
-        </a>
-        <a target="__blank" :href="facebook" :class="facebook ? 'cursor-pointer' : 'cursor-not-allowed'">
-          <IconFacebook
-            class="w-[35px]"
-            :class="facebook ? 'fill-primary' : 'fill-slate-400 dark:fill-slate-700'"
-          />
-        </a>
-        <a target="__blank" :href="youtube" :class="youtube ? 'cursor-pointer' : 'cursor-not-allowed'">
-          <IconYoutube
-            class="h-[45px]"
-            :class="youtube ? 'fill-primary' : 'fill-slate-400 dark:fill-slate-700'"
-          />
-        </a>
-        <a target="__blank" :href="twitch" :class="twitch ? 'cursor-pointer' : 'cursor-not-allowed'">
-          <IconTwitch
-            class="w-[38px]"
-            :class="twitch ? 'fill-primary' : 'fill-slate-400 dark:fill-slate-700'"
-          />
-        </a>
-      </div>
+      <ProfileSocials :user="props.profile" />
       <a
         :href="props.profile.website || 'http://evanmarc.com'"
         class="underline mt-2 text-nowrap text-blue-500"

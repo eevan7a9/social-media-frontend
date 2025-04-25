@@ -2,10 +2,10 @@
 import type { ChatMessage, ChatRoom } from '@/shared/types/Chat';
 import type { UserFriend } from '@/shared/types/User';
 import { useAuthStore } from '@/stores/auth';
-import { useFriendsStore } from '@/stores/friends';
+import { useUsersStore } from '@/stores/users';
 import { computed, onMounted, ref, watch } from 'vue';
 import { IconChevronUp, IconClose } from '../icons';
-import { FriendStatus } from '@/shared/enums/Friend';
+import { FriendStatus } from '@/shared/enums/User';
 import ChatInputForm from './ChatInputForm.vue';
 import axios from 'axios';
 import ChatMessages from './ChatMessages.vue';
@@ -16,7 +16,7 @@ const url = import.meta.env.VITE_APP_ROOM_MESSAGES_URL || import.meta.env.VITE_A
 
 const chatStore = useChatStore();
 const authStore = useAuthStore();
-const friendsStore = useFriendsStore();
+const usersStore = useUsersStore();
 
 const emits = defineEmits<{ close: [id: string] }>();
 const props = defineProps<{ chatRoom: ChatRoom }>();
@@ -35,7 +35,7 @@ function clearUnreads() {
 }
 
 function setParticipants() {
-  participants.value = friendsStore.list.filter(
+  participants.value = usersStore.friends.filter(
     (friend) => friend.id !== authStore.authUser?.id && props.chatRoom.participants.includes(friend.id),
   );
 }
@@ -56,7 +56,7 @@ async function getRoomMessages() {
 }
 
 watch(
-  () => friendsStore.list.length,
+  () => usersStore.list.length,
   () => {
     setParticipants();
   },
