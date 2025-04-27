@@ -46,11 +46,11 @@ onMounted(() => {
     @click="goBack()"
     class="bg-gray-900/20 p-4 fixed top-0 h-svh right-0 left-0 bottom-0 flex justify-center md:items-center sm:py-16 md:py-0"
   >
-    <div class="w-full flex justify-center sm:mt-4 pointer-events-none relative">
+    <div class="w-full flex justify-center sm:mt-4 pointer-events-none relative pb-8 md:pb-0">
       <article
-        class="max-w-[800px] items-center flex flex-col md:flex-row gap-2 md:gap-3 grow sm:max-h-[85dvh] pointer-events-auto"
+        class="max-w-[620px] md:max-w-[800px] items-center flex flex-col md:flex-row gap-2 md:gap-3 grow sm:max-h-[85dvh] pointer-events-auto"
       >
-        <div @click.stop class="bg-light dark:bg-dark rounded-md sm:rounded-xl relative h-screen max-h-full">
+        <div @click.stop class="bg-dark rounded-md sm:rounded-xl relative h-screen max-h-full">
           <div
             class="absolute top-0 z-20 bg-dark/30 w-full rounded-t-xl px-3 lg:px-6 py-3 flex items-center justify-start gap-3"
           >
@@ -122,7 +122,10 @@ onMounted(() => {
           </div>
         </div>
 
-        <div @click.stop class="flex flex-col rounded-xl bg-light dark:bg-black/80 h-full py-3 px-2">
+        <div
+          @click.stop
+          class="flex justify-between md:flex-col rounded-xl bg-light dark:bg-black/80 w-full md:w-auto md:h-full py-3 px-2"
+        >
           <StoryReactions :story="story" v-if="story" />
 
           <button class="w-[60px] hover:bg-sky-600 cursor-pointer p-2 bg-dark rounded-full mt-auto mb-0">

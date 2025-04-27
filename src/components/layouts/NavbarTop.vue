@@ -14,7 +14,7 @@ import { IconHouse } from '../icons';
         <img src="/logo.svg" class="max-w-[64px]" />
       </RouterLink>
 
-      <ul class="pl-8 lg:pl-12">
+      <ul class="pl-8 lg:pl-12 hidden md:block">
         <RouterLink to="/">
           <li
             class="cursor-pointer hover:underline flex items-center gap-1 text-[18px] font-semibold text-primary"
@@ -25,13 +25,15 @@ import { IconHouse } from '../icons';
         </RouterLink>
       </ul>
 
-      <SearchField class="w-full max-w-[400px] ml-auto mr-0" />
+      <SearchField class="md:w-full md:max-w-[400px] ml-3 md:ml-auto md:mr-0" />
 
-      <ul class="flex gap-3 lg:gap-4 items-center mr-0 ml-auto">
+      <div class="relative flex gap-3 lg:gap-4 items-center mr-0 ml-auto">
         <MenuChat />
         <MenuNotification />
         <MenuProfile />
-      </ul>
+
+        <slot name="menuBtn"> </slot>
+      </div>
     </nav>
   </header>
 </template>

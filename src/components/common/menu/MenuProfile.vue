@@ -67,7 +67,7 @@ watch(show, (val) => {
         :src="authStore?.authUser?.image || 'https://placehold.co/200x200/060608/FFF'"
         class="h-[42px] rounded-full"
       />
-      <span class="text-[16px] font-semibold text-primary dark:text-sky-200">
+      <span class="text-[16px] font-semibold text-primary dark:text-sky-200 hidden sm:block">
         {{ authStore?.authUser?.username || 'Guest' }}
       </span>
     </button>

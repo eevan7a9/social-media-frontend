@@ -12,7 +12,7 @@ const emits = defineEmits(['remove']);
 const pending = ref(false);
 
 function toggleButton() {
-  if(props.isConnected) {
+  if (props.isConnected) {
     return emits('remove');
   }
   pending.value = true;
@@ -22,7 +22,7 @@ function toggleButton() {
 <template>
   <button
     @click="toggleButton"
-    class="cursor-pointer text-[14px] sm:text-[16px] md:text-[18px] mt-2 py-1 sm:py-2 pl-3 pr-5 rounded-md flex gap-x-2"
+    class="cursor-pointer text-[14px] sm:text-[16px] md:text-[18px] mt-2 py-1 sm:py-2 pl-3 pr-5 rounded-md flex items-center gap-x-2"
     :class="{
       'bg-primary text-white': props.isConnected,
       'border border-primary': !props.isConnected,
