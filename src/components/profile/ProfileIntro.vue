@@ -59,13 +59,13 @@ onMounted(() => setIsConnected(props.profile));
 
 <template>
   <div class="grid grid-cols-1 md:grid-cols-12 justify-between">
-    <div class="col-span-1 md:col-span-7 lg:col-span-8 flex gap-2 w-full">
+    <div class="col-span-1 md:col-span-7 lg:col-span-8 flex flex-col xs:flex-row gap-2 w-full">
       <img
         :src="profile.image"
         class="-translate-y-[50px] sm:-translate-y-[100px] object-contain w-[200px] h-[200px] rounded-full bg-gray-300 border-2 border-light overflow-hidden"
       />
       <!-- info -->
-      <div class="pt-3">
+      <div class="pt-3 -translate-y-[70px] xs:translate-y-0">
         <h1 class="flex items-center gap-3 text-[20px] md:text-[32px] font-black">
           {{ profile.username || 'Eevan7a9' }}
           <div
@@ -83,7 +83,7 @@ onMounted(() => setIsConnected(props.profile));
           <span class="hidden xs:inline">| {{ profile.company }}</span>
         </div>
 
-        <div class="text-[12px] sm:text-[16px] flex flex-col sm:flex-row sm:items-center gap-x-1">
+        <div class="text-[14px] sm:text-[16px] flex flex-col sm:flex-row sm:items-center gap-x-1">
           <!-- country -->
           <span class="font-bold">{{ profile.country || 'Philippines' }}, </span>
           <div class="flex items-center">
@@ -92,7 +92,7 @@ onMounted(() => setIsConnected(props.profile));
           </div>
         </div>
 
-        <div class="flex items-center gap-3">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
           <ButtonConnection :is-connected="isConnected" @remove="removeConnection" v-if="!props.isMe" />
 
           <button
@@ -108,7 +108,7 @@ onMounted(() => setIsConnected(props.profile));
       </div>
     </div>
 
-    <div class="flex flex-col items-start w-full md:pt-6 pl-3 sm:pl-8 md:pl-3">
+    <div class="flex flex-col items-start w-full pt-3 md:pt-6 pl-3 sm:pl-8 md:pl-3">
       <h1 class="text-[16px] sm:text-[18px] font-semibold text-nowrap">My Socials:</h1>
       <ProfileSocials :user="props.profile" />
       <a

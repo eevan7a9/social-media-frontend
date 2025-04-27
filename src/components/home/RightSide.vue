@@ -2,27 +2,20 @@
 import { ActivityListItem, FriendListItem } from '@/components/common';
 import { useUsersStore } from '@/stores/users';
 import { useActivitiesStore } from '@/stores/activities';
-import { useStoriesStore } from '@/stores/stories';
-import StoryListItem from '../story/StoryListItem.vue';
 import EventsList from './EventsList.vue';
+import StoryTopStories from '../story/StoryTopStories.vue';
 
 const usersStore = useUsersStore();
 const activitiesStore = useActivitiesStore();
-const storiesStore = useStoriesStore();
 </script>
 
 <template>
   <section>
     <EventsList />
 
-    <div class="px-3 mt-4 border-b pb-6 mb-4 border-gray-300">
-      <h1 class="text-[16px] font-bold m-0">Top Stories:</h1>
-      <ul class="flex gap-x-3 mt-2">
-        <StoryListItem v-for="story of storiesStore.topStories" :key="story.id" :story="story" />
-      </ul>
-    </div>
+    <StoryTopStories item-class="h-[200px]" class="hidden md:block px-3 mt-4 border-b pb-6 mb-4 border-gray-300" />
 
-    <div class="sticky top-4">
+    <div class="sticky top-4 mt-8 md:mt-0">
       <div class="px-3">
         <h1 class="text-[16px] font-bold m-0">My Connections:</h1>
         <ul

@@ -33,7 +33,7 @@ function setReaction(reaction: StoryReaction): void {
 </script>
 
 <template>
-  <ul class="flex flex-col items-center justify-center gap-2">
+  <ul class="flex md:flex-col items-center justify-center gap-2">
     <li>
       <button class="relative group py-1 cursor-pointer" @click="setReaction(StoryReaction.Heart)">
         <IconCheckCircle

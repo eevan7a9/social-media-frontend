@@ -77,7 +77,7 @@ onMounted(() => {
 
 <template>
   <div
-    :class="show ? 'h-[380px] lg:h-[520px] border-slate-200' : 'h-[54px]  border-slate-300'"
+    :class="show ? 'h-[580px] border-slate-200' : 'h-[54px]  border-slate-300'"
     class="border transition-all duration-300 ease-in-out bg-slate-100 dark:bg-slate-700 w-[360px] md:w-[450px] shadow-2xl flex flex-col rounded-t-xl"
   >
     <div

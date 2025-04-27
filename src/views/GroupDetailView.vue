@@ -52,7 +52,9 @@ onMounted(() => {
       >
         <div @click.stop class="h-full w-full bg-light dark:bg-dark rounded-xl">
           <div class="h-[230px] rounded-t-xl">
-            <div class="size-[180px] bg-white/20 border-white border-[4px] translate-y-[120px] absolute translate-x-8 rounded-xl">
+            <div
+              class="size-[180px] bg-white/20 border-white border-[4px] translate-y-[120px] absolute translate-x-8 rounded-xl"
+            >
               <img :src="group?.image" alt="group-cover" class="w-full h-full object-cover rounded-xl" />
             </div>
             <img :src="group?.imageCover" class="rounded-t-xl w-full h-full object-cover" alt="group-cover" />
@@ -97,7 +99,7 @@ onMounted(() => {
 
         <div
           @click.stop
-          class="bg-light dark:bg-dark w-full max-w-[380px] overflow-hidden rounded-xl hidden sm:block"
+          class="bg-light dark:bg-dark w-full md:max-w-[380px] overflow-hidden rounded-xl hidden sm:block"
         >
           <GroupMembers :members-id="group?.membersId" v-if="group?.membersId" />
         </div>
