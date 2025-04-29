@@ -67,28 +67,28 @@ watch(show, (val) => {
         :src="authStore?.authUser?.image || 'https://placehold.co/200x200/060608/FFF'"
         class="h-[42px] rounded-full"
       />
-      <span class="text-[16px] font-semibold text-primary dark:text-sky-200 hidden sm:block">
+      <span class="text-[16px] font-semibold text-primary dark:text-sky-500 hidden sm:block">
         {{ authStore?.authUser?.username || 'Guest' }}
       </span>
     </button>
 
     <div
       ref="menuContainer"
-      class="bg-white py-1 pb-2 dark:bg-dark absolute top-[60px] right-0 border border-gray-300 rounded-xl xl:-right-12 w-[300px]"
+      class="bg-white py-1 pb-2 dark:bg-dark absolute top-[60px] right-0 border border-gray-300 dark:border-slate-700 rounded-xl xl:-right-12 w-[300px]"
       v-if="show"
     >
       <ul class="flex flex-col gap-y-2">
         <li
           v-for="item of items"
           :key="item.label"
-          :class="item.disable ? 'cursor-not-allowed text-gray-500' : 'cursor-pointer'"
-          class="relative capitalize px-3 py-2 flex items-center gap-x-2 md:gap-x-3 hover:bg-slate-100"
+          :class="item.disable ? 'cursor-not-allowed text-gray-500' : 'cursor-pointer dark:text-white'"
+          class="relative capitalize px-3 py-2 flex items-center gap-x-2 md:gap-x-3 hover:bg-slate-100 dark:hover:bg-slate-800"
           @click="() => item.func && item?.func()"
         >
           <component
             :is="item.icon"
             class="w-[30px]"
-            :class="item.disable ? 'fill-gray-400' : 'fill-primary'"
+            :class="item.disable ? 'fill-gray-400' : 'fill-primary dark:fill-sky-700  '"
           />
           <p class="text-ellipsis line-clamp-1 text-[16px]">{{ item.label }}</p>
         </li>

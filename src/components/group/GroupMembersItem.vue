@@ -23,7 +23,7 @@ function reportUser(): void {
 }
 </script>
 <template>
-  <li class="p-3 bg-white rounded-md flex gap-3 items-center">
+  <li class="p-3 bg-white dark:bg-dark rounded-md flex gap-3 items-center">
     <img
       :src="props.user.image"
       class="h-[60px] w-[60px] border dark:border-light object-contain rounded-full"
@@ -32,7 +32,7 @@ function reportUser(): void {
     />
     <div class="flex flex-col hover:underline cursor-pointer" @click="viewUser(props.user.id)">
       <span>{{ props.user.username }}</span>
-      <small class="text-gray-600">{{ props.user.company }} | {{ props.user.occupation }}</small>
+      <small class="text-gray-600 dark:text-gray-400">{{ props.user.company }} | {{ props.user.occupation }}</small>
     </div>
     <!--
             <button class="absolute group right-4 hover:bg-slate-200/50 p-3 rounded-full cursor-pointer">

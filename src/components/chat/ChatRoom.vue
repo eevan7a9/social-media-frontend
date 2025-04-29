@@ -77,12 +77,12 @@ onMounted(() => {
 
 <template>
   <div
-    :class="show ? 'h-[580px] border-slate-200' : 'h-[54px]  border-slate-300'"
-    class="border transition-all duration-300 ease-in-out bg-slate-100 dark:bg-slate-700 w-[360px] md:w-[450px] shadow-2xl flex flex-col rounded-t-xl"
+    :class="show ? 'h-[580px] border-slate-200 dark:border-slate-700' : 'h-[54px]  border-slate-300'"
+    class="border transition-all duration-300 ease-in-out bg-slate-100 dark:bg-slate-900 w-[360px] md:w-[450px] shadow-2xl flex flex-col rounded-t-xl"
   >
     <div
       @click="show = !show"
-      class="cursor-pointer flex items-center justify-between bg-white py-2 px-3 md:px-4 rounded-t-xl"
+      class="cursor-pointer flex items-center justify-between bg-white dark:bg-black py-2 px-3 md:px-4 rounded-t-xl"
     >
       <RouterLink class="hover:underline" :to="{ path: '/profile', query: { user: participants[0]?.id } }">
         <div class="text-[14px] flex items-center gap-2">
@@ -116,7 +116,7 @@ onMounted(() => {
         </button>
 
         <button @click.stop="emits('close', props.chatRoom.id)" class="group cursor-pointer p-2 rounded-full">
-          <IconClose class="w-[20px] group-hover:scale-150 transition-all duration-300 ease-in-out" />
+          <IconClose class="w-[20px] group-hover:scale-150 transition-all duration-300 ease-in-out dark:fill-slate-400" />
         </button>
       </div>
     </div>

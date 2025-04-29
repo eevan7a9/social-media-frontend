@@ -84,7 +84,7 @@ function viewProfile() {
       >
         <ul class="bg-white dark:bg-black py-1 flex flex-col text-[14px]">
           <li
-            class="py-2 px-1 text-danger hover:bg-slate-200 flex items-center"
+            class="py-2 px-1 text-danger hover:bg-slate-200 dark:hover:bg-slate-800 flex items-center"
             @click="remove()"
             v-if="auth.authUser?.id === props.author.id"
           >

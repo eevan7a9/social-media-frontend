@@ -32,12 +32,14 @@ defineExpose({
 <template>
   <Transition name="fade">
     <div v-if="visible" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div class="bg-white rounded-lg shadow-xl p-6 w-[90%] max-w-md">
+      <div class="bg-white dark:bg-black dark:text-white rounded-lg shadow-xl p-6 w-[90%] max-w-md">
         <h2 class="text-lg font-semibold mb-2">{{ title }}</h2>
-        <p class="text-sm text-gray-600 mb-4">{{ message }}</p>
+        <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">{{ message }}</p>
 
         <div class="flex justify-end gap-3">
-          <button @click="cancel" class="text-gray-500 hover:underline cursor-pointer">Cancel</button>
+          <button @click="cancel" class="text-gray-500 dark:text-gray-200 hover:underline cursor-pointer">
+            Cancel
+          </button>
           <button
             @click="confirm"
             class="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600 cursor-pointer"

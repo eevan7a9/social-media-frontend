@@ -55,7 +55,7 @@ onMounted(() => {
 
     <div v-if="showCreateComment">
       <FeedCreateComment
-        class="border-t border-gray-200"
+        class="border-t border-gray-200 dark:border-slate-700"
         :post="post"
         :class="{ 'border-b-0': post.comments.length, 'rounded-b-xl !pb-4': !post.comments.length }"
       />

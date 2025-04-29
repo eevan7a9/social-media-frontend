@@ -37,11 +37,16 @@ watch(showDropdownSearch, (val) => {
 <template>
   <div
     ref="searchContainerRef"
-    class="relative overflow-y-visible group px-3 md:px-0 py-[1px] flex items-center rounded-full"
+    class="relative overflow-y-visible group px-1 xs:px-3 md:px-0 py-[1px] flex items-center rounded-full"
   >
     <div class="contents" @click="toggleDropdownSearch">
-      <IconMagnify class="md:absolute left-2 w-[30px] fill-gray-400 group-hover:fill-gray-800" />
-      <button class="cursor-pointer text-[13px] text-slate-600 md:hidden" v-if="!showDropdownSearch">
+      <IconMagnify
+        class="md:absolute left-2 w-[30px] fill-gray-400 group-hover:fill-gray-800 dark:group-hover:fill-white"
+      />
+      <button
+        class="hidden sm:block cursor-pointer text-[13px] text-slate-600 md:hidden"
+        v-if="!showDropdownSearch"
+      >
         Search...
       </button>
     </div>
@@ -49,7 +54,7 @@ watch(showDropdownSearch, (val) => {
     <div
       class=""
       :class="{
-        'absolute top-[50px] border border-primary py-2 bg-slate-200 w-[360px] rounded-lg':
+        'absolute top-[50px] -left-[150px] border border-primary py-2 bg-slate-200 dark:bg-slate-700 w-[360px] rounded-lg':
           showDropdownSearch,
         ' hidden md:block': !showDropdownSearch,
       }"
@@ -59,7 +64,7 @@ watch(showDropdownSearch, (val) => {
         @keydown.enter="search"
         @focusin="isFocused = true"
         @focusout="isFocused = false"
-        class="w-full outline-0 py-2 pl-10 rounded-full text-primary bg-slate-200 md:min-w-[400px]"
+        class="w-full outline-0 py-2 pl-10 rounded-full text-primary bg-slate-200 dark:bg-slate-700 dark:placeholder:text-slate-300 dark:text-white md:min-w-[400px]"
         placeholder="Looking for..."
       />
     </div>

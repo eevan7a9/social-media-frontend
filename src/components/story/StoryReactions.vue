@@ -43,7 +43,7 @@ function setReaction(reaction: StoryReaction): void {
 
         <div
           :class="props.story.myReaction === StoryReaction.Heart ? 'text-blue-600 font-medium' : 'text-dark'"
-          class="text-center z-10 absolute px-2 bottom-0 -left-[3px] text-[12px] bg-white/70 rounded-full"
+          class="text-center z-10 absolute px-2 bottom-0 -left-[3px] text-[12px] bg-white/70 dark:bg-slate-600/40 dark:text-white rounded-full"
         >
           {{ props.story.reactions?.heart || 0 }}
         </div>
@@ -63,7 +63,7 @@ function setReaction(reaction: StoryReaction): void {
 
         <div
           :class="props.story.myReaction === StoryReaction.Smile ? 'text-blue-600 font-medium' : 'text-dark'"
-          class="text-center z-10 absolute px-2 bottom-0 -left-[8px] text-[12px] bg-white/70 rounded-full"
+          class="text-center z-10 absolute px-2 bottom-0 -left-[8px] text-[12px] bg-white/70 dark:bg-slate-600/40 dark:text-white rounded-full"
         >
           {{ props.story.reactions?.smile || 0 }}
         </div>
@@ -83,7 +83,7 @@ function setReaction(reaction: StoryReaction): void {
 
         <div
           :class="props.story.myReaction === StoryReaction.Laugh ? 'text-blue-600 font-medium' : 'text-dark'"
-          class="text-center z-10 absolute px-2 bottom-0 -left-[8px] text-[12px] bg-white/70 rounded-full"
+          class="text-center z-10 absolute px-2 bottom-0 -left-[8px] text-[12px] bg-white/70 dark:bg-slate-600/40 dark:text-white rounded-full"
         >
           {{ props.story.reactions?.laugh || 0 }}
         </div>
@@ -103,7 +103,7 @@ function setReaction(reaction: StoryReaction): void {
 
         <div
           :class="props.story.myReaction === StoryReaction.Angry ? 'text-blue-600 font-medium' : 'text-dark'"
-          class="text-center z-10 absolute px-2 bottom-0 -left-[8px] text-[12px] bg-white/70 rounded-full"
+          class="text-center z-10 absolute px-2 bottom-0 -left-[8px] text-[12px] bg-white/70 dark:bg-slate-600/40 dark:text-white rounded-full"
         >
           {{ props.story.reactions?.angry || 0 }}
         </div>
@@ -123,7 +123,7 @@ function setReaction(reaction: StoryReaction): void {
 
         <div
           :class="props.story.myReaction === StoryReaction.Fire ? 'text-blue-600 font-medium' : 'text-dark'"
-          class="text-center z-10 absolute px-2 bottom-0 text-[12px] bg-white/70 rounded-full"
+          class="text-center z-10 absolute px-2 bottom-0 text-[12px] bg-white/70 dark:bg-slate-600/40 dark:text-white rounded-full"
         >
           {{ props.story.reactions?.fire || 0 }}
         </div>

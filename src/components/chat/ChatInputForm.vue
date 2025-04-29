@@ -24,7 +24,7 @@ function submit() {
 
 <template>
   <form @submit.prevent="submit" class="relative justify-stretch pb-2">
-    <div class="right-0 h-full w-full flex items-center relative border border-slate-300 bg-slate-100">
+    <div class="right-0 h-full w-full flex items-center relative border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-900">
       <textarea
         class="z-0 placeholder:text-[18px] lg:py-1 resize-none font-light px-3 w-full"
         :class="{

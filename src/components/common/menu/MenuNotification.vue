@@ -49,18 +49,19 @@ function viewNotification(id: string, type: string) {
   router.push(`/${type}/${id}`);
 }
 
-watch(show, (val, prev) => {
+watch(show, (val) => {
   if (val) {
     setTimeout(() => document.addEventListener('click', detectOutsideClick), 500);
+    setTimeout(
+      () =>
+        (notifications.value = notifications.value.map((i) => {
+          i.unread = false;
+          return i;
+        })),
+      1500,
+    );
   } else {
     document.removeEventListener('click', detectOutsideClick);
-  }
-
-  if (prev && !val) {
-    notifications.value = notifications.value.map((i) => {
-      i.unread = false;
-      return i;
-    });
   }
 });
 
@@ -82,21 +83,23 @@ onMounted(async () => {
     </div>
 
     <button @click="toggle()">
-      <IconBell class="w-[35px] fill-primary group-hover:fill-sky-700 cursor-pointer" />
+      <IconBell class="w-[28px] xs:w-[35px] fill-primary dark:fill-sky-700 group-hover:fill-sky-700 cursor-pointer" />
     </button>
 
     <div
       ref="notifyContainer"
-      class="bg-white py-1 pb-2 dark:bg-dark absolute top-[60px] border border-gray-300 rounded-xl -right-12 w-[300px] lg:w-[340px]"
+      class="bg-white py-1 pb-2 dark:bg-dark absolute top-[60px] border border-gray-300 dark:border-slate-700 rounded-xl -right-12 w-[300px] lg:w-[340px]"
       v-if="show"
     >
-      <h1 class="py-2 border-b border-gray-300 pl-3">Notifications:</h1>
+      <h1 class="py-2 border-b border-gray-300 dark:border-slate-700 pl-3 text-dark dark:text-white">
+        Notifications:
+      </h1>
 
       <article
         v-for="(notification, i) of notifications"
         :key="notification.id"
-        class="relative px-3 py-2 flex items-center gap-x-2 md:gap-x-3 hover:bg-slate-100 dark:hover:bg-slate-800"
-        :class="notifications.length - 1 !== i ? 'border-b border-gray-200' : ''"
+        class="relative px-3 py-2 dark:text-white flex items-center gap-x-2 md:gap-x-3 hover:bg-slate-100 dark:hover:bg-slate-800"
+        :class="notifications.length - 1 !== i ? 'border-b border-gray-200 dark:border-slate-700' : ''"
       >
         <img :src="notification.image" class="w-[60px] rounded-sm" alt="notify-image" />
 

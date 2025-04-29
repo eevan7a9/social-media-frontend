@@ -31,6 +31,6 @@ onMounted(() => {
       </ul>
     </div>
 
-    <div class="h-[50px] w-full bg-white dark:bg-black"></div>
+    <div class="h-[50px] w-full bg-white dark:bg-dark"></div>
   </section>
 </template>

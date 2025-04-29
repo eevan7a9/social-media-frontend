@@ -12,7 +12,7 @@ import StoryTopStories from '@/components/story/StoryTopStories.vue';
 
     <section class="col-span-12 sm:col-span-8 md:col-span-6 h-full pt-4 px-3 z-10">
       <CreatePost class="sticky top-3 z-20" />
-      <div class="bg-gray-300 w-full h-[1px] my-5"></div>
+      <div class="bg-gray-300 dark:bg-slate-700 w-full h-[1px] my-5"></div>
       <StoryTopStories class="md:hidden py-3" />
       <FeedsList class="z-10" />
       <RouterView class="z-20" />

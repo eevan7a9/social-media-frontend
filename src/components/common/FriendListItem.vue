@@ -27,7 +27,7 @@ function reportUser() {
   <li class="flex items-center gap-x-3">
     <div class="relative">
       <span
-        class="border border-white size-[10px] absolute z-10 bottom-1 right-0 rounded-full"
+        class="border border-white dark:border-dark size-[10px] absolute z-10 bottom-1 right-0 rounded-full"
         :class="{
           'bg-success': friend.status === FriendStatus.Active,
           'bg-warning': friend.status === FriendStatus.Inactive,

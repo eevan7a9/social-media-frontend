@@ -81,7 +81,7 @@ async function submit() {
     <textarea
       v-model="myContent"
       rows="2"
-      class="bg-slate-100 w-full rounded-md py-2 px-3 resize-none placeholder:text-[14px]"
+      class="bg-slate-100 dark:bg-slate-700 dark:outline-slate-800 w-full rounded-md py-2 px-3 resize-none placeholder:text-[14px]"
       :class="noContentError ? 'border border-danger' : ''"
       placeholder="What is on your mind?"
       maxlength="140"
@@ -115,9 +115,11 @@ async function submit() {
       <div class="flex items-center gap-x-2">
         <button @click="selectImage()" type="button" class="flex items-center gap-1 group p-1 cursor-pointer">
           <IconImage
-            class="lg:group-hover:scale-150 transition-all duration-300 ease-in-out bg-slate-500/10 rounded-full p-1 h-[30px] w-[30px] fill-primary/70 hover:fill-primary"
+            class="lg:group-hover:scale-150 transition-all duration-300 ease-in-out bg-slate-500/30 dark:bg-slate-500/30 rounded-full p-1 h-[30px] w-[30px] fill-primary/70 hover:fill-primary dark:fill-sky-800"
           />
-          <small class="hidden lg:block text-[12px] text-gray-600 capitalize mr-2">upload</small>
+          <small class="hidden lg:block text-[12px] text-gray-600 dark:text-slate-300 capitalize mr-2"
+            >upload</small
+          >
         </button>
 
         <FeedUploadDialog
@@ -134,18 +136,22 @@ async function submit() {
               class="flex items-center gap-1 group p-1 cursor-pointer"
             >
               <IconEmoji
-                class="lg:group-hover:scale-150 transition-all duration-300 ease-in-out rounded-full bg-warning/15 p-1 h-[30px] w-[30px] fill-warning/70 hover:fill-warning"
+                class="lg:group-hover:scale-150 transition-all duration-300 ease-in-out rounded-full bg-warning/15 dark:bg-warning/40 p-1 h-[30px] w-[30px] fill-warning/70 dark:fill-warning hover:fill-warning"
               />
-              <small class="hidden lg:block text-[12px] text-gray-600 capitalize mr-2">Feelings</small>
+              <small class="hidden lg:block text-[12px] text-gray-600 dark:text-slate-300 capitalize mr-2"
+                >Feelings</small
+              >
             </button>
           </template>
         </EmojiPicker>
 
         <button type="button" @click="embedLink()" class="flex items-center gap-1 group p-1 cursor-pointer">
           <IconLink
-            class="lg:group-hover:scale-150 transition-all duration-300 ease-in-out rounded-full bg-secondary/10 p-1 h-[30px] w-[30px] fill-secondary/70 hover:fill-secondary"
+            class="lg:group-hover:scale-150 transition-all duration-300 ease-in-out rounded-full bg-secondary/10 dark:bg-secondary/40 p-1 h-[30px] w-[30px] fill-secondary/70 dark:fill-secondary hover:fill-secondary"
           />
-          <small class="hidden lg:block text-[12px] text-gray-600 capitalize mr-2">Link</small>
+          <small class="hidden lg:block text-[12px] text-gray-600 dark:text-slate-300 capitalize mr-2"
+            >Link</small
+          >
         </button>
 
         <button
@@ -154,9 +160,11 @@ async function submit() {
           class="flex items-center gap-1 group p-1 cursor-pointer"
         >
           <IconMapPin
-            class="lg:group-hover:scale-150 transition-all duration-300 ease-in-out rounded-full p-1 h-[30px] w-[30px] fill-success/70 hover:fill-success bg-green-400/20"
+            class="lg:group-hover:scale-150 transition-all duration-300 ease-in-out rounded-full p-1 h-[30px] w-[30px] fill-success/70 hover:fill-success dark:fill-success bg-green-400/20"
           />
-          <small class="hidden lg:block text-[12px] text-gray-600 capitalize mr-2">location</small>
+          <small class="hidden lg:block text-[12px] text-gray-600 dark:text-slate-300 capitalize mr-2"
+            >location</small
+          >
         </button>
 
         <MapLocationPicker
