@@ -25,7 +25,7 @@ onMounted(() => {});
     </template>
   </div>
 
-  <div class="py-[100px] border border-gray-300 dark:border-gray-800" v-else>
+  <div class="py-[100px] border border-gray-300 dark:border-slate-700" v-else>
     <slot name="empty">
       <p class="text-[24px] md:text-[28px] font-light text-center">
         No public posts available. Check back later!

@@ -72,7 +72,7 @@ onMounted(() => setIsConnected(props.profile));
             class="cursor-pointer font-medium text-[14px] md:text-[18px] text-gray-700 dark:text-gray-400 mt-2 py-2 pr-5 rounded-md flex items-center gap-1"
             v-if="isVerified"
           >
-            <IconCheckDecagram class="w-[32px] fill-primary" />
+            <IconCheckDecagram class="w-[32px] fill-primary dark:fill-sky-700" />
             <span class="hidden sm:block">{{ isVerified ? 'User Verified' : 'Unverified' }}</span>
           </div>
         </h1>

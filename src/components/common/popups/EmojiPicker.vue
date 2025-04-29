@@ -74,7 +74,7 @@ onBeforeUnmount(() => {
 
     <div
       v-if="showPopup"
-      class="absolute z-10 mt-2 p-2 lg:p-3 bg-white border border-slate-400 shadow-lg rounded-lg"
+      class="absolute z-10 mt-2 p-2 lg:p-3 bg-white border dark:bg-black border-slate-400 dark:border-slate-700 shadow-lg rounded-lg"
       :class="props.popupClass"
     >
       <p class="py-2 px-1 font-light">Smiley Emoji</p>

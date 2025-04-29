@@ -50,10 +50,10 @@ onMounted(() => {
       <article
         class="max-w-[1200px] w-full flex flex-col md:flex-row gap-2 md:gap-3 grow sm:max-h-[90dvh] pointer-events-auto"
       >
-        <div @click.stop class="h-full w-full bg-light dark:bg-dark rounded-xl">
+        <div @click.stop class="h-full w-full bg-light dark:bg-slate-950 rounded-xl">
           <div class="h-[230px] rounded-t-xl">
             <div
-              class="size-[180px] bg-white/20 border-white border-[4px] translate-y-[120px] absolute translate-x-8 rounded-xl"
+              class="size-[180px] bg-white/20 dark:bg-slate-600/55 border-white border-[4px] translate-y-[120px] absolute translate-x-8 rounded-xl"
             >
               <img :src="group?.image" alt="group-cover" class="w-full h-full object-cover rounded-xl" />
             </div>
@@ -66,18 +66,20 @@ onMounted(() => {
                 @click="subscribed()"
                 class="cursor-pointer rounded-xl flex items-center justify-center gap-2 py-2 md:py-3 w-full md:text-[18px] text-white"
                 :class="
-                  isSubsribed ? 'bg-primary font-black' : 'bg-transparent border border-primary !text-primary'
+                  isSubsribed
+                    ? 'bg-primary dark:bg-sky-700 font-black'
+                    : 'bg-transparent border border-primary dark:border-sky-700 !text-primary dark:!text-sky-700'
                 "
               >
                 <IconCheckDecagram class="w-[32px] fill-white" v-if="isSubsribed" />
-                <IconBell class="w-[32px] fill-primary" v-else />
+                <IconBell class="w-[32px] fill-primary dark:fill-sky-600" v-else />
                 {{ isSubsribed ? 'Subscribed' : 'Subscribe' }}
               </button>
             </div>
 
             <div class="w-full px-3 xs:py-3">
               <h1
-                class="text-[20px] text-light dark:text-dark sm:text-[28px] font-black sm:absolute sm:-translate-y-[54px] dark-text-stroke"
+                class="text-[20px] text-light sm:text-[28px] font-black sm:absolute sm:-translate-y-[54px] dark-text-stroke"
               >
                 {{ group?.name }}
               </h1>
@@ -99,7 +101,7 @@ onMounted(() => {
 
         <div
           @click.stop
-          class="bg-light dark:bg-dark w-full md:max-w-[380px] overflow-hidden rounded-xl hidden sm:block"
+          class="bg-light dark:bg-slate-950 w-full md:max-w-[380px] overflow-hidden rounded-xl hidden sm:block"
         >
           <GroupMembers :members-id="group?.membersId" v-if="group?.membersId" />
         </div>

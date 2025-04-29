@@ -8,7 +8,7 @@ import ProfileSummary from '@/components/profile/ProfileSummary.vue';
 import ButtonDefault from '@/components/common/buttons/ButtonDefault.vue';
 import { IconCommunity } from '@/components/icons';
 import { useGroupsStore } from '@/stores/groups';
-import GroupListItem from '@/components/common/GroupListItem.vue';
+import GroupListItem from '@/components/group/GroupListItem.vue';
 import { useAuthStore } from '@/stores/auth';
 import type { User, UserAuth } from '@/shared/types/User';
 import ProfileConnections from '@/components/profile/ProfileConnections.vue';
@@ -66,7 +66,7 @@ onMounted(() => findUser());
   <div>
     <ProfileCover class="z-0" :image="profile?.imageConver || ''" />
 
-    <div class="bg-light z-10" v-if="profile">
+    <div class="z-10" v-if="profile">
       <div class="w-full max-w-screen-lg mx-auto rounded-b-sm bg-white dark:bg-black pb-5 px-3">
         <ProfileIntro :socials="profile.socials || []" :profile="profile" :is-me="isMe" />
       </div>
@@ -96,9 +96,9 @@ onMounted(() => findUser());
 
         <div class="w-full md:col-span-5">
           <ProfileSimilar class="rounded-md" />
-          <ProfileConnections :connections="connections" />
+          <ProfileConnections class="dark:bg-black" :connections="connections" />
 
-          <div class="bg-white mt-3 md:mt-5 py-3 md:py-5 px-3 md:px-5 rounded-md">
+          <div class="bg-white dark:bg-black mt-3 md:mt-5 py-3 md:py-5 px-3 md:px-5 rounded-md">
             <h1 class="text-[16px] md:text-[20px] font-bold">
               My Groups
               <component :is="IconCommunity" fill="#8536b9" class="max-w-[30px] inline-block" />

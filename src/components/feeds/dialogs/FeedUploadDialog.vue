@@ -62,7 +62,7 @@ function setImage(): void {
         @dragleave="onDragLeave"
         @drop.prevent="onDrop"
         class="relative mt-3 min-h-[300px] flex justify-center flex-col items-center rounded-lg"
-        :class="previewUrl ? 'bg-slate-300' : 'py-3 bg-slate-200'"
+        :class="previewUrl ? 'bg-slate-300 dark:bg-slate-700' : 'py-3 bg-slate-200 dark:bg-slate-700'"
       >
         <input
           ref="fileInput"

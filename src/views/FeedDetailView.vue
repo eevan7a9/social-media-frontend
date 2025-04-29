@@ -38,7 +38,7 @@ onMounted(() => {
 <template>
   <div
     @click="goBack"
-    class="bg-gray-900/15 p-4 fixed top-0 h-svh right-0 left-0 bottom-0 flex justify-center md:items-center py-16 md:py-0"
+    class="bg-gray-900/15 dark:bg-dark/70 p-4 fixed top-0 h-svh right-0 left-0 bottom-0 flex justify-center md:items-center py-16 md:py-0"
   >
     <div class="w-full flex justify-center mt-4 pointer-events-none relative">
       <article
@@ -47,7 +47,7 @@ onMounted(() => {
         :class="{ 'pt-12': post?.type === PostTypes.Text }"
       >
         <div
-          class="flex min-h-[300px] flex-col bg-light rounded-xl overflow-y-auto w-full relative lg:col-span-4"
+          class="flex min-h-[300px] flex-col bg-light dark:bg-slate-950 rounded-xl overflow-y-auto w-full relative lg:col-span-4"
         >
           <div class="flex flex-col pt-3 px-2 bg-white dark:bg-dark">
             <FeedHeader :author="post?.author" :id="post.id" :created="post.created" v-if="post" />
@@ -61,7 +61,7 @@ onMounted(() => {
             <FeedAction :post="post" v-if="post" />
           </div>
 
-          <div class="border-t bg-white dark:bg-dark pb-5 border-gray-200">
+          <div class="border-t bg-white dark:bg-dark pb-5 border-gray-200 dark:border-slate-700">
             <div class="px-4 pt-4 hidden md:block">
               <div class="flex items-center gap-x-2 z-0">
                 <img :src="authStore?.authUser?.image" class="w-[40px] rounded-full" />
@@ -78,9 +78,9 @@ onMounted(() => {
         </div>
 
         <div
-          class="relative flex flex-col justify-between bg-slate-100 w-full h-auto max-h-[300px] md:max-h-[90dvh] md:max-w-[380px] lg:max-w-[420px] rounded-xl"
+          class="relative flex flex-col justify-between bg-slate-100 dark:bg-slate-900 w-full h-auto max-h-[300px] md:max-h-[90dvh] md:max-w-[380px] lg:max-w-[420px] rounded-xl"
         >
-          <div class="bg-white rounded-t-xl">
+          <div class="bg-white dark:bg-dark rounded-t-xl">
             <FeedTags v-if="post && post?.type === PostTypes.Image" />
             <div class="bg-white dark:bg-dark py-3 px-3 rounded-t-xl lg:text-[18px]">
               Comments <span class="text-[16px]">({{ post?.comments.length }})</span>
@@ -97,7 +97,7 @@ onMounted(() => {
               <FeedComment show-all class="!rounded-none" :post-id="post.id" :comment="comment" />
             </template>
           </div>
-          <div class="bg-white h-[50px] w-full rounded-b-xl"></div>
+          <div class="bg-white dark:bg-dark h-[50px] w-full rounded-b-xl"></div>
         </div>
       </article>
     </div>

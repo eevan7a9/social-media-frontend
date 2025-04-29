@@ -124,11 +124,11 @@ onMounted(() => {
 
         <div
           @click.stop
-          class="flex justify-between md:flex-col rounded-xl bg-light dark:bg-black/80 w-full md:w-auto md:h-full py-3 px-2"
+          class="flex justify-between md:flex-col rounded-xl bg-light dark:bg-black/90 w-full md:w-auto md:h-full py-3 px-2"
         >
           <StoryReactions :story="story" v-if="story" />
 
-          <button class="w-[60px] hover:bg-sky-600 cursor-pointer p-2 bg-dark rounded-full mt-auto mb-0">
+          <button class="w-[60px] hover:bg-sky-600 dark:hover:bg-slate-800 cursor-pointer p-2 bg-dark rounded-full mt-auto mb-0">
             <IconPlus class="w-full fill-white" />
           </button>
         </div>

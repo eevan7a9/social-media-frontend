@@ -25,13 +25,13 @@ async function send(): Promise<void> {
 </script>
 
 <template>
-  <div class="bg-white px-3 py-2 md:py-3">
+  <div class="bg-white dark:bg-dark px-3 py-2 md:py-3">
     <div class="flex items-center pl-3">
       <input
         v-model="comment"
         placeholder="Write your comment..."
         maxlength="100"
-        class="text-[14px] w-full h-[50px] py-2 px-3 pl-5 bg-gray-100 rounded-l-2xl"
+        class="text-[14px] w-full h-[50px] py-2 px-3 pl-5 bg-gray-100 dark:bg-slate-700 rounded-l-2xl"
         @keydown.enter="send()"
       />
       <button

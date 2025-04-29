@@ -13,7 +13,7 @@ const activitiesStore = useActivitiesStore();
   <section>
     <EventsList />
 
-    <StoryTopStories item-class="h-[200px]" class="hidden md:block px-3 mt-4 border-b pb-6 mb-4 border-gray-300" />
+    <StoryTopStories item-class="h-[200px]" class="hidden md:block px-3 mt-4 border-b pb-6 mb-4 border-gray-300 dark:border-slate-700" />
 
     <div class="sticky top-4 mt-8 md:mt-0">
       <div class="px-3">
@@ -25,7 +25,7 @@ const activitiesStore = useActivitiesStore();
         </ul>
       </div>
 
-      <div class="mt-4 border-t pt-4 border-gray-300">
+      <div class="mt-4 border-t pt-4 border-gray-300 dark:border-slate-700">
         <h1 class="text-[16px] font-bold m-0">Latest Activities:</h1>
         <ul class="flex flex-col gap-y-1 mt-3">
           <ActivityListItem

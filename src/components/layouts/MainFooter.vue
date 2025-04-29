@@ -23,7 +23,7 @@ import { IconHelp, IconCog } from '@/components/icons';
           </li>
         </ul>
         <ul class="flex flex-col gap-y-2 text-[18px]">
-          <li class="text-[18px] font-semibold text-gray-700">Apps</li>
+          <li class="text-[18px] font-semibold text-gray-700 dark:text-gray-50">Apps</li>
           <li class="text-[16px]">
             <a href="/" class="underline">Anroid App Version</a>
           </li>
@@ -36,9 +36,9 @@ import { IconHelp, IconCog } from '@/components/icons';
         </ul>
       </div>
 
-      <div class="grid grid-cols-2 text-gray-800">
-        <ul class="flex flex-col gap-y-1">
-          <li class="text-[18px] font-semibold text-gray-700">Pages</li>
+      <div class="grid grid-cols-2 text-gray-800 dark:text-gray-200">
+        <ul class="flex flex-col gap-y-1 cursor-not-allowed">
+          <li class="text-[18px] font-semibold text-gray-700 dark:text-gray-50">Pages</li>
           <li class="text-[16px]">Home</li>
           <li class="text-[16px]">Profile</li>
           <li class="text-[16px]">Security</li>
@@ -47,7 +47,7 @@ import { IconHelp, IconCog } from '@/components/icons';
         </ul>
 
         <ul class="flex flex-col gap-y-1">
-          <li class="text-[18px] font-semibold text-gray-700">Legal</li>
+          <li class="text-[18px] font-semibold text-gray-700 dark:text-gray-50">Legal</li>
           <li class="text-[16px]">
             <a href="/" class="underline"> Privacy & Security </a>
           </li>
@@ -57,8 +57,8 @@ import { IconHelp, IconCog } from '@/components/icons';
         </ul>
       </div>
     </div>
-    <div class="h-[50px] w-full border-t border-gray-300 text-center pt-3">
-      <span class="text-[15px] font-bold text-gray-900">Open Source</span>
+    <div class="h-[50px] w-full border-t border-gray-300 dark:border-slate-700 text-center pt-3">
+      <span class="text-[15px] font-bold text-gray-900 dark:text-gray-400">Open Source</span>
       <a href="https://github.com/eevan7a9/social-media-frontend" class="underline text-blue-500">
         github.com:social-media-frontend
       </a>

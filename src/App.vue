@@ -78,20 +78,20 @@ onMounted(() => {
     <template #menuBtn>
       <button
         @click="toggleSideNav"
-        class="md:hidden p-1 hover:bg-slate-100 cursor-pointer dark:hover:bg-slate-800"
+        class="md:hidden p-1 hover:bg-slate-100 cursor-pointer dark:hover:bg-slate-800 rounded-full"
       >
-        <IconMenu class="w-[40px] fill-primary" />
+        <IconMenu class="w-[40px] fill-primary dark:fill-sky-700" />
       </button>
     </template>
   </NavbarTop>
   <MobileNavSidebar class="z-40" v-model="showMobileNav" />
 
-  <main class="bg-light dark:bg-dark text-dark dark:text-light h-full min-h-screen pb-4 relative z-0">
+  <main class="bg-light dark:bg-slate-950 text-dark dark:text-light h-full min-h-screen pb-4 relative z-0">
     <RouterView class="z-0" />
   </main>
 
-  <ChatContainer class="fixed bottom-0 z-20" />
-  <MainFooter class="border-t border-gray-300" />
+  <ChatContainer class="fixed bottom-0 z-20  text-dark dark:text-light " />
+  <MainFooter class="border-t border-gray-300 bg-light dark:bg-slate-950 text-dark dark:text-light " />
 </template>
 
 <style scoped></style>

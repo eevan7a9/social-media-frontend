@@ -8,14 +8,14 @@
     -1px 1px 0 #000,
     1px 1px 0 #000;
 }
-
+/* 
 .dark .dark-text-stroke {
   text-shadow:
     -1px -1px 0 #fff,
     1px -1px 0 #fff,
     -1px 1px 0 #fff,
     1px 1px 0 #fff;
-}
+} */
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 10px;

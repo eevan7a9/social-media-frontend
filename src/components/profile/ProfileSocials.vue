@@ -21,33 +21,24 @@ const youtube = props.user.socials?.youtube;
 <template>
   <div class="flex flex-wrap md:w-[200px] gap-3">
     <a target="__blank" :href="github" :class="github ? 'cursor-pointer' : 'cursor-not-allowed'">
-      <IconGithub class="w-[38px]" :class="github ? 'fill-primary' : 'fill-slate-400 dark:fill-slate-700'" />
+      <IconGithub class="w-[38px]" :class="github ? 'fill-primary dark:fill-sky-600' : 'fill-slate-400'" />
     </a>
 
     <a target="__blank" :href="twitter" :class="twitter ? 'cursor-pointer' : 'cursor-not-allowed'">
-      <IconTwiter class="w-[38px]" :class="twitter ? 'fill-primary' : 'fill-slate-400 dark:fill-slate-700'" />
+      <IconTwiter class="w-[38px]" :class="twitter ? 'fill-primary dark:fill-sky-600' : 'fill-slate-400'" />
     </a>
 
     <a target="__blank" :href="instagram" :class="instagram ? 'cursor-pointer' : 'cursor-not-allowed'">
-      <IconInstagram
-        class="w-[35px]"
-        :class="instagram ? 'fill-primary' : 'fill-slate-400 dark:fill-slate-700'"
-      />
+      <IconInstagram class="w-[35px]" :class="instagram ? 'fill-primary dark:fill-sky-600' : 'fill-slate-400'" />
     </a>
     <a target="__blank" :href="facebook" :class="facebook ? 'cursor-pointer' : 'cursor-not-allowed'">
-      <IconFacebook
-        class="w-[35px]"
-        :class="facebook ? 'fill-primary' : 'fill-slate-400 dark:fill-slate-700'"
-      />
+      <IconFacebook class="w-[35px]" :class="facebook ? 'fill-primary dark:fill-sky-600' : 'fill-slate-400'" />
     </a>
     <a target="__blank" :href="youtube" :class="youtube ? 'cursor-pointer' : 'cursor-not-allowed'">
-      <IconYoutube
-        class="h-[45px]"
-        :class="youtube ? 'fill-primary' : 'fill-slate-400 dark:fill-slate-700'"
-      />
+      <IconYoutube class="h-[45px]" :class="youtube ? 'fill-primary dark:fill-sky-600' : 'fill-slate-400'" />
     </a>
     <a target="__blank" :href="twitch" :class="twitch ? 'cursor-pointer' : 'cursor-not-allowed'">
-      <IconTwitch class="w-[38px]" :class="twitch ? 'fill-primary' : 'fill-slate-400 dark:fill-slate-700'" />
+      <IconTwitch class="w-[38px]" :class="twitch ? 'fill-primary dark:fill-sky-600' : 'fill-slate-400'" />
     </a>
   </div>
 </template>

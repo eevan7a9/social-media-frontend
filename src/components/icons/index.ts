@@ -51,8 +51,10 @@ import IconSend from './IconSend.vue';
 import IconChevronUp from './IconChevronUp.vue';
 import IconClockOutline from './IconClockOutline.vue';
 import IconMenu from './IconMenu.vue';
+import IconTheme from './IconTheme.vue';
 
 export {
+  IconTheme,
   IconMenu,
   IconClockOutline,
   IconChevronUp,

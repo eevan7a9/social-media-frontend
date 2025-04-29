@@ -33,11 +33,13 @@ function saved() {
 </script>
 
 <template>
-  <div class="px-3 py-3 lg:px-5 lg:pl-6 border-t border-gray-200 mt-3 lg:mt-5 flex gap-x-1 lg:gap-x-3">
+  <div
+    class="px-3 py-3 lg:px-5 lg:pl-6 border-t border-gray-200 dark:border-slate-700 mt-3 lg:mt-5 flex gap-x-1 lg:gap-x-3"
+  >
     <button
       @click.stop="liked()"
       class="p-1 flex items-center gap-x-2 group cursor-pointer hover:text-sky-500"
-      :class="props.post.hasLiked ? 'text-sky-600' : 'text-gray-500'"
+      :class="props.post.hasLiked ? 'text-sky-600' : 'text-gray-500 dark:text-white'"
     >
       <span class="text-[16px] font-normal">
         {{ props.post.actions.like || 0 }}
@@ -56,7 +58,7 @@ function saved() {
     <button
       @click.stop="shared()"
       class="p-1 flex items-center gap-x-1 group cursor-pointer hover:text-yellow-500"
-      :class="props.post.hasShared ? 'text-warning' : 'text-gray-500'"
+      :class="props.post.hasShared ? 'text-warning' : 'text-gray-500 dark:text-white'"
     >
       <span class="text-[16px] font-normal">
         {{ props.post.actions.share || 0 }}

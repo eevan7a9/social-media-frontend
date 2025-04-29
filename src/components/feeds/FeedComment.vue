@@ -45,7 +45,7 @@ function viewProfile() {
 </script>
 
 <template>
-  <div class="bg-white border-t border-gray-200 px-3 py-4 rounded-xl flex items-center gap-x-3">
+  <div class="bg-white dark:bg-dark border-t border-gray-200 dark:border-slate-700 px-3 py-4 rounded-xl flex items-center gap-x-3">
     <div class="lg:pl-2" @click="viewProfile">
       <img
         :src="comment.author?.image || 'https://placehold.co/100x100/333/FFF'"
