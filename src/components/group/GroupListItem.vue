@@ -1,13 +1,18 @@
 <script lang="ts" setup>
 import type { Group } from '@/shared/types/Group';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const props = defineProps<{ group: Group }>();
 
 const router = useRouter();
+const route = useRoute();
 
 function viewGroupDetails() {
-  router.push('group/' + props.group.id);
+  let path = 'group/' + props.group.id;
+  if (route.name === 'profile') {
+    path = '/profile/' + path + '?user=' + route.query.user;
+  }
+  router.push(path);
 }
 </script>
 

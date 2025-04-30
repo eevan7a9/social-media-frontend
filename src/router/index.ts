@@ -11,17 +11,17 @@ const router = createRouter({
       children: [
         {
           name: 'feedDetailView',
-          path: '/feed/:id',
+          path: 'feed/:id',
           component: () => import('../views/FeedDetailView.vue'),
         },
         {
           name: 'groupDetailView',
-          path: '/group/:id',
+          path: 'group/:id',
           component: () => import('../views/GroupDetailView.vue'),
         },
         {
           name: 'storyDetailView',
-          path: '/story/:id',
+          path: 'story/:id',
           component: () => import('../views/StoryDetailView.vue'),
         },
       ],

@@ -3,7 +3,6 @@ import { RouterView, useRoute } from 'vue-router';
 import NavbarTop from '@/components/layouts/NavbarTop.vue';
 import MainFooter from '@/components/layouts/MainFooter.vue';
 import { computed, onMounted, provide, ref } from 'vue';
-import AlertDefault from './components/common/alerts/AlertDefault.vue';
 import { useUsersStore } from './stores/users';
 import { useGroupsStore } from './stores/groups';
 import { useFeedsStore } from './stores/feeds';
@@ -14,11 +13,13 @@ import { fetchFeeds } from './shared/services/feedService';
 import { fetchGroups } from './shared/services/groupService';
 import { fetchStories } from './shared/services/storyService';
 import { fetchActivities } from './shared/services/activityService';
-import AlertConfirmation from './components/common/alerts/AlertConfirmation.vue';
 import ChatContainer from './components/chat/ChatContainer.vue';
 import { fetchUsers } from './shared/services/userService';
 import IconMenu from './components/icons/IconMenu.vue';
 import MobileNavSidebar from './components/layouts/MobileNavSidebar.vue';
+import AlertDefault from './components/common/alerts/AlertDefault.vue';
+import AlertConfirmation from './components/common/alerts/AlertConfirmation.vue';
+import AlertRestricted from './components/common/alerts/AlertRestricted.vue';
 
 const feedsStore = useFeedsStore();
 const usersStore = useUsersStore();
@@ -39,6 +40,9 @@ const isDetailsView = computed(() =>
 
 const alertConfirmationRef = ref<InstanceType<typeof AlertConfirmation> | null>(null);
 provide('alertConfirmationRef', alertConfirmationRef);
+
+const alertRestrictedRef = ref<InstanceType<typeof AlertRestricted> | null>(null);
+provide('alertRestrictedRef', alertRestrictedRef);
 
 const showMobileNav = ref(false);
 
@@ -73,6 +77,7 @@ onMounted(() => {
   <LoadingPage class="z-50" />
   <AlertDefault class="z-50" />
   <AlertConfirmation class="z-50" ref="alertConfirmationRef" />
+  <AlertRestricted class="z-50" ref="alertRestrictedRef" />
 
   <NavbarTop :class="isDetailsView ? 'z-0' : 'z-20'">
     <template #menuBtn>
@@ -90,8 +95,8 @@ onMounted(() => {
     <RouterView class="z-0" />
   </main>
 
-  <ChatContainer class="fixed bottom-0 z-20  text-dark dark:text-light " />
-  <MainFooter class="border-t border-gray-300 bg-light dark:bg-slate-950 text-dark dark:text-light " />
+  <ChatContainer class="fixed bottom-0 z-20 text-dark dark:text-light" />
+  <MainFooter class="border-t border-gray-300 bg-light dark:bg-slate-950 text-dark dark:text-light" />
 </template>
 
 <style scoped></style>
