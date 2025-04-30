@@ -1,23 +1,22 @@
 # social-media-frontend
 
-Is a Social Media Application.
+Is a Vue Social Media Application Developed using Vuejs with Typescript.
 
-Social media are interactive computer-mediated technologies that facilitate the creation and sharing of information, ideas, career interests and other forms of expression via virtual communities and networks.
+(Update 2025) 
+- Added *Tailwindcss*
+- updated from *Webpack* to *Vite*
+- updated from *Javascript* to *Typescript*
+- Updated from *Vue 2* to *Vue 3*
+- Updated from *Vuex* to *Pinia*
+- Removed som 3rd party packages like *Sweet Alert* & *AOS*
 
 # Reminder
 
-This is a **Frontend Only** application. and we are using Json placeholder to give us **Fake Api**
+This is a **Frontend Only** application.
 
 **Social-media-frontend** a front-end only application is written in a sort of way to mimic a fullstack application for demo purpose only
 
 ## What can You do?
-
-### As a visitor -
-
-- You can view Posts
-- You can see Comments
-- You can view users profile
-- You can Register and Sign in
 
 ### As a Registered, Signed in user -
 
@@ -29,11 +28,12 @@ This is a **Frontend Only** application. and we are using Json placeholder to gi
 - You can write Comments to Posts
 - You can edit your Comments
 - You can delete your Comments
-- You can give Stars to Posts you like
-- You can remove Stars to Posts you unlike
+- You can give Thumbs-up to Posts you like
+- You can remove Thumbs-up to Posts you unlike
 - You can view users profile
 - You can follow other user you like
-- You can filter posts
+- You can view Groups
+- You can view Stories
 
 ## Technology
 
