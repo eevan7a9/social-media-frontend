@@ -36,6 +36,7 @@ function reportUser() {
       ></span>
       <img :src="friend.image" @click="viewProfile" class="cursor-pointer w-[50px] h-[50px] rounded-full" />
     </div>
+
     <span class="text-[14px] hover:underline cursor-pointer" @click="viewProfile">{{ friend.username }}</span>
 
     <MenuMore
