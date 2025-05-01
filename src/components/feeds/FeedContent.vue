@@ -3,8 +3,14 @@ import { PostTypes } from '@/shared/enums/Post';
 import type { Post } from '@/shared/types/Post';
 import FeedTags from './FeedTags.vue';
 import LeafletMap from '../common/maps/LeafletMap.vue';
+import { ref } from 'vue';
 
 const props = defineProps<{ post: Post; showTags?: boolean; detailView?: boolean }>();
+
+const latlng = ref({
+  lat: props.post?.latlng?.[0] || 0,
+  lng: props.post.latlng?.[1] || 0,
+});
 </script>
 
 <template>
@@ -38,7 +44,7 @@ const props = defineProps<{ post: Post; showTags?: boolean; detailView?: boolean
       <div
         class="bg-slate-100 dark:bg-slate-900 h-[350px] w-full relative overflow-hidden flex justify-center mt-3"
       >
-        <LeafletMap class="h-full w-full z-10" :latlng="props.post.latlng" v-if="props.post.latlng" />
+        <LeafletMap class="h-full w-full z-10" v-model="latlng" v-if="props.post.latlng" />
       </div>
     </div>
     <!-- TYPE LINK -->
