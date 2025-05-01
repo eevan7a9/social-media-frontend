@@ -3,6 +3,7 @@ import MenuMore from '@/components/common/menu/MenuMore.vue';
 import { IconEye, IconPlus } from '@/components/icons';
 import IconFlag from '@/components/icons/IconFlag.vue';
 import StoryReactions from '@/components/story/StoryReactions.vue';
+import { useReport } from '@/composables/report';
 import type { Story } from '@/shared/types/Stories';
 import { useStoriesStore } from '@/stores/stories';
 import { computed, onMounted, ref, watch } from 'vue';
@@ -11,6 +12,7 @@ import { useRoute, useRouter } from 'vue-router';
 const router = useRouter();
 const route = useRoute();
 const storiesStore = useStoriesStore();
+const report = useReport();
 
 const story = ref<Story | undefined>(undefined);
 story.value = storiesStore.list.find((item) => item.id === route.params.id);
@@ -21,8 +23,8 @@ function goBack() {
   router.back();
 }
 
-function report() {
-  console.log('report()', menuMore.value);
+function reportStory(id: string) {
+  report.story(id);
   menuMore.value?.close();
 }
 
@@ -76,7 +78,8 @@ onMounted(() => {
               <ul class="bg-white dark:bg-black py-1 flex flex-col text-[14px]">
                 <li
                   class="py-2 px-1 hover:bg-slate-200 dark:hover:bg-slate-600 flex items-center"
-                  @click="report()"
+                  @click="reportStory(story?.id)"
+                  v-if="story"
                 >
                   <IconFlag class="w-[30px] mr-2 fill-dark" />
                   <span>Report</span>
@@ -128,7 +131,9 @@ onMounted(() => {
         >
           <StoryReactions :story="story" v-if="story" />
 
-          <button class="w-[60px] hover:bg-sky-600 dark:hover:bg-slate-800 cursor-pointer p-2 bg-dark rounded-full mt-auto mb-0">
+          <button
+            class="w-[60px] hover:bg-sky-600 dark:hover:bg-slate-800 cursor-pointer p-2 bg-dark rounded-full mt-auto mb-0"
+          >
             <IconPlus class="w-full fill-white" />
           </button>
         </div>

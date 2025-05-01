@@ -31,9 +31,15 @@ export const useReport = function () {
     );
   }
 
+  function story(id: string): void {
+    console.log(id);
+    alert.showAlert('Report sent! Our team will review the story shortly. 🛡️', AlertType.Info, 7000);
+  }
+
   return {
     user,
     post,
     comment,
+    story,
   };
 };
