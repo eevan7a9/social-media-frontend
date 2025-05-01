@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
+import { ref, onMounted, onBeforeUnmount, watch, computed } from 'vue';
 import L from 'leaflet';
 
-const myCoord = defineModel<{ lat: number; lng: number } | null>({ default: () => ({ lat: 13, lng: 122 }) });
+const myCoord = defineModel<{ lat: number; lng: number } | undefined>({
+  default: () => ({ lat: 13, lng: 122 }),
+});
 const props = defineProps<{
-  latlng?: [number, number];
   pickerMode?: boolean;
   label?: string;
   zoom?: number;
@@ -13,7 +14,9 @@ const props = defineProps<{
 const mapContainer = ref<HTMLElement | null>(null);
 let map: L.Map | null = null;
 let marker: L.Marker;
-
+const latlng = computed<[number, number]>(() => {
+  return myCoord.value ? [myCoord.value.lat, myCoord.value.lng] : [14, 121.2];
+});
 watch(myCoord, (newVal) => {
   console.log('Location coord changed:', newVal);
   if (map && newVal) {
@@ -34,14 +37,14 @@ onMounted(() => {
 
   map = L.map(mapContainer.value, {
     scrollWheelZoom: props.pickerMode,
-  }).setView([14, 121.2], props.zoom || 8);
+  }).setView(latlng.value, props.zoom || 8);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
 
   if (myCoord.value) {
-    marker = L.marker(props.latlng || [myCoord.value.lat, myCoord.value.lng])
+    marker = L.marker(latlng.value)
       .addTo(map)
       .bindPopup(props.label || "I'm Here")
       .openPopup();
